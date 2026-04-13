@@ -36,15 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     reveals.forEach(reveal => revealObserver.observe(reveal));
 
-    // 4. HUD Status Update
+    // 4. Scroll Status & Nav State Update
     const scrollStatus = document.getElementById('scroll-status');
     const sections = document.querySelectorAll('section');
     const hud = document.querySelector('.hud');
     const scrollTopBtn = document.getElementById('scroll-top');
+    const navLinks = document.querySelectorAll('.hud-nav a');
     
     window.addEventListener('scroll', () => {
-        // HUD Scroll State
-        if (window.pageYOffset > 50) {
+        const scrollY = window.scrollY;
+
+        // HUD Scrolled Background
+        if (scrollY > 50) {
             hud.classList.add('scrolled');
             if (scrollTopBtn) scrollTopBtn.classList.add('visible');
         } else {
@@ -52,19 +55,44 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scrollTopBtn) scrollTopBtn.classList.remove('visible');
         }
 
-        let currentSection = 'IDLE';
+        let currentId = '';
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= (sectionTop - 250)) {
-                currentSection = section.getAttribute('id').toUpperCase();
+            if (scrollY >= (sectionTop - 250)) {
+                currentId = section.getAttribute('id');
             }
         });
 
+        if (scrollY < 100) {
+            currentId = ''; // At top of page
+        }
+
+        const currentSection = currentId ? currentId.toUpperCase() : 'HERO_IDLE';
+
         if (scrollStatus) {
             scrollStatus.innerHTML = `<span>[OK]</span> <span>VIEWING_${currentSection}</span>`;
+            
+            // HUD proximity check to avoid footer overlap
+            const footer = document.querySelector('.site-footer');
+            if (footer) {
+                const footerTop = footer.getBoundingClientRect().top;
+                if (footerTop < window.innerHeight - 40) {
+                    scrollStatus.parentElement.style.opacity = '0';
+                    scrollStatus.parentElement.style.pointerEvents = 'none';
+                } else {
+                    scrollStatus.parentElement.style.opacity = '1';
+                    scrollStatus.parentElement.style.pointerEvents = 'auto';
+                }
+            }
         }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (currentId && link.getAttribute('href') === `#${currentId}`) {
+                link.classList.add('active');
+            }
+        });
     });
 
     // 5. Scroll To Top Click
@@ -89,25 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: targetElement.offsetTop - 100,
                     behavior: 'smooth'
                 });
-            }
-        });
-    });
-
-    // 6. Active Nav State
-    const navLinks = document.querySelectorAll('.hud-nav a');
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
             }
         });
     });
