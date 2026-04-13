@@ -14,7 +14,7 @@
     <div class="scan-line"></div>
 
     <header class="hud">
-        <div class="hud-logo">CESAR<span style="color: var(--accent-primary)">OGS</span></div>
+        <div class="hud-logo">CESAR<span class="logo-accent">OGS</span></div>
         <nav class="hud-nav">
             <a href="#about">About</a>
             <a href="#experience">Exp</a>
@@ -42,14 +42,16 @@
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
         <!-- About Section -->
         <section id="about" class="section-about">
             <span class="label reveal">01 // Profile</span>
             <div class="timeline-item reveal">
                 <div class="timeline-meta">ENGINEERING PHILOSOPHY</div>
                 <div class="timeline-content">
-                    <h3 style="font-size: 3rem; margin-bottom: 2rem;">"Quality is the result of intelligent effort."</h3>
-                    <p class="timeline-desc" style="font-size: 1.2rem;">
+                    <h2 class="about-quote">"Quality is the result of intelligent effort."</h2>
+                    <p class="about-desc">
                         With over 5 years in the field, I bridge the gap between 
                         rapid development and stable delivery. I don't just find 
                         bugs; I build the systems that prevent them.
@@ -57,6 +59,8 @@
                 </div>
             </div>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- Experience Section -->
         <section id="experience" class="section-experience">
@@ -103,36 +107,40 @@
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
         <!-- Skills Section -->
         <section id="skills" class="section-skills">
             <span class="label reveal">03 // Tech Stack</span>
             <div class="bento-grid">
                 <div class="bento-item reveal">
-                    <span class="label" style="margin-bottom: 10px;">Automation</span>
+                    <span class="label bento-label">Automation</span>
                     <h3>Playwright<br>Selenium<br>Cypress</h3>
                 </div>
                 <div class="bento-item reveal wide">
-                    <span class="label" style="margin-bottom: 10px;">AI Implementation</span>
+                    <span class="label bento-label">AI Implementation</span>
                     <h3>Playwright MCP<br>playwright-cli<br>Codex Integration</h3>
                 </div>
                 <div class="bento-item reveal">
-                    <span class="label" style="margin-bottom: 10px;">API / Test</span>
+                    <span class="label bento-label">API / Test</span>
                     <h3>Postman<br>JMeter<br>PostgreSQL</h3>
                 </div>
                 <div class="bento-item reveal">
-                    <span class="label" style="margin-bottom: 10px;">Programming</span>
+                    <span class="label bento-label">Programming</span>
                     <h3>JavaScript<br>Node.js<br>Python</h3>
                 </div>
                 <div class="bento-item reveal">
-                    <span class="label" style="margin-bottom: 10px;">VCS / CI</span>
+                    <span class="label bento-label">VCS / CI</span>
                     <h3>GitHub Actions<br>Jenkins<br>Git</h3>
                 </div>
                 <div class="bento-item reveal wide">
-                    <span class="label" style="margin-bottom: 10px;">Methodologies</span>
+                    <span class="label bento-label">Methodologies</span>
                     <h3>Agile / SCRUM<br>RCA Execution<br>eCommerce Systems</h3>
                 </div>
             </div>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- Education Section -->
         <section id="education" class="section-education">
@@ -146,11 +154,13 @@
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
         <!-- Contact Section -->
         <section id="contact" class="section-contact">
-            <div class="reveal" style="text-align: center;">
+            <div class="reveal contact-center">
                 <span class="label">05 // Contact</span>
-                <h2 style="font-size: clamp(2rem, 8vw, 6rem); margin-bottom: 40px;">GET IN TOUCH</h2>
+                <h2 class="contact-heading">GET IN TOUCH</h2>
                 <div class="contact-grid">
                     <div class="contact-chips">
                         <a href="mailto:garcia.cpu@gmail.com" class="contact-chip">
@@ -162,6 +172,16 @@
                             <span class="chip-label">+52 664 264 8910</span>
                         </a>
                     </div>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/cesar-ogs/" target="_blank" class="contact-chip">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="chip-label">LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/cesaroctavio" target="_blank" class="contact-chip">
+                            <i class="fab fa-github"></i>
+                            <span class="chip-label">GitHub</span>
+                        </a>
+                    </div>
                     <div class="location-tag">
                         <i class="fas fa-map-marker-alt"></i>
                         TIJUANA, MEXICO
@@ -171,12 +191,12 @@
         </section>
     </main>
 
-    <footer style="padding: 100px 40px; border-top: 1px solid var(--border-dim); font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); display: flex; justify-content: space-between;">
+    <footer class="site-footer">
         <div>© <span id="year"></span> CESAR GARCIA SANCHEZ</div>
         <div>DESIGNED FOR PERFORMANCE // 2026.04.13</div>
     </footer>
 
-    <button id="scroll-top" title="Escala a Inicio">
+    <button id="scroll-top" title="Scroll to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
 

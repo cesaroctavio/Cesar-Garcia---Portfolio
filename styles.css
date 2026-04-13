@@ -444,20 +444,82 @@ section {
   :root {
     --section-padding: 80px;
   }
+
+  .container {
+    padding: 0 24px;
+  }
   
+  /* HUD adjustments avoiding padding jump */
   .hud {
-    padding: 20px;
+    padding: 16px 24px;
+    align-items: center;
+  }
+
+  .hud.scrolled {
+    padding: 12px 24px;
+  }
+
+  .hud-logo {
+    font-size: 1rem;
   }
   
   .hud-nav {
-    display: none; /* Mobile will need a simplified nav or burger */
+    display: flex;
+    gap: 12px;
+  }
+
+  .hud-nav a {
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hud-status {
+    display: none; /* Prevent overlap with real content on small screens */
   }
   
   .hero-main {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 14vw, 4rem);
+    margin-bottom: 24px;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    text-align: left;
+    border-right: none;
+    border-left: 2px solid var(--accent-primary);
+    padding-right: 0;
+    padding-left: 16px;
+    margin-left: 0;
   }
   
   .bento-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bento-item {
+    padding: 24px;
+  }
+  
+  .bento-item.wide, .bento-item.tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .contact-chips {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-chip {
+    padding: 12px 20px;
+    justify-content: center;
+  }
+
+  #scroll-top {
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
   }
 }
