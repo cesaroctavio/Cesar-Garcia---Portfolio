@@ -1,123 +1,114 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    /* =========================================
-       Mobile Navigation Toggle
-       ========================================= */
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    // 1. Set Current Year
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    // 2. Scan Line Animation
+    const scanLine = document.querySelector('.scan-line');
+    if (scanLine) {
+        scanLine.animate([
+            { top: '0%', opacity: 0 },
+            { top: '50%', opacity: 1 },
+            { top: '100%', opacity: 0 }
+        ], {
+            duration: 2000,
+            easing: 'ease-in-out',
+            iterations: 1
+        });
+    }
+
+    // 3. Reveal on Scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealOptions);
+
+    reveals.forEach(reveal => revealObserver.observe(reveal));
+
+    // 4. HUD Status Update
+    const scrollStatus = document.getElementById('scroll-status');
+    const sections = document.querySelectorAll('section');
+    const hud = document.querySelector('.hud');
+    const scrollTopBtn = document.getElementById('scroll-top');
     
-    if (hamburger && navLinks) {
-        // Toggle menu
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
+    window.addEventListener('scroll', () => {
+        // HUD Scroll State
+        if (window.pageYOffset > 50) {
+            hud.classList.add('scrolled');
+            if (scrollTopBtn) scrollTopBtn.classList.add('visible');
+        } else {
+            hud.classList.remove('scrolled');
+            if (scrollTopBtn) scrollTopBtn.classList.remove('visible');
+        }
+
+        let currentSection = 'IDLE';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= (sectionTop - 250)) {
+                currentSection = section.getAttribute('id').toUpperCase();
+            }
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
+        if (scrollStatus) {
+            scrollStatus.innerHTML = `<span>[OK]</span> <span>VIEWING_${currentSection}</span>`;
+        }
+    });
+
+    // 5. Scroll To Top Click
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     }
 
-    /* =========================================
-       Header Scroll Effect
-       ========================================= */
-    const header = document.querySelector('.header');
-    
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    }
-
-    /* =========================================
-       Set Current Year in Footer
-       ========================================= */
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    /* =========================================
-       Intersection Observer for Animations
-       ========================================= */
-    // Select elements to animate
-    const faders = document.querySelectorAll('.fade-in-up');
-    
-    // Observer options
-    const appearOptions = {
-        threshold: 0.15, // Fire when 15% of the element is visible
-        rootMargin: "0px 0px -50px 0px"
-    };
-    
-    // Create observer
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return; // Do nothing if not intersecting
-            } else {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target); // Stop observing once it has appeared
-            }
-        });
-    }, appearOptions);
-    
-    // Apply observer to each animated element
-    faders.forEach(fader => {
-        appearOnScroll.observe(fader);
-    });
-
-    /* =========================================
-       Smooth Scrolling for Anchor Links
-       ========================================= */
-    // Select all links with hashes
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            // Find target element
+    // 6. Smooth Scroll for HUD Links
+    document.querySelectorAll('.hud-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
             const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return; // Skip empty hashes
-
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                e.preventDefault();
-                
-                // Calculate scroll position accounting for fixed header
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                // Smooth scroll via window
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetElement.offsetTop - 100,
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    /* =========================================
-       Scroll To Top Button
-       ========================================= */
-    const scrollTopBtn = document.getElementById('scroll-top-btn');
-
-    if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight / 2) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
+    // 6. Active Nav State
+    const navLinks = document.querySelectorAll('.hud-nav a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
             }
         });
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
         });
-    }
+    });
 });
-
