@@ -1,0 +1,385 @@
+/* Custom grid for the reference layout */
+.ref-layout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: auto auto;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-primary);
+}
+
+/* Base styles for the new layout overrides */
+body {
+  background-color: var(--bg-primary);
+}
+
+.ref-top-left,
+.ref-top-right,
+.ref-bottom-left,
+.ref-bottom-right {
+  padding: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ref-top-left,
+.ref-bottom-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ref-top-left {
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ref-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.ref-logo-icon {
+  width: 35px;
+  height: 35px;
+  background-color: var(--accent-primary);
+  border-radius: 8px 8px 8px 20px;
+}
+
+.ref-logo-text {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.ref-name {
+  font-size: 4.5rem;
+  line-height: 1.05;
+  font-weight: 800;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.ref-name .highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--text-primary);
+}
+
+.ref-name .highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 30%;
+  height: 6px;
+  background-color: var(--accent-primary);
+  z-index: -1;
+}
+
+.ref-image-container {
+  flex-shrink: 0;
+  width: 42%;
+  max-width: 300px;
+  align-self: stretch;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.ref-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 14px 14px 0 0;
+  display: block;
+}
+
+.ref-top-right {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+}
+
+.ref-nav {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: auto;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ref-nav a {
+  color: var(--text-secondary);
+}
+
+.ref-nav a:hover,
+.ref-nav a.active {
+  color: var(--text-primary);
+}
+
+.ref-intro {
+  max-width: 450px;
+  margin-top: 6rem;
+}
+
+.ref-role {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.ref-desc {
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.ref-link {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--accent-primary);
+  padding-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.ref-bottom-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  padding-top: 7rem;
+}
+
+.ref-bottom-left h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.ref-bottom-left p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  max-width: 300px;
+}
+
+.ref-email {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  border-bottom: 1px solid var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+  width: max-content;
+}
+
+.ref-bottom-right {
+  position: relative;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-quote-container {
+  padding-right: 4rem;
+  margin-bottom: 3rem;
+}
+
+.ref-quote {
+  font-size: 1.25rem;
+  font-style: normal;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.ref-stats {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 3rem;
+  padding-left: 2rem;
+}
+
+.ref-stat-num {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  display: block;
+  line-height: 1;
+}
+
+.ref-stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 600;
+  display: block;
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+}
+
+.ref-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: auto;
+}
+
+.ref-card {
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.ref-card h4 {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  line-height: 1.3;
+}
+
+.ref-card span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ref-card.yellow {
+  background-color: var(--accent-primary);
+  color: #1e1f26;
+}
+
+.ref-card.yellow h4,
+.ref-card.yellow i {
+  color: #1e1f26;
+}
+.ref-card.yellow span {
+  color: rgba(30, 31, 38, 0.7);
+}
+
+.ref-card.dark {
+  background-color: var(--bg-secondary);
+  border-left: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.ref-card i {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .ref-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .ref-top-left,
+  .ref-bottom-left {
+    border-right: none;
+  }
+  .ref-name {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ref-top-left {
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 0;
+    overflow: hidden;
+    gap: 2rem;
+  }
+  .ref-left-content {
+    padding: 0;
+  }
+  .ref-image-container {
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    height: 320px;
+    margin: 0 -2rem;
+    width: calc(100% + 4rem);
+  }
+  .ref-photo {
+    border-radius: 0;
+    object-position: top center;
+  }
+  .ref-name {
+    font-size: 3rem;
+  }
+  .ref-cards {
+    grid-template-columns: 1fr;
+  }
+  .ref-card {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .ref-top-left,
+  .ref-top-right,
+  .ref-bottom-left,
+  .ref-bottom-right {
+    padding: 2rem;
+  }
+}
+
+/* =====================
+   Scroll To Top Button
+   ===================== */
+#scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  color: #000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 9999;
+}
+
+#scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#scroll-top-btn:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+}
