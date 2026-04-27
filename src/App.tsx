@@ -89,14 +89,12 @@ const skills = [
 const contacts = [
   {
     href: "mailto:garcia.cpu@gmail.com",
-    command: "EXE_EMAIL",
     value: "garcia.cpu@gmail.com",
     label: "Email",
     icon: Mail,
   },
   {
     href: "https://wa.me/526642648910",
-    command: "EXE_WHATSAPP",
     value: "+52 664 264 8910",
     label: "WhatsApp",
     icon: MessageCircle,
@@ -104,7 +102,6 @@ const contacts = [
   },
   {
     href: "https://www.linkedin.com/in/cesar-ogs/",
-    command: "EXE_LINKEDIN",
     value: "in/cesar-ogs",
     label: "LinkedIn",
     icon: LinkedinIcon,
@@ -112,7 +109,6 @@ const contacts = [
   },
   {
     href: "https://github.com/cesaroctavio",
-    command: "EXE_GITHUB",
     value: "cesaroctavio",
     label: "GitHub",
     icon: GithubIcon,
@@ -263,11 +259,11 @@ function Skills() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative border-t border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-loose)' }}>
+    <section id="contact" className="relative border-t border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-generous)' }}>
       <div className="max-w-7xl mx-auto px-[var(--container-px)]">
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24 items-start">
           <div>
-            <span className="text-primary font-mono text-[10px] uppercase block mb-8 lg:mb-12 tracking-[0.3em]">04 // HANDSHAKE_PROTOCOL</span>
+            <span className="text-primary font-mono text-[10px] uppercase block mb-8 lg:mb-12 tracking-[0.3em]">04 // CONTACT</span>
             <h2
               className="font-display font-[900] text-foreground leading-[0.9] mb-8 lg:mb-12"
               style={{
@@ -275,8 +271,8 @@ function Contact() {
                 letterSpacing: 'var(--tracking-display)',
               }}
             >
-              INITIATE<br />
-              <span className="text-primary italic">CONNECTION</span>
+              START A<br />
+              <span className="text-primary italic">CONVERSATION</span>
             </h2>
             <p className="text-muted-foreground max-w-md mb-8 lg:mb-12 text-pretty" style={{ fontSize: 'var(--text-lg)', lineHeight: 'var(--leading-relaxed)' }}>
               Ready to collaborate on industrial-grade automation solutions. Open for discussions on framework architecture, quality strategy, and technical&nbsp;leadership.
@@ -302,7 +298,7 @@ function Contact() {
                     <div className="p-2 bg-primary/10 rounded group-hover:bg-primary/20 transition-all duration-300">
                       <contact.icon className="size-4 text-primary" />
                     </div>
-                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{contact.command}</span>
+                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{contact.label}</span>
                   </div>
                   <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>

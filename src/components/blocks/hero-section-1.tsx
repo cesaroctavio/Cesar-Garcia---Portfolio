@@ -51,7 +51,7 @@ export function HeroSection() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                       </span>
-                      Protocol_Init: Active
+                      Available for QA automation leadership
                     </div>
                     <div className="h-px flex-1 bg-border/30 max-w-[100px] hidden sm:block"></div>
                     <span className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.2em] hidden sm:block">0x7F // QA_CORE</span>
@@ -101,7 +101,7 @@ export function HeroSection() {
                       className="rounded-none h-14 px-10 text-sm font-mono tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_var(--foreground)]"
                     >
                       <a href="#contact">
-                        INIT_CONTACT();
+                        Contact Me
                       </a>
                     </Button>
                     <Button
@@ -111,7 +111,7 @@ export function HeroSection() {
                       className="rounded-none h-14 px-10 text-sm font-mono tracking-widest border-border/50 hover:border-primary/50 hover:bg-primary/[0.03] bg-transparent transition-all hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(var(--primary-rgb),0.2)]"
                     >
                       <a href="#experience">
-                        VIEW_LOGS
+                        View Experience
                       </a>
                     </Button>
                   </div>
@@ -124,38 +124,38 @@ export function HeroSection() {
           <div className="absolute bottom-0 left-0 w-full overflow-hidden border-y border-border/10 bg-background/50 backdrop-blur-sm py-4 hidden md:block">
             <div className="relative w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
               <div className="flex whitespace-nowrap animate-marquee items-center gap-16 text-[10px] font-mono text-muted-foreground/30 tracking-[0.3em] uppercase">
-                <span>System_Status: Optimal</span>
+                <span>46+ Automated Specs</span>
                 <span>•</span>
-                <span>46_Automated_Specs: PASSED</span>
+                <span>53 Reusable Page Objects</span>
                 <span>•</span>
-                <span>Coverage: 98.2%</span>
+                <span>17 Storefront Countries</span>
                 <span>•</span>
-                <span>Environment: Production_Ready</span>
+                <span>B2B and B2C Coverage</span>
                 <span>•</span>
-                <span>Playwright_v1.44.0</span>
+                <span>Axe Accessibility</span>
                 <span>•</span>
-                <span>Build: #842_SUCCESS</span>
+                <span>Allure Reporting</span>
                 <span>•</span>
-                <span>Latency: 12ms</span>
+                <span>Prometheus CI Metrics</span>
                 <span>•</span>
-                <span>Uptime: 99.99%</span>
+                <span>Playwright Architecture</span>
                 <span>•</span>
                 {/* Loop */}
-                <span>System_Status: Optimal</span>
+                <span>46+ Automated Specs</span>
                 <span>•</span>
-                <span>46_Automated_Specs: PASSED</span>
+                <span>53 Reusable Page Objects</span>
                 <span>•</span>
-                <span>Coverage: 98.2%</span>
+                <span>17 Storefront Countries</span>
                 <span>•</span>
-                <span>Environment: Production_Ready</span>
+                <span>B2B and B2C Coverage</span>
                 <span>•</span>
-                <span>Playwright_v1.44.0</span>
+                <span>Axe Accessibility</span>
                 <span>•</span>
-                <span>Build: #842_SUCCESS</span>
+                <span>Allure Reporting</span>
                 <span>•</span>
-                <span>Latency: 12ms</span>
+                <span>Prometheus CI Metrics</span>
                 <span>•</span>
-                <span>Uptime: 99.99%</span>
+                <span>Playwright Architecture</span>
               </div>
             </div>
           </div>
@@ -316,11 +316,11 @@ const HeroHeader = () => {
                   className="w-full h-16 text-lg font-mono tracking-widest rounded-none"
                 >
                   <a href="#contact" onClick={() => setMenuState(false)}>
-                    INIT_CONNECTION();
+                    Contact Me
                   </a>
                 </Button>
                 <div className="mt-8 flex justify-between text-[10px] font-mono text-muted-foreground/60 uppercase tracking-widest">
-                  <span>Protocol_v2.0</span>
+                  <span>Portfolio_v2.0</span>
                   <span>Cesar Garcia Sánchez</span>
                 </div>
               </div>
