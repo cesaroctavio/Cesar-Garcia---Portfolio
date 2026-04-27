@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HeroSection } from "@/components/blocks/hero-section-1";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Mail, MessageCircle, ArrowUpRight, MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Brand icons (Lucide doesn't include brand logos)
 const LinkedinIcon = ({ className }: { className?: string }) => (
@@ -122,18 +122,46 @@ const contacts = [
 
 function About() {
   return (
-    <section id="about" className="py-16 sm:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <span className="text-primary font-mono text-sm uppercase tracking-wider mb-6 block">01 // Profile</span>
-        <div className="grid md:grid-cols-[1fr_2fr] gap-6 sm:gap-12 items-start">
-          <div className="text-zinc-500 font-mono text-sm pt-2">ENGINEERING PHILOSOPHY</div>
+    <section id="about" className="relative border-y border-border/10" style={{ paddingTop: 'var(--section-tight)', paddingBottom: 'var(--section-normal)' }}>
+      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-32 items-start">
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-6 sm:mb-8 text-white leading-tight">
-              "Quality is the result of <span className="text-primary">intelligent effort</span>."
+            <span className="text-primary font-mono text-[10px] uppercase block mb-6 lg:mb-12 tracking-[0.3em]">01 // CORE_SPECIFICATION</span>
+            <h2
+              className="font-display font-[900] text-foreground leading-[1.1] mb-8"
+              style={{
+                fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
+                letterSpacing: 'var(--tracking-display)',
+              }}
+            >
+              &ldquo;Quality is the result of <span className="text-primary italic">intelligent effort</span>.&rdquo;
             </h2>
-            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-              QA Automation Engineer with 5+ years of experience building and maintaining automated test solutions for eCommerce platforms. Strong hands-on background in Playwright, Selenium, JavaScript/Node.js, API testing, and CI/CD integration across B2B, B2C, and content validation workflows.
-            </p>
+          </div>
+          
+          <div className="lg:pt-24">
+            <div className="space-y-8 lg:space-y-12">
+              <div className="relative pl-6 lg:pl-8 border-l border-primary/30">
+                <span className="absolute left-0 top-0 -translate-x-1/2 w-2 h-2 bg-primary rounded-full"></span>
+                <p className="text-muted-foreground text-balance" style={{ fontSize: 'var(--text-lg)', lineHeight: 'var(--leading-relaxed)' }}>
+                  Senior QA Automation Engineer with a specialized focus on building industrial-grade test architectures for large-scale eCommerce ecosystems. I bridge the gap between development and reliability through technical precision and automated rigor.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-border/10">
+                <div>
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest block mb-3 lg:mb-4">// CURRENT_FOCUS</span>
+                  <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+                    Modular Playwright frameworks, CI/CD observability, and AI-assisted test design.
+                  </p>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest block mb-3 lg:mb-4">// OPERATING_DOMAIN</span>
+                  <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+                    B2B/B2C eCommerce, Global Storefronts, and High-Traffic Content Validation.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -143,35 +171,49 @@ function About() {
 
 function Experience() {
   return (
-    <section id="experience" className="py-16 sm:py-24 relative">
-      {/* Background glow */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none opacity-30"></div>
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-        <span className="text-primary font-mono text-sm uppercase tracking-wider mb-8 sm:mb-12 block">02 // Experience Log</span>
-        
-        <div className="space-y-8 sm:space-y-12">
-          {experiences.map((exp, i) => (
-            <div key={i} className="group relative grid md:grid-cols-[1fr_3fr] gap-4 sm:gap-8 md:gap-12 items-start">
-              {/* Timeline dot and line (desktop) */}
-              <div className="hidden md:block absolute left-[24.5%] top-2 bottom-0 w-px bg-white/10 group-last:bg-transparent">
-                <div className="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-white/20 border-2 border-[#09090b] transition-colors group-hover:bg-primary z-10"></div>
+    <section id="experience" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-normal)' }}>
+      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 lg:gap-8 mb-16 lg:mb-24">
+          <div>
+            <span className="text-primary font-mono text-[10px] uppercase block mb-4 lg:mb-6 tracking-[0.3em]">02 // PROFESSIONAL_LOGS</span>
+            <h2
+              className="font-display font-[900] text-foreground leading-none"
+              style={{
+                fontSize: 'clamp(2.25rem, 8vw, 5.5rem)',
+                letterSpacing: 'var(--tracking-display)',
+              }}
+            >
+              EXPERIENCE
+            </h2>
+          </div>
+          <div className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.2em] pb-1 lg:pb-2">
+            TOTAL_RUNTIME: 5.4_YEARS
+          </div>
+        </div>
+
+        <div className="space-y-20 lg:space-y-32">
+          {experiences.map((exp, index) => (
+            <div key={index} className="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-24 relative">
+              <div className="lg:sticky lg:top-32 h-fit">
+                <div className="flex items-center gap-4 mb-3 lg:mb-4">
+                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                  <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">{exp.period}</span>
+                </div>
+                <h3 className="font-display font-[800] text-2xl lg:text-3xl mb-2 text-foreground">{exp.company}</h3>
+                <p className="text-primary font-mono text-[10px] tracking-widest font-bold">{exp.role}</p>
               </div>
-              
-              <div className="text-zinc-500 font-mono text-xs sm:text-sm pt-1">{exp.period}</div>
-              
-              <SpotlightCard className="p-5 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">{exp.company}</h3>
-                <h4 className="text-primary font-medium text-sm sm:text-base mb-4 sm:mb-6">{exp.role}</h4>
-                <ul className="space-y-2 sm:space-y-3">
-                  {exp.points.map((point, j) => (
-                    <li key={j} className="text-zinc-400 text-sm sm:text-base flex items-start gap-2 sm:gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-600 flex-shrink-0"></span>
-                      <span>{point}</span>
+
+              <div className="relative">
+                <div className="absolute -left-6 top-0 bottom-0 w-px bg-border/20 hidden lg:block"></div>
+                <ul className="space-y-5 lg:space-y-6">
+                  {exp.points.map((point, i) => (
+                    <li key={i} className="text-muted-foreground leading-relaxed flex gap-3 lg:gap-4 group pb-5 lg:pb-6 border-b border-border/40 last:border-0" style={{ fontSize: 'var(--text-base)' }}>
+                      <span className="text-primary/60 font-mono text-[10px] pt-1.5 group-hover:text-primary transition-colors shrink-0">[{String(i + 1).padStart(2, '0')}]</span>
+                      <span className="flex-1">{point}</span>
                     </li>
                   ))}
                 </ul>
-              </SpotlightCard>
+              </div>
             </div>
           ))}
         </div>
@@ -182,24 +224,36 @@ function Experience() {
 
 function Skills() {
   return (
-    <section id="skills" className="py-16 sm:py-24">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <span className="text-primary font-mono text-sm uppercase tracking-wider mb-8 sm:mb-12 block">03 // Tech Stack</span>
+    <section id="skills" className="bg-foreground/[0.02] border-y border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-normal)' }}>
+      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
+        <div className="mb-16 lg:mb-24">
+          <span className="text-primary font-mono text-[10px] uppercase block mb-4 lg:mb-6 tracking-[0.3em]">03 // ASSET_MATRIX</span>
+          <h2
+            className="font-display font-[900] text-foreground leading-none"
+            style={{
+              fontSize: 'clamp(2.25rem, 8vw, 5.5rem)',
+              letterSpacing: 'var(--tracking-display)',
+            }}
+          >
+            TECH STACK
+          </h2>
+        </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-px bg-transparent lg:bg-border/10 lg:border lg:border-border/10">
           {skills.map((skill, i) => (
-            <SpotlightCard key={i} className={`p-5 sm:p-8 ${skill.wide ? 'sm:col-span-2' : ''}`}>
-              <div className="text-primary font-mono text-xs uppercase tracking-wider mb-4 sm:mb-6">
-                {skill.label}
+            <div key={i} className={cn("bg-background p-6 lg:p-8 group hover:bg-foreground/[0.02] transition-colors border lg:border-0 border-border/10", skill.wide && "lg:col-span-2")}>
+              <div className="flex items-center justify-between mb-6 lg:mb-8">
+                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{skill.label}</span>
+                <span className="text-primary/20 font-mono text-[10px] group-hover:text-primary transition-colors">SPEC_0{i + 1}</span>
               </div>
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-wrap gap-2 lg:gap-3">
                 {skill.items.map((item, j) => (
-                  <span key={j} className="text-sm sm:text-base font-medium text-zinc-300 px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/5">
+                  <span key={j} className="px-2.5 py-1 bg-foreground/[0.03] border border-border/50 text-[10px] lg:text-xs font-mono text-foreground/70 group-hover:border-primary/30 group-hover:text-foreground transition-all">
                     {item}
                   </span>
                 ))}
               </div>
-            </SpotlightCard>
+            </div>
           ))}
         </div>
       </div>
@@ -209,61 +263,57 @@ function Skills() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-16 sm:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <SpotlightCard className="p-6 sm:p-8 md:p-12 overflow-hidden">
-          {/* Dual ambient glows */}
-          <div className="absolute right-0 top-0 w-[300px] h-[300px] bg-primary/20 blur-[100px] rounded-full pointer-events-none opacity-40 translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute left-0 bottom-0 w-[200px] h-[200px] bg-primary/10 blur-[80px] rounded-full pointer-events-none opacity-30 -translate-x-1/3 translate-y-1/3"></div>
-          
-          <div className="relative z-10 grid md:grid-cols-[2fr_3fr] gap-8 md:gap-12 items-start">
-            {/* Left — Header */}
-            <div>
-              <span className="text-primary font-mono text-sm uppercase tracking-wider mb-4 block">04 // Handshake Protocol</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                INITIATE<br/>CONNECTION
-              </h2>
-              <p className="text-zinc-500 text-sm leading-relaxed mb-6 max-w-xs hidden sm:block">
-                Ready to collaborate on your next project. Reach out through any channel below.
-              </p>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-xs font-mono text-zinc-400">
-                <MapPin className="w-3 h-3 text-primary" />
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                TIJUANA, MX
-              </div>
-            </div>
+    <section id="contact" className="relative border-t border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-loose)' }}>
+      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
+        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24 items-start">
+          <div>
+            <span className="text-primary font-mono text-[10px] uppercase block mb-8 lg:mb-12 tracking-[0.3em]">04 // HANDSHAKE_PROTOCOL</span>
+            <h2
+              className="font-display font-[900] text-foreground leading-[0.9] mb-8 lg:mb-12"
+              style={{
+                fontSize: 'clamp(2.5rem, 10vw, 7rem)',
+                letterSpacing: 'var(--tracking-display)',
+              }}
+            >
+              INITIATE<br />
+              <span className="text-primary italic">CONNECTION</span>
+            </h2>
+            <p className="text-muted-foreground max-w-md mb-8 lg:mb-12 text-pretty" style={{ fontSize: 'var(--text-lg)', lineHeight: 'var(--leading-relaxed)' }}>
+              Ready to collaborate on industrial-grade automation solutions. Open for discussions on framework architecture, quality strategy, and technical&nbsp;leadership.
+            </p>
             
-            {/* Right — Contact links */}
-            <div className="space-y-3">
-              {contacts.map((contact, i) => {
-                const Icon = contact.icon;
-                return (
-                  <a
-                    key={i}
-                    href={contact.href}
-                    target={contact.external ? "_blank" : undefined}
-                    rel={contact.external ? "noreferrer" : undefined}
-                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-primary/40 hover:bg-primary/[0.06] transition-all duration-200 group cursor-pointer"
-                  >
-                    {/* Icon */}
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-4 h-4 text-primary" />
-                    </div>
-                    
-                    {/* Text */}
-                    <div className="flex-1 min-w-0 font-mono">
-                      <div className="text-[10px] sm:text-xs text-zinc-600 uppercase tracking-wider">{contact.label}</div>
-                      <div className="text-sm sm:text-base text-zinc-300 group-hover:text-white transition-colors truncate">{contact.value}</div>
-                    </div>
-                    
-                    {/* Arrow */}
-                    <ArrowUpRight className="w-4 h-4 flex-shrink-0 text-zinc-600 group-hover:text-primary transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-                );
-              })}
+            <div className="flex items-center gap-3 text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
+              <MapPin className="size-3 text-primary" />
+              TIJUANA, MX // 32.5149° N, 117.0382° W
             </div>
           </div>
-        </SpotlightCard>
+
+          <div className="grid gap-3 lg:gap-4">
+            {contacts.map((contact, index) => (
+              <a
+                key={index}
+                href={contact.href}
+                target={contact.external ? "_blank" : undefined}
+                rel={contact.external ? "noopener noreferrer" : undefined}
+                className="group relative flex flex-col p-5 lg:p-6 border border-border/50 hover:border-primary/40 transition-all duration-300 bg-foreground/[0.02] hover:bg-primary/[0.04] outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary/60 active:scale-[0.99] active:bg-primary/[0.06]"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/10 rounded group-hover:bg-primary/20 transition-all duration-300">
+                      <contact.icon className="size-4 text-primary" />
+                    </div>
+                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{contact.command}</span>
+                  </div>
+                  <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+                <div className="text-foreground font-display font-bold text-lg lg:text-xl group-hover:text-primary transition-colors break-words">
+                  {contact.value}
+                </div>
+                <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-primary/60 group-hover:w-full transition-all duration-500 ease-out"></div>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -271,10 +321,10 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="py-8 border-t border-white/10 mt-12">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-zinc-600">
+    <footer className="py-8 border-t border-border bg-card">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-muted-foreground" style={{ letterSpacing: 'var(--tracking-mono)' }}>
         <div>&copy; {new Date().getFullYear()} CESAR GARCIA SANCHEZ</div>
-        <div>DESIGNED FOR PERFORMANCE // 2026.04.26</div>
+        <div>DESIGNED FOR PERFORMANCE // REV.{new Date().toISOString().split('T')[0].replace(/-/g, '.')}</div>
       </div>
     </footer>
   );
@@ -293,7 +343,10 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-[#09090b] min-h-screen text-zinc-100 font-sans selection:bg-primary/30 selection:text-primary">
+    <div className="bg-background min-h-screen text-foreground font-sans selection:bg-primary/30 selection:text-primary">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <HeroSection />
       <main id="main-content">
         <About />
@@ -304,11 +357,11 @@ export default function App() {
       <Footer />
       
       <button
-        className={`fixed bottom-8 right-8 p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur hover:bg-white/10 hover:border-primary/50 transition-all duration-300 z-50 ${isScrollTopVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+        className={`fixed bottom-8 right-8 p-3 rounded-none bg-background/80 border border-border/50 backdrop-blur-md hover:bg-primary/[0.05] hover:border-primary/50 hover:shadow-[4px_4px_0px_rgba(var(--primary-rgb),0.2)] transition-all duration-300 z-50 ${isScrollTopVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
       >
-        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
       </button>
