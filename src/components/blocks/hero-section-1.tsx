@@ -57,7 +57,7 @@ export function HeroSection() {
                                     </h1>
                                     <p
                                         className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-400">
-                                        Engineer III specializing in test automation, AI-assisted workflows, and CI/CD integration for global eCommerce platforms.
+                                        Senior QA Automation Engineer / SDET with 5+ years building automated test solutions for eCommerce platforms — scaling coverage across multi-country storefronts with AI-assisted workflows.
                                     </p>
                                 </AnimatedGroup>
 
