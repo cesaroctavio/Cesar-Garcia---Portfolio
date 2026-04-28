@@ -1,29 +1,7 @@
 import React from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { AnimatedGroup } from "@/components/ui/animated-group";
 import { cn } from "@/lib/utils";
-
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 16,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "tween",
-        ease: [0.16, 1, 0.3, 1],
-        duration: 0.8,
-      },
-    },
-  },
-};
 
 const menuItems = [
   { name: "Home", href: "#hero" },
@@ -40,8 +18,6 @@ export function HeroSection() {
       className="relative flex min-h-screen w-full max-w-full overflow-hidden pt-28"
     >
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-noise" />
-          <div className="absolute inset-0 bg-scanline opacity-35" />
           <div
             className="absolute inset-0 opacity-[0.035]"
             style={{
@@ -50,14 +26,12 @@ export function HeroSection() {
               backgroundSize: "4.5rem 4.5rem",
             }}
           />
-          <div className="absolute left-[-12rem] top-12 h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute bottom-0 right-[-8rem] h-[34rem] w-[34rem] rounded-full bg-foreground/5 blur-3xl" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
         </div>
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 px-[var(--container-px)] pb-24 pt-16 md:pb-32 lg:grid-cols-[1.14fr_0.86fr] lg:gap-16">
-          <div className="relative min-w-0">
-            <AnimatedGroup variants={transitionVariants}>
+          <div className="hero-copy relative min-w-0">
+            <div>
               <p
                 className="mb-5 max-w-4xl font-display text-[clamp(2.35rem,7.2vw,5.6rem)] font-[900] leading-[0.88] tracking-normal text-primary"
                 aria-label="Cesar Octavio Garcia Sanchez"
@@ -88,7 +62,7 @@ export function HeroSection() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-14 rounded-none bg-primary px-9 text-sm font-bold text-primary-foreground transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-[6px_6px_0_rgba(255,255,255,0.14)]"
+                  className="h-14 rounded-none bg-primary px-9 text-sm font-bold text-primary-foreground transition-[transform,background-color,box-shadow] hover:-translate-y-1 hover:bg-primary/90 hover:shadow-[6px_6px_0_rgba(255,255,255,0.14)]"
                 >
                   <a href="#contact">Contact Me</a>
                 </Button>
@@ -96,34 +70,28 @@ export function HeroSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-14 rounded-none border-border/70 bg-background/40 px-9 text-sm font-bold text-foreground backdrop-blur transition-all hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.06] hover:text-primary"
+                  className="h-14 rounded-none border-border/70 bg-background/80 px-9 text-sm font-bold text-foreground transition-[transform,background-color,border-color,color] hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.06] hover:text-primary"
                 >
                   <a href="#experience">View Experience</a>
                 </Button>
               </div>
-            </AnimatedGroup>
+            </div>
           </div>
 
           <div className="relative min-h-[31rem] md:min-h-[36rem] lg:min-h-[42rem]">
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="relative ml-auto h-[24rem] w-[82%] overflow-hidden border border-border/50 bg-foreground/[0.03] shadow-[0_40px_120px_rgba(0,0,0,0.36)] md:h-[30rem] lg:h-[36rem]"
             >
               <img
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85"
                 alt=""
-                className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.88] transition-transform duration-700 ease-out hover:scale-105"
+                className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.88]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent mix-blend-multiply" />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 -mt-20 w-[92%] border border-border/50 bg-background/88 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl md:w-[76%] md:p-8 lg:absolute lg:bottom-8 lg:left-0 lg:mt-0"
+            <div
+              className="hero-panel relative z-10 -mt-20 w-[92%] border border-border/50 bg-background/95 p-6 shadow-[0_24px_72px_rgba(0,0,0,0.24)] md:w-[76%] md:p-8 lg:absolute lg:bottom-8 lg:left-0 lg:mt-0"
             >
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                 Operating model
@@ -135,7 +103,7 @@ export function HeroSection() {
                 Designed around practical debugging, reusable helpers, and
                 release signals that engineering teams can act on.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
     </section>
@@ -304,9 +272,9 @@ export const HeroHeader = () => {
       <nav className="fixed top-4 z-50 w-full px-4">
         <div
           className={cn(
-            "relative z-[70] mx-auto max-w-5xl rounded-full border border-border/40 bg-background/25 px-5 backdrop-blur-md transition-all duration-500 md:px-6",
+            "relative z-[70] mx-auto max-w-5xl rounded-full border border-border/40 bg-background/85 px-5 transition-[background-color,border-color,box-shadow] duration-300 md:px-6",
             isScrolled &&
-              "border-primary/25 bg-background/92 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl",
+              "border-primary/25 bg-background/95 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.75)]",
           )}
         >
           <div className="relative flex items-center justify-between gap-6 py-3">
@@ -372,33 +340,26 @@ export const HeroHeader = () => {
           </div>
         </div>
 
-        <AnimatePresence>
-          {menuState && (
-            <motion.div
+        {menuState && (
+            <div
               id={mobileMenuId}
               ref={mobileMenuRef}
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute left-0 top-0 z-[55] flex h-[100vh] w-full flex-col bg-background/96 p-8 pt-24 backdrop-blur-xl lg:hidden"
+              className="mobile-menu-panel absolute left-0 top-0 z-[55] flex h-[100vh] w-full flex-col bg-background/98 p-8 pt-24 lg:hidden"
             >
               <div className="flex flex-col gap-8">
                 {menuItems.map((item, index) => {
                   const isActive = activeSection === item.href.replace("#", "");
                   return (
-                    <motion.a
+                    <a
                       key={item.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
                       href={item.href}
                       onClick={() => closeMenu(false)}
+                      style={{ "--menu-index": index } as React.CSSProperties}
                       className={cn(
-                        "group flex items-center justify-between py-2 font-display text-4xl font-[900] tracking-normal",
+                        "mobile-menu-link group flex items-center justify-between py-2 font-display text-4xl font-[900] tracking-normal",
                         isActive
                           ? "text-primary"
                           : "text-muted-foreground transition-colors hover:text-foreground",
@@ -409,11 +370,11 @@ export const HeroHeader = () => {
                       </span>
                       <ArrowUpRight
                         className={cn(
-                          "size-6 -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
+                          "size-6 -translate-x-4 opacity-0 transition-[transform,opacity] duration-300 group-hover:translate-x-0 group-hover:opacity-100",
                           isActive && "translate-x-0 opacity-100",
                         )}
                       />
-                    </motion.a>
+                    </a>
                   );
                 })}
               </div>
@@ -433,9 +394,8 @@ export const HeroHeader = () => {
                   <span>Cesar Octavio Garcia Sanchez</span>
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+        )}
       </nav>
     </header>
   );

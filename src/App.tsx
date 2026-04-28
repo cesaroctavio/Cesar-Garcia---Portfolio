@@ -1,7 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   ArrowLeft,
@@ -12,8 +9,6 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -154,43 +149,12 @@ const contacts = [
 ];
 
 function About() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const wordRefs = useRef<HTMLSpanElement[]>([]);
   const statement =
     "Senior QA Automation Engineer focused on building durable test systems for large-scale eCommerce platforms. I connect development, release confidence, and observable quality through technical precision and automation discipline.";
-  const words = statement.split(" ");
-
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(wordRefs.current, { opacity: 1, y: 0 });
-        return;
-      }
-
-      gsap.fromTo(
-        wordRefs.current,
-        { opacity: 0.14, y: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "none",
-          stagger: 0.08,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 72%",
-            end: "bottom 55%",
-            scrub: true,
-          },
-        },
-      );
-    },
-    { scope: sectionRef },
-  );
 
   return (
     <section
       id="about"
-      ref={sectionRef}
       className="relative overflow-hidden border-y border-border/10 py-32 md:py-48"
     >
       <div className="absolute inset-x-0 top-1/4 h-64 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--primary-rgb),0.12),transparent_58%)]" />
@@ -213,21 +177,8 @@ function About() {
         </div>
 
         <div className="flex flex-col justify-end gap-10 lg:pt-36">
-          <p
-            className="text-2xl font-medium leading-relaxed text-muted-foreground md:text-3xl"
-            aria-label={statement}
-          >
-            {words.map((word, index) => (
-              <span
-                key={`${word}-${index}`}
-                ref={(node) => {
-                  if (node) wordRefs.current[index] = node;
-                }}
-                className="reveal-word mr-2 inline-block"
-              >
-                {word}
-              </span>
-            ))}
+          <p className="max-w-2xl text-2xl font-medium leading-relaxed text-muted-foreground md:text-3xl">
+            {statement}
           </p>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -310,7 +261,7 @@ function SkillsBento() {
                   {card.items.map((item) => (
                     <span
                       key={item}
-                      className="border border-border/60 bg-background/60 px-3 py-1.5 text-xs font-semibold text-foreground/80 backdrop-blur"
+                      className="border border-border/60 bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground/80"
                     >
                       {item}
                     </span>
@@ -343,43 +294,9 @@ function CapabilityMarquee() {
 }
 
 function ExperienceStack() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useGSAP(
-    () => {
-      const cards = gsap.utils.toArray<HTMLElement>(".stack-card");
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(cards, { opacity: 1, y: 0, scale: 1 });
-        return;
-      }
-
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0.45, y: 80, scale: 0.94 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1 - index * 0.018,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 82%",
-              end: "top 34%",
-              scrub: true,
-            },
-          },
-        );
-      });
-    },
-    { scope: sectionRef },
-  );
-
   return (
     <section
       id="experience"
-      ref={sectionRef}
       className="relative overflow-hidden py-32 md:py-48"
     >
       <div className="absolute inset-x-0 top-0 h-96 bg-[radial-gradient(circle_at_72%_10%,rgba(var(--primary-rgb),0.14),transparent_56%)]" />
@@ -401,7 +318,7 @@ function ExperienceStack() {
           {experiences.map((exp, index) => (
             <article
               key={exp.company}
-              className="stack-card group border border-border/50 bg-card/90 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.18)] backdrop-blur md:p-10 lg:sticky"
+              className="group border border-border/50 bg-card/95 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.16)] md:p-10 lg:sticky"
               style={{ top: `${112 + index * 26}px` }}
             >
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -462,17 +379,17 @@ function ProofCarousel() {
             alt=""
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.75] transition-transform duration-700 ease-out hover:scale-105"
+            className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.75]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/5" />
-          <div className="absolute left-6 top-6 border border-primary/35 bg-background/78 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-primary backdrop-blur-md">
+          <div className="absolute left-6 top-6 border border-primary/35 bg-background/90 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
             Playwright run
           </div>
           <div className="absolute bottom-28 left-8 grid w-[min(20rem,calc(100%-4rem))] gap-2 font-mono text-xs text-foreground">
             {["46 specs passed", "Axe scan clean", "Trace ready"].map((item) => (
               <div
                 key={item}
-                className="flex items-center justify-between border border-border/45 bg-background/72 px-4 py-3 backdrop-blur-md"
+                className="flex items-center justify-between border border-border/45 bg-background/90 px-4 py-3"
               >
                 <span>{item}</span>
                 <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_18px_rgba(var(--primary-rgb),0.8)]" />
@@ -629,7 +546,7 @@ export default function App() {
 
       <button
         data-scroll-top
-        className={`fixed bottom-8 right-8 z-50 border border-border/50 bg-background/80 p-3 text-foreground backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/[0.05] ${isScrollTopVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"}`}
+        className={`fixed bottom-8 right-8 z-50 border border-border/50 bg-background/90 p-3 text-foreground transition-[transform,opacity,border-color,background-color] duration-300 hover:border-primary/50 hover:bg-primary/[0.05] ${isScrollTopVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
         aria-hidden={isScrollTopVisible ? undefined : "true"}
