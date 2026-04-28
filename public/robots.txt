@@ -1,0 +1,8 @@
+# robots.txt
+# Cesar Garcia Sánchez - Portfolio
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://cesargarcia.dev/sitemap.xml
