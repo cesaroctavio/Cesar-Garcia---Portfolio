@@ -19,7 +19,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['"Figtree"', 'system-ui', 'sans-serif'],
-        display: ['"Darker Grotesque"', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"Figtree"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {

@@ -1,89 +1,121 @@
 import { useEffect, useState } from "react";
-import { HeroSection } from "@/components/blocks/hero-section-1";
-import { Mail, MessageCircle, ArrowUpRight, MapPin } from "lucide-react";
+import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Brand icons (Lucide doesn't include brand logos)
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
+
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
   </svg>
 );
 
 const experiences = [
   {
-    period: "DEC 2021 - PRESENT",
+    period: "Dec 2021 - Present",
     company: "Thermo Fisher Scientific",
     role: "Engineer III, Software Quality Assurance",
+    proof:
+      "Modular Playwright architecture across shopping, quotes, returns, login, and AEM content workflows.",
     points: [
-      "Contributed to the design and maintenance of a modular Playwright automation framework supporting 46+ automated specs and 53 reusable page objects across shopping, quotes, returns, login, and AEM content workflows.",
-      "Standardized automated execution across 17 country storefronts and multiple QA/production environments for both B2B and B2C journeys using parameterized test runners, fixtures, and storage-state authentication.",
-      "Implemented reusable B2B PunchOut/cXML and authentication setup flows to reduce duplication, improve suite stability, and simplify onboarding of new scenarios.",
-      "Expanded coverage beyond functional testing by adding accessibility validation with Axe, rich evidence reporting with Allure, and CI observability through Prometheus metrics.",
-      "Built AEM multi-locale and regional validation flows for EU, US, and CA content publishing checks, including fallback logic for localized content paths.",
-      "Applied AI-assisted workflows with Codex, Playwright MCP, and playwright-cli to speed up test design, browser interaction debugging, and validation support.",
-      "Investigated production defects, performed root cause analysis, and collaborated with distributed Agile teams to align quality gates with release priorities.",
-      "Created and maintained test plans, test cases, execution matrices, and framework documentation for new automation workflows.",
+      "Contributed to the design and maintenance of a modular Playwright automation framework supporting 46+ automated specs and 53 reusable page objects.",
+      "Standardized automated execution across 17 country storefronts and multiple QA/production environments for B2B and B2C journeys.",
+      "Implemented reusable B2B PunchOut/cXML and authentication setup flows to reduce duplication and improve suite stability.",
+      "Expanded coverage with Axe accessibility validation, Allure reporting, and Prometheus CI observability.",
     ],
   },
   {
-    period: "JAN 2020 - NOV 2021",
+    period: "Jan 2020 - Nov 2021",
     company: "BioSoft Integrators, Inc",
     role: "Software Quality Engineer",
+    proof:
+      "Manual and automated validation for web applications, APIs, and Agile release cycles.",
     points: [
-      "Developed and executed manual and automated test cases based on business and technical requirements for web applications and services.",
-      "Validated REST and SOAP APIs using JSON and XML payloads, with clear defect documentation and reproducible evidence in Jira.",
-      "Performed functional, regression, and usability testing in Agile delivery cycles and supported release readiness with structured test reporting.",
+      "Developed and executed manual and automated test cases from business and technical requirements.",
+      "Validated REST and SOAP APIs using JSON and XML payloads, with reproducible evidence in Jira.",
+      "Performed functional, regression, and usability testing to support release readiness.",
     ],
   },
   {
-    period: "JAN 2019 - JAN 2020",
+    period: "Jan 2019 - Jan 2020",
     company: "Bajalogics",
     role: "Web Developer / QA Tester",
+    proof:
+      "Development and testing experience across web application features and exploratory validation.",
     points: [
-      "Developed web application features using ASP.NET and supported validation of new releases through manual and exploratory testing.",
-      "Designed test scenarios, documented results, and helped verify system behavior against requirements.",
+      "Developed web application features using ASP.NET and supported validation of new releases.",
+      "Designed test scenarios, documented results, and verified system behavior against requirements.",
     ],
   },
 ];
 
-const skills = [
+const skillCards = [
   {
-    label: "Test Automation",
-    items: ["Playwright", "Selenium", "Cypress"],
+    title: "Automation Architecture",
+    text: "Reusable Playwright page objects, fixtures, storage-state authentication, and cross-market execution patterns.",
+    items: ["Playwright", "Selenium", "Cypress", "Node.js"],
+    className: "lg:col-span-2 lg:row-span-3",
+    image: "https://picsum.photos/seed/automation-lab/1200/1400",
   },
   {
-    label: "AI-Assisted Testing",
+    title: "AI-Assisted QA",
+    text: "Codex, Playwright MCP, and playwright-cli used as practical accelerators for design, triage, and browser debugging.",
     items: ["Codex", "Playwright MCP", "playwright-cli"],
-    wide: true,
+    className: "lg:col-span-2 lg:row-span-1",
   },
   {
-    label: "API Testing",
-    items: ["Postman", "REST", "SOAP", "JSON", "XML"],
+    title: "Delivery Systems",
+    text: "CI/CD evidence, Allure reporting, Prometheus metrics, and release-focused defect analysis.",
+    items: ["GitHub Actions", "Jenkins", "Allure", "Prometheus"],
+    className: "lg:col-span-1 lg:row-span-2",
   },
   {
-    label: "Programming",
-    items: ["JavaScript", "Node.js", "Python"],
+    title: "Validation Depth",
+    text: "API, accessibility, functional, smoke, regression, UAT, and content publishing checks across regions.",
+    items: ["REST", "SOAP", "Axe", "Jira"],
+    className: "lg:col-span-1 lg:row-span-2",
+  },
+];
+
+const proofSlides = [
+  {
+    title: "Frameworks that survive scale",
+    body: "Built around reusable objects, setup flows, and environment-aware execution instead of isolated one-off scripts.",
+    source: "Playwright architecture",
   },
   {
-    label: "CI/CD & Dev Tools",
-    items: ["GitHub Actions", "Jenkins", "Git", "Allure"],
+    title: "Evidence that helps teams decide",
+    body: "Allure, Jira evidence, API payloads, trace-driven debugging, and CI metrics make failures easier to classify.",
+    source: "Quality reporting",
   },
   {
-    label: "Quality & Observability",
-    items: ["Axe Accessibility", "Prometheus", "RCA", "Test Planning", "Regression", "Smoke", "UAT", "Performance"],
-    wide: true,
+    title: "Coverage beyond happy paths",
+    body: "B2B, B2C, PunchOut, content validation, accessibility, and multi-country storefront paths sit in one operating model.",
+    source: "Commerce QA",
   },
-  {
-    label: "Collaboration",
-    items: ["Jira", "Confluence", "Agile", "Scrum", "Waterfall"],
-    wide: true,
-  },
+];
+
+const marqueeItems = [
+  "Playwright architecture",
+  "B2B and B2C commerce",
+  "Axe accessibility",
+  "Allure evidence",
+  "Prometheus observability",
+  "API validation",
+  "AEM regional checks",
+  "AI-assisted debugging",
 ];
 
 const contacts = [
@@ -117,140 +149,299 @@ const contacts = [
 ];
 
 function About() {
+  const statement =
+    "Senior QA Automation Engineer focused on building durable test systems for large-scale eCommerce platforms. I connect development, release confidence, and observable quality through technical precision and automation discipline.";
+
   return (
-    <section id="about" className="relative border-y border-border/10" style={{ paddingTop: 'var(--section-tight)', paddingBottom: 'var(--section-normal)' }}>
-      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-32 items-start">
-          <div>
-            <span className="text-primary font-mono text-[10px] uppercase block mb-6 lg:mb-12 tracking-[0.3em]">01 // CORE_SPECIFICATION</span>
-            <h2
-              className="font-display font-[900] text-foreground leading-[1.1] mb-8"
-              style={{
-                fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
-                letterSpacing: 'var(--tracking-display)',
-              }}
-            >
-              &ldquo;Quality is the result of <span className="text-primary italic">intelligent effort</span>.&rdquo;
-            </h2>
-          </div>
-          
-          <div className="lg:pt-24">
-            <div className="space-y-8 lg:space-y-12">
-              <div className="relative pl-6 lg:pl-8 border-l border-primary/30">
-                <span className="absolute left-0 top-0 -translate-x-1/2 w-2 h-2 bg-primary rounded-full"></span>
-                <p className="text-muted-foreground text-balance" style={{ fontSize: 'var(--text-lg)', lineHeight: 'var(--leading-relaxed)' }}>
-                  Senior QA Automation Engineer with a specialized focus on building industrial-grade test architectures for large-scale eCommerce ecosystems. I bridge the gap between development and reliability through technical precision and automated rigor.
-                </p>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-border/10">
-                <div>
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest block mb-3 lg:mb-4">// CURRENT_FOCUS</span>
-                  <p className="text-sm text-foreground/80 leading-relaxed font-medium">
-                    Modular Playwright frameworks, CI/CD observability, and AI-assisted test design.
-                  </p>
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest block mb-3 lg:mb-4">// OPERATING_DOMAIN</span>
-                  <p className="text-sm text-foreground/80 leading-relaxed font-medium">
-                    B2B/B2C eCommerce, Global Storefronts, and High-Traffic Content Validation.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <section id="experience" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-normal)' }}>
-      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 lg:gap-8 mb-16 lg:mb-24">
-          <div>
-            <span className="text-primary font-mono text-[10px] uppercase block mb-4 lg:mb-6 tracking-[0.3em]">02 // PROFESSIONAL_LOGS</span>
-            <h2
-              className="font-display font-[900] text-foreground leading-none"
-              style={{
-                fontSize: 'clamp(2.25rem, 8vw, 5.5rem)',
-                letterSpacing: 'var(--tracking-display)',
-              }}
-            >
-              EXPERIENCE
-            </h2>
-          </div>
-          <div className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.2em] pb-1 lg:pb-2">
-            TOTAL_RUNTIME: 5.4_YEARS
-          </div>
-        </div>
-
-        <div className="space-y-20 lg:space-y-32">
-          {experiences.map((exp, index) => (
-            <div key={index} className="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-24 relative">
-              <div className="lg:sticky lg:top-32 h-fit">
-                <div className="flex items-center gap-4 mb-3 lg:mb-4">
-                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                  <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">{exp.period}</span>
-                </div>
-                <h3 className="font-display font-[800] text-2xl lg:text-3xl mb-2 text-foreground">{exp.company}</h3>
-                <p className="text-primary font-mono text-[10px] tracking-widest font-bold">{exp.role}</p>
-              </div>
-
-              <div className="relative">
-                <div className="absolute -left-6 top-0 bottom-0 w-px bg-border/20 hidden lg:block"></div>
-                <ul className="space-y-5 lg:space-y-6">
-                  {exp.points.map((point, i) => (
-                    <li key={i} className="text-muted-foreground leading-relaxed flex gap-3 lg:gap-4 group pb-5 lg:pb-6 border-b border-border/40 last:border-0" style={{ fontSize: 'var(--text-base)' }}>
-                      <span className="text-primary/60 font-mono text-[10px] pt-1.5 group-hover:text-primary transition-colors shrink-0">[{String(i + 1).padStart(2, '0')}]</span>
-                      <span className="flex-1">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Skills() {
-  return (
-    <section id="skills" className="bg-foreground/[0.02] border-y border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-normal)' }}>
-      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
-        <div className="mb-16 lg:mb-24">
-          <span className="text-primary font-mono text-[10px] uppercase block mb-4 lg:mb-6 tracking-[0.3em]">03 // ASSET_MATRIX</span>
+    <section
+      id="about"
+      className="relative overflow-hidden border-y border-border/10 py-32 md:py-48"
+    >
+      <div className="absolute inset-x-0 top-1/4 h-64 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--primary-rgb),0.12),transparent_58%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
+        <div>
           <h2
-            className="font-display font-[900] text-foreground leading-none"
-            style={{
-              fontSize: 'clamp(2.25rem, 8vw, 5.5rem)',
-              letterSpacing: 'var(--tracking-display)',
-            }}
+            className="max-w-4xl font-display font-[900] leading-[0.95] text-foreground"
+            style={{ fontSize: "clamp(3rem, 7vw, 6.4rem)" }}
           >
-            TECH STACK
+            I build release systems
+            <span
+              className="mx-3 inline-block h-12 w-28 rounded-full align-middle bg-cover bg-center grayscale contrast-125 md:h-16 md:w-40"
+              style={{
+                backgroundImage:
+                  "url(https://picsum.photos/seed/release-control/640/360)",
+              }}
+            />
+            teams can trust.
           </h2>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-px bg-transparent lg:bg-border/10 lg:border lg:border-border/10">
-          {skills.map((skill, i) => (
-            <div key={i} className={cn("bg-background p-6 lg:p-8 group hover:bg-foreground/[0.02] transition-colors border lg:border-0 border-border/10", skill.wide && "lg:col-span-2")}>
-              <div className="flex items-center justify-between mb-6 lg:mb-8">
-                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{skill.label}</span>
-                <span className="text-primary/20 font-mono text-[10px] group-hover:text-primary transition-colors">SPEC_0{i + 1}</span>
-              </div>
-              <div className="flex flex-wrap gap-2 lg:gap-3">
-                {skill.items.map((item, j) => (
-                  <span key={j} className="px-2.5 py-1 bg-foreground/[0.03] border border-border/50 text-[10px] lg:text-xs font-mono text-foreground/70 group-hover:border-primary/30 group-hover:text-foreground transition-all">
-                    {item}
-                  </span>
-                ))}
-              </div>
+
+        <div className="flex flex-col justify-end gap-10 lg:pt-36">
+          <p className="max-w-2xl text-2xl font-medium leading-relaxed text-muted-foreground md:text-3xl">
+            {statement}
+          </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-border/40 bg-foreground/[0.03] p-6">
+              <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
+                Current Focus
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Modular Playwright frameworks, CI/CD observability, and
+                AI-assisted test design.
+              </p>
             </div>
+            <div className="border border-border/40 bg-foreground/[0.03] p-6">
+              <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
+                Operating Domain
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                B2B/B2C eCommerce, global storefronts, and high-traffic content
+                validation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SkillsBento() {
+  return (
+    <section
+      id="skills"
+      className="relative overflow-hidden bg-foreground/[0.02] py-32 md:py-48"
+    >
+      <div className="mx-auto max-w-7xl px-[var(--container-px)]">
+        <div className="mb-16 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
+          <h2
+            className="max-w-4xl font-display font-[900] leading-none text-foreground"
+            style={{ fontSize: "clamp(3rem, 8vw, 6.8rem)" }}
+          >
+            A stack shaped around repeatable evidence.
+          </h2>
+          <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
+            Four operating strengths, arranged as a 12-cell bento with no dead
+            corners.
+          </p>
+        </div>
+
+        <div className="grid grid-flow-dense gap-4 lg:grid-cols-4 lg:grid-rows-3 lg:auto-rows-[12rem]">
+          {skillCards.map((card) => (
+            <article
+              key={card.title}
+              className={cn(
+                "group relative overflow-hidden border border-border/50 bg-background p-6 transition-colors duration-500 hover:border-primary/45 hover:bg-foreground/[0.035] lg:p-8",
+                card.className,
+              )}
+            >
+              {card.image && (
+                <div className="absolute inset-0 opacity-35 transition-opacity duration-700 group-hover:opacity-50">
+                  <img
+                    src={card.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full scale-100 object-cover grayscale contrast-125 transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
+                </div>
+              )}
+              <div className="relative z-10 flex h-full flex-col justify-between gap-8">
+                <div>
+                  <h3 className="mb-5 font-display text-4xl font-[900] leading-none text-foreground md:text-5xl">
+                    {card.title}
+                  </h3>
+                  <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+                    {card.text}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {card.items.map((item) => (
+                    <span
+                      key={item}
+                      className="border border-border/60 bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground/80"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CapabilityMarquee() {
+  const repeated = [...marqueeItems, ...marqueeItems];
+
+  return (
+    <div className="overflow-hidden border-y border-border/10 bg-background py-5">
+      <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap text-sm font-semibold uppercase text-muted-foreground/60">
+        {repeated.map((item, index) => (
+          <span key={`${item}-${index}`} className="flex items-center gap-10">
+            <span>{item}</span>
+            <span className="h-1 w-1 rounded-full bg-primary/70" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ExperienceStack() {
+  return (
+    <section
+      id="experience"
+      className="relative overflow-hidden py-32 md:py-48"
+    >
+      <div className="absolute inset-x-0 top-0 h-96 bg-[radial-gradient(circle_at_72%_10%,rgba(var(--primary-rgb),0.14),transparent_56%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
+        <div className="lg:sticky lg:top-32 lg:h-fit">
+          <h2
+            className="font-display font-[900] leading-none text-foreground"
+            style={{ fontSize: "clamp(3rem, 8vw, 6.8rem)" }}
+          >
+            Proof over polish.
+          </h2>
+          <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Career evidence presented as stackable cards: the kind of work,
+            scope, and systems behind the interface.
+          </p>
+        </div>
+
+        <div className="space-y-8 lg:space-y-14">
+          {experiences.map((exp, index) => (
+            <article
+              key={exp.company}
+              className="group border border-border/50 bg-card/95 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.16)] md:p-10 lg:sticky"
+              style={{ top: `${112 + index * 26}px` }}
+            >
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="mb-3 text-sm font-semibold text-primary">
+                    {exp.period}
+                  </p>
+                  <h3 className="font-display text-4xl font-[900] leading-none text-foreground">
+                    {exp.company}
+                  </h3>
+                  <p className="mt-3 text-sm font-semibold text-muted-foreground">
+                    {exp.role}
+                  </p>
+                </div>
+                <ArrowUpRight className="size-6 text-primary transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+
+              <p className="mb-8 text-xl font-medium leading-relaxed text-foreground/85">
+                {exp.proof}
+              </p>
+
+              <ul className="space-y-4">
+                {exp.points.map((point) => (
+                  <li
+                    key={point}
+                    className="border-t border-border/40 pt-4 text-sm leading-relaxed text-muted-foreground"
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProofCarousel() {
+  const [active, setActive] = useState(0);
+  const current = proofSlides[active];
+
+  const showPrevious = () => {
+    setActive((index) => (index === 0 ? proofSlides.length - 1 : index - 1));
+  };
+
+  const showNext = () => {
+    setActive((index) => (index + 1) % proofSlides.length);
+  };
+
+  return (
+    <section className="border-y border-border/10 py-32 md:py-48">
+      <div className="mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-24">
+        <div className="relative h-[26rem] overflow-hidden border border-border/50 bg-foreground/[0.035]">
+          <img
+            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=85"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.75]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/5" />
+          <div className="absolute left-6 top-6 border border-primary/35 bg-background/90 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+            Playwright run
+          </div>
+          <div className="absolute bottom-28 left-8 grid w-[min(20rem,calc(100%-4rem))] gap-2 font-mono text-xs text-foreground">
+            {["46 specs passed", "Axe scan clean", "Trace ready"].map((item) => (
+              <div
+                key={item}
+                className="flex items-center justify-between border border-border/45 bg-background/90 px-4 py-3"
+              >
+                <span>{item}</span>
+                <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_18px_rgba(var(--primary-rgb),0.8)]" />
+              </div>
+            ))}
+          </div>
+          <div className="absolute bottom-8 left-8 right-8 flex -space-x-5">
+            {proofSlides.map((slide, index) => (
+              <button
+                key={slide.title}
+                aria-label={`Show ${slide.title}`}
+                onClick={() => setActive(index)}
+                className={cn(
+                  "h-16 w-16 rounded-full border border-background bg-primary text-sm font-bold text-primary-foreground transition-transform duration-300 hover:-translate-y-1",
+                  active !== index && "bg-foreground text-background opacity-70",
+                )}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            Evidence carousel
+          </p>
+          <h2 className="mb-8 font-display text-5xl font-[900] leading-none text-foreground md:text-7xl">
+            {current.title}
+          </h2>
+          <p className="mb-8 max-w-2xl text-xl leading-relaxed text-muted-foreground">
+            {current.body}
+          </p>
+          <p className="mb-10 text-sm font-semibold text-foreground/70">
+            {current.source}
+          </p>
+          <div className="flex gap-3">
+            <button
+              onClick={showPrevious}
+              aria-label="Previous proof"
+              className="inline-flex h-12 w-12 items-center justify-center border border-border/60 bg-background text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <ArrowLeft className="size-5" />
+            </button>
+            <button
+              onClick={showNext}
+              aria-label="Next proof"
+              className="inline-flex h-12 w-12 items-center justify-center border border-primary bg-primary text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              <ArrowRight className="size-5" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -259,56 +450,50 @@ function Skills() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative border-t border-border/10" style={{ paddingTop: 'var(--section-normal)', paddingBottom: 'var(--section-generous)' }}>
-      <div className="max-w-7xl mx-auto px-[var(--container-px)]">
-        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24 items-start">
-          <div>
-            <span className="text-primary font-mono text-[10px] uppercase block mb-8 lg:mb-12 tracking-[0.3em]">04 // CONTACT</span>
-            <h2
-              className="font-display font-[900] text-foreground leading-[0.9] mb-8 lg:mb-12"
-              style={{
-                fontSize: 'clamp(2.5rem, 10vw, 7rem)',
-                letterSpacing: 'var(--tracking-display)',
-              }}
-            >
-              START A<br />
-              <span className="text-primary italic">CONVERSATION</span>
-            </h2>
-            <p className="text-muted-foreground max-w-md mb-8 lg:mb-12 text-pretty" style={{ fontSize: 'var(--text-lg)', lineHeight: 'var(--leading-relaxed)' }}>
-              Ready to collaborate on industrial-grade automation solutions. Open for discussions on framework architecture, quality strategy, and technical&nbsp;leadership.
-            </p>
-            
-            <div className="flex items-center gap-3 text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
-              <MapPin className="size-3 text-primary" />
-              TIJUANA, MX // 32.5149° N, 117.0382° W
-            </div>
-          </div>
+    <section id="contact" className="relative overflow-hidden py-32 md:py-48">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(var(--primary-rgb),0.16),transparent_45%)]" />
+      <div className="relative mx-auto max-w-7xl px-[var(--container-px)]">
+        <div className="mb-16 max-w-5xl">
+          <h2
+            className="font-display font-[900] leading-[0.88] text-foreground"
+            style={{ fontSize: "clamp(4rem, 12vw, 11rem)" }}
+          >
+            Let's build better release confidence.
+          </h2>
+          <p className="mt-10 max-w-2xl text-xl leading-relaxed text-muted-foreground">
+            Open for QA automation architecture, framework stabilization,
+            technical quality strategy, and senior engineering collaboration.
+          </p>
+        </div>
 
-          <div className="grid gap-3 lg:gap-4">
-            {contacts.map((contact, index) => (
-              <a
-                key={index}
-                href={contact.href}
-                target={contact.external ? "_blank" : undefined}
-                rel={contact.external ? "noopener noreferrer" : undefined}
-                className="group relative flex flex-col p-5 lg:p-6 border border-border/50 hover:border-primary/40 transition-all duration-300 bg-foreground/[0.02] hover:bg-primary/[0.04] outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary/60 active:scale-[0.99] active:bg-primary/[0.06]"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded group-hover:bg-primary/20 transition-all duration-300">
-                      <contact.icon className="size-4 text-primary" />
-                    </div>
-                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{contact.label}</span>
-                  </div>
-                  <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <div className="grid gap-4 lg:grid-cols-4">
+          {contacts.map((contact) => (
+            <a
+              key={contact.href}
+              href={contact.href}
+              target={contact.external ? "_blank" : undefined}
+              rel={contact.external ? "noopener noreferrer" : undefined}
+              className="group relative min-h-48 overflow-hidden border border-border/50 bg-foreground/[0.03] p-6 outline-none transition-colors duration-500 hover:border-primary/50 hover:bg-primary/[0.05] focus-visible:ring-1 focus-visible:ring-primary"
+            >
+              <div className="mb-10 flex items-center justify-between">
+                <div className="inline-flex h-10 w-10 items-center justify-center bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <contact.icon className="size-4" />
                 </div>
-                <div className="text-foreground font-display font-bold text-lg lg:text-xl group-hover:text-primary transition-colors break-words">
-                  {contact.value}
-                </div>
-                <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-primary/60 group-hover:w-full transition-all duration-500 ease-out"></div>
-              </a>
-            ))}
-          </div>
+                <ArrowUpRight className="size-5 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+              </div>
+              <p className="mb-3 text-sm font-semibold text-muted-foreground">
+                {contact.label}
+              </p>
+              <p className="break-words font-display text-2xl font-[800] leading-tight text-foreground transition-colors group-hover:text-primary">
+                {contact.value}
+              </p>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-12 flex items-center gap-3 text-sm font-semibold text-muted-foreground">
+          <MapPin className="size-4 text-primary" />
+          Tijuana, MX
         </div>
       </div>
     </section>
@@ -317,10 +502,10 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="py-8 border-t border-border bg-card">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-muted-foreground" style={{ letterSpacing: 'var(--tracking-mono)' }}>
-        <div>&copy; {new Date().getFullYear()} CESAR GARCIA SANCHEZ</div>
-        <div>DESIGNED FOR PERFORMANCE // REV.{new Date().toISOString().split('T')[0].replace(/-/g, '.')}</div>
+    <footer className="border-t border-border/10 bg-card py-8">
+      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-[var(--container-px)] text-sm text-muted-foreground md:flex-row md:items-center">
+        <div>&copy; {new Date().getFullYear()} Cesar Octavio Garcia Sanchez</div>
+        <div>Designed for performance and release confidence</div>
       </div>
     </footer>
   );
@@ -339,27 +524,35 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-background min-h-screen text-foreground font-sans selection:bg-primary/30 selection:text-primary">
+    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary">
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <HeroSection />
-      <main id="main-content">
+      <HeroHeader />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="w-full max-w-full overflow-x-hidden focus:outline-none"
+      >
+        <HeroSection />
         <About />
-        <Experience />
-        <Skills />
+        <SkillsBento />
+        <CapabilityMarquee />
+        <ExperienceStack />
+        <ProofCarousel />
         <Contact />
       </main>
       <Footer />
-      
+
       <button
-        className={`fixed bottom-8 right-8 p-3 rounded-none bg-background/80 border border-border/50 backdrop-blur-md hover:bg-primary/[0.05] hover:border-primary/50 hover:shadow-[4px_4px_0px_rgba(var(--primary-rgb),0.2)] transition-all duration-300 z-50 ${isScrollTopVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+        data-scroll-top
+        className={`fixed bottom-8 right-8 z-50 border border-border/50 bg-background/90 p-3 text-foreground transition-[transform,opacity,border-color,background-color] duration-300 hover:border-primary/50 hover:bg-primary/[0.05] ${isScrollTopVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
+        aria-hidden={isScrollTopVisible ? undefined : "true"}
+        tabIndex={isScrollTopVisible ? 0 : -1}
       >
-        <svg className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
+        <ArrowRight className="size-5 -rotate-90" />
       </button>
     </div>
   );
