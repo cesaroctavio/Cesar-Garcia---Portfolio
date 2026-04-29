@@ -1,14 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  Bot,
+  CheckCircle2,
+  CircleDot,
+  GitBranch,
   Mail,
   MapPin,
   MessageCircle,
+  Radar,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -64,48 +74,144 @@ const experiences = [
 const skillCards = [
   {
     title: "Automation Architecture",
-    text: "Reusable Playwright page objects, fixtures, storage-state authentication, and cross-market execution patterns.",
+    text: "Turns repeated commerce paths into maintainable checks with shared objects, setup flows, and market-aware execution.",
     items: ["Playwright", "Selenium", "Cypress", "Node.js"],
     className: "lg:col-span-2 lg:row-span-3",
-    image: "https://picsum.photos/seed/automation-lab/1200/1400",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
   },
   {
     title: "AI-Assisted QA",
-    text: "Codex, Playwright MCP, and playwright-cli used as practical accelerators for design, triage, and browser debugging.",
+    text: "Uses agentic browser debugging to shorten triage loops, inspect real UI states, and turn failures into clearer next actions.",
     items: ["Codex", "Playwright MCP", "playwright-cli"],
     className: "lg:col-span-2 lg:row-span-1",
   },
   {
     title: "Delivery Systems",
-    text: "CI/CD evidence, Allure reporting, Prometheus metrics, and release-focused defect analysis.",
+    text: "Makes release health easier to read through CI evidence, reporting, metrics, and defect analysis.",
     items: ["GitHub Actions", "Jenkins", "Allure", "Prometheus"],
     className: "lg:col-span-1 lg:row-span-2",
   },
   {
     title: "Validation Depth",
-    text: "API, accessibility, functional, smoke, regression, UAT, and content publishing checks across regions.",
+    text: "Checks user journeys, services, accessibility, content publishing, and regression risk across regions.",
     items: ["REST", "SOAP", "Axe", "Jira"],
     className: "lg:col-span-1 lg:row-span-2",
   },
 ];
 
-const proofSlides = [
+const releaseFlow = [
   {
-    title: "Frameworks that survive scale",
-    body: "Built around reusable objects, setup flows, and environment-aware execution instead of isolated one-off scripts.",
-    source: "Playwright architecture",
+    label: "Signal",
+    title: "A commerce check fails",
+    body: "A quote, return, list, login, or content path produces a reproducible failure signal.",
+    value: "Trace captured",
   },
   {
-    title: "Evidence that helps teams decide",
-    body: "Allure, Jira evidence, API payloads, trace-driven debugging, and CI metrics make failures easier to classify.",
-    source: "Quality reporting",
+    label: "Evidence",
+    title: "Artifacts get connected",
+    body: "Screenshots, network payloads, auth state, Allure reports, and Jira notes are reviewed together.",
+    value: "Cause isolated",
   },
   {
-    title: "Coverage beyond happy paths",
-    body: "B2B, B2C, PunchOut, content validation, accessibility, and multi-country storefront paths sit in one operating model.",
-    source: "Commerce QA",
+    label: "Decision",
+    title: "The team gets direction",
+    body: "The failure is classified as app behavior, automation design, data, auth, or release risk.",
+    value: "Action clear",
   },
 ];
+
+const capabilityChapters = [
+  {
+    title: "Playwright architecture",
+    eyebrow: "Reusable journeys",
+    body: "Shared page objects and setup flows turn complex commerce paths into maintainable checks instead of one-off scripts.",
+    tags: ["46+ specs", "53 objects", "B2B/B2C"],
+    icon: GitBranch,
+    variant: "trace",
+  },
+  {
+    title: "Failure triage",
+    eyebrow: "Cause classification",
+    body: "Failures are treated as signals with trace, screenshot, network, data, and auth context before they become Jira evidence.",
+    tags: ["Trace", "Network", "Auth state"],
+    icon: Radar,
+    variant: "status",
+  },
+  {
+    title: "CI observability",
+    eyebrow: "Release signals",
+    body: "Allure reports, GitHub Actions, and Prometheus-style metrics make suite behavior readable across repeated runs.",
+    tags: ["Allure", "Actions", "Prometheus"],
+    icon: CircleDot,
+    variant: "ci",
+  },
+  {
+    title: "API validation",
+    eyebrow: "Payload confidence",
+    body: "REST, SOAP, JSON, XML, and cXML validation connect UI evidence to backend contracts and integration behavior.",
+    tags: ["REST", "SOAP", "cXML"],
+    icon: Bot,
+    variant: "api",
+  },
+  {
+    title: "Accessibility checks",
+    eyebrow: "Inclusive quality",
+    body: "Axe validation keeps visible quality connected to WCAG risk and regression coverage in the same QA story.",
+    tags: ["Axe", "WCAG", "Regression"],
+    icon: ShieldCheck,
+    variant: "accessibility",
+  },
+  {
+    title: "Multi-market execution",
+    eyebrow: "Global storefronts",
+    body: "Country-aware execution keeps regional storefront, account, and content differences visible before release.",
+    tags: ["17 countries", "QA/Prod", "AEM"],
+    icon: CheckCircle2,
+    variant: "markets",
+  },
+];
+
+const evidenceRecords = [
+  {
+    label: "Framework scope",
+    body: "Reusable checks cover shopping, quotes, returns, login, and content workflows without one-off scripts.",
+    tags: ["Playwright", "46+ specs", "53 objects", "AEM"],
+  },
+  {
+    label: "Execution surface",
+    body: "Runs are standardized across country storefronts and environments so release risk can be compared across flows.",
+    tags: ["17 storefronts", "QA/Prod", "B2B/B2C", "PunchOut"],
+  },
+  {
+    label: "Decision signals",
+    body: "Accessibility checks, report evidence, traces, and CI metrics help classify what failed and who should act next.",
+    tags: ["Axe", "Allure", "API payload", "Prometheus"],
+  },
+];
+
+const qaDossierRows = [
+  {
+    label: "Signal",
+    value: "A release check fails in a commerce flow.",
+  },
+  {
+    label: "Evidence",
+    value:
+      "Trace, screenshot, network payload, Jira note, and CI report are reviewed together.",
+  },
+  {
+    label: "Classification",
+    value: "App behavior, automation design, data/auth setup, or release risk.",
+  },
+  {
+    label: "Outcome",
+    value:
+      "The team gets a clear next action instead of a generic failed test.",
+  },
+];
+
+const qaDossierTags = ["Trace", "API payload", "Allure", "Jira", "CI"];
 
 const marqueeItems = [
   "Playwright architecture",
@@ -148,56 +254,402 @@ const contacts = [
   },
 ];
 
+function ProofComparison() {
+  return (
+    <section
+      id="proof"
+      className="relative overflow-hidden border-y border-border/15 bg-card/25 py-24 md:py-32"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:radial-gradient(circle_at_center,oklch(var(--foreground))_1px,transparent_1px)] [background-size:22px_22px]" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-20">
+        <div>
+          <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Release evidence
+          </p>
+          <h2
+            className="max-w-4xl font-display font-[900] leading-[0.95] text-foreground"
+            style={{ fontSize: "clamp(2.45rem, 4.6vw, 4.6rem)" }}
+          >
+            Failed checks become release decisions.
+          </h2>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            The BetterStack-inspired shift is simple: every QA result should
+            read like telemetry, with signal, evidence, and action visible in
+            one pass.
+          </p>
+        </div>
+
+        <div className="overflow-hidden border border-border/45 bg-background/70 shadow-[var(--shadow-hero-panel)]">
+          <div className="grid border-b border-border/35 bg-foreground/[0.03] sm:grid-cols-3">
+            {releaseFlow.map((item) => (
+              <div
+                key={item.label}
+                className="border-b border-border/25 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+              >
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  {item.label}
+                </p>
+                <p className="mt-2 font-display text-2xl font-[900] leading-none text-foreground">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-0 lg:grid-cols-[1fr_0.9fr]">
+            <div className="p-6 md:p-8">
+              <div className="mb-8 space-y-4">
+                {releaseFlow.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="group border border-border/35 bg-card/45 p-5 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-4">
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">
+                        {String(index + 1).padStart(2, "0")} {item.label}
+                      </p>
+                      <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+                    </div>
+                    <h3 className="font-display text-2xl font-[900] leading-[1.02] text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {["Screenshot", "Trace", "Network", "Allure", "Jira"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {item}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+
+            <div className="border-t border-border/35 bg-card/55 p-6 lg:border-l lg:border-t-0 md:p-8">
+              <div className="mb-5 flex items-center justify-between">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.1em] text-primary">
+                  QA telemetry
+                </p>
+                <span className="h-2 w-2 rounded-full bg-primary shadow-[var(--shadow-signal-glow)]" />
+              </div>
+              <div className="space-y-3 font-mono text-xs">
+                {[
+                  ["checkout.spec", "classified", "app behavior"],
+                  ["quote-v2.spec", "evidence", "network payload"],
+                  ["returns.spec", "guarded", "data unavailable"],
+                  ["aem-content.spec", "signal", "regional content"],
+                ].map(([name, state, detail]) => (
+                  <div
+                    key={name}
+                    className="grid grid-cols-[1fr_auto] gap-4 border border-border/30 bg-background/70 p-3"
+                  >
+                    <div>
+                      <p className="font-semibold text-foreground">{name}</p>
+                      <p className="mt-1 text-muted-foreground">{detail}</p>
+                    </div>
+                    <p className="text-primary">{state}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 h-28 overflow-hidden border border-border/30 bg-background/70 p-4">
+                <div className="flex h-full items-end gap-2">
+                  {[34, 58, 44, 78, 62, 86, 54, 71, 48, 92, 66, 80].map(
+                    (height, index) => (
+                      <span
+                        key={index}
+                        className="flex-1 bg-primary/25"
+                        style={{ height: `${height}%` }}
+                      />
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CapabilityChapters() {
+  return (
+    <section
+      id="capabilities"
+      data-proof-chapters
+      className="relative overflow-hidden py-32 md:py-48"
+    >
+      <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
+      <div className="mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div data-proof-pin className="chapter-pin lg:h-fit">
+          <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Capability chapters
+          </p>
+          <h2
+            className="max-w-3xl font-display font-[900] leading-[0.95] text-foreground"
+            style={{ fontSize: "clamp(2.65rem, 6vw, 5.5rem)" }}
+          >
+            QA work framed as operational telemetry.
+          </h2>
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Each chapter maps to a practical release concern: architecture,
+            triage, CI, APIs, accessibility, and regional execution.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {capabilityChapters.map((chapter) => (
+            <article
+              key={chapter.title}
+              data-scale-card
+              className="group min-h-[31rem] overflow-hidden border border-border/40 bg-card/50 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
+            >
+              <div className="chapter-visual h-56 overflow-hidden border-b border-border/35 bg-background/75">
+                <ChapterVisual variant={chapter.variant} />
+              </div>
+              <div className="flex min-h-[17rem] flex-col justify-between p-6 md:p-7">
+                <div>
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div className="inline-flex h-10 w-10 items-center justify-center border border-border/50 bg-background/80 text-primary transition-colors duration-500 group-hover:border-primary/45 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <chapter.icon className="size-4" />
+                    </div>
+                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                      {chapter.eyebrow}
+                    </p>
+                  </div>
+                  <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground">
+                    {chapter.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {chapter.body}
+                  </p>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {chapter.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ChapterVisual({ variant }: { variant: string }) {
+  if (variant === "trace") {
+    return (
+      <div className="relative h-full p-6">
+        <div className="absolute inset-0 opacity-[0.045] [background-image:radial-gradient(circle_at_center,oklch(var(--foreground))_1px,transparent_1px)] [background-size:18px_18px]" />
+        <div className="relative h-full">
+          {["Cart", "Quote", "Auth", "Return", "List"].map((node, index) => (
+            <div
+              key={node}
+              className="absolute border border-border/45 bg-card/90 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground shadow-[var(--shadow-evidence-card)]"
+              style={{
+                left: `${(index % 3) * 31 + 4}%`,
+                top: `${Math.floor(index / 3) * 43 + (index % 2) * 14 + 8}%`,
+              }}
+            >
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+              {node}
+            </div>
+          ))}
+          <div className="absolute left-[14%] top-[28%] h-px w-[62%] rotate-[14deg] bg-primary/35" />
+          <div className="absolute left-[28%] top-[54%] h-px w-[47%] -rotate-[18deg] bg-primary/25" />
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "api") {
+    return (
+      <div className="h-full p-6 font-mono text-xs">
+        <div className="h-full border border-border/35 bg-background/80 p-4">
+          {[
+            "{",
+            '  "market": "US",',
+            '  "flow": "quote-v2",',
+            '  "payload": "validated",',
+            '  "decision": "release-ready"',
+            "}",
+          ].map((line) => (
+            <p key={line} className="leading-7 text-muted-foreground">
+              <span className="text-primary">&gt;</span> {line}
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "ci") {
+    return (
+      <div className="flex h-full items-end gap-3 p-6">
+        {[44, 72, 58, 88, 63, 80, 52, 92].map((height, index) => (
+          <div
+            key={index}
+            className="flex flex-1 flex-col justify-end border border-border/30 bg-background/70"
+          >
+            <span
+              className="block bg-primary/35 transition-colors duration-500 group-hover:bg-primary/55"
+              style={{ height: `${height}%` }}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (variant === "accessibility") {
+    return (
+      <div className="grid h-full gap-3 p-6">
+        {[
+          "Contrast AA",
+          "Keyboard path",
+          "Focus visible",
+          "Reduced motion",
+        ].map((item) => (
+          <div
+            key={item}
+            className="flex items-center justify-between border border-border/35 bg-background/75 px-4 py-3"
+          >
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-foreground">
+              {item}
+            </span>
+            <CheckCircle2 className="size-4 text-primary" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (variant === "markets") {
+    return (
+      <div className="grid h-full grid-cols-5 gap-2 p-6">
+        {Array.from({ length: 25 }).map((_, index) => (
+          <span
+            key={index}
+            className={cn(
+              "border border-border/30 bg-background/70",
+              [2, 4, 8, 11, 14, 17, 20, 23].includes(index) &&
+                "border-primary/45 bg-primary/20",
+            )}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full p-6">
+      <div className="grid h-full gap-3">
+        {["auth state", "test data", "network", "ui state"].map((item) => (
+          <div
+            key={item}
+            className="grid grid-cols-[1fr_auto] items-center gap-4 border border-border/35 bg-background/75 px-4 py-3 font-mono text-xs"
+          >
+            <span className="font-semibold uppercase tracking-[0.08em] text-foreground">
+              {item}
+            </span>
+            <span className="text-primary">isolated</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function About() {
   const statement =
-    "Senior QA Automation Engineer focused on building durable test systems for large-scale eCommerce platforms. I connect development, release confidence, and observable quality through technical precision and automation discipline.";
+    "I turn complex commerce journeys into repeatable checks, clear defect evidence, and CI signals that developers and release teams can use.";
 
   return (
     <section
       id="about"
       className="relative overflow-hidden border-y border-border/10 py-32 md:py-48"
     >
-      <div className="absolute inset-x-0 top-1/4 h-64 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--primary-rgb),0.12),transparent_58%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-border/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
         <div>
           <h2
-            className="max-w-4xl font-display font-[900] leading-[0.95] text-foreground"
-            style={{ fontSize: "clamp(3rem, 7vw, 6.4rem)" }}
+            className="max-w-5xl font-display font-[900] leading-[0.94] text-foreground"
+            style={{ fontSize: "clamp(2.8rem, 5.2vw, 4.85rem)" }}
           >
-            I build release systems
-            <span
-              className="mx-3 inline-block h-12 w-28 rounded-full align-middle bg-cover bg-center grayscale contrast-125 md:h-16 md:w-40"
-              style={{
-                backgroundImage:
-                  "url(https://picsum.photos/seed/release-control/640/360)",
-              }}
-            />
-            teams can trust.
+            I build release systems teams can trust.
           </h2>
+          <div
+            aria-hidden="true"
+            className="mt-8 grid max-w-xl grid-cols-[auto_1fr] items-center gap-4 md:mt-10"
+          >
+            <div className="flex h-10 items-center gap-1 border border-border/45 bg-card/55 px-3">
+              {[38, 64, 48, 82, 56, 74].map((height, index) => (
+                <span
+                  key={index}
+                  className="w-1.5 bg-primary/45"
+                  style={{ height: `${height}%` }}
+                />
+              ))}
+            </div>
+            <div className="flex min-w-0 items-center gap-4">
+              <span className="h-px flex-1 bg-border/50" />
+              <span className="hidden whitespace-nowrap font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground sm:block">
+                Signal to release
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col justify-end gap-10 lg:pt-36">
-          <p className="max-w-2xl text-2xl font-medium leading-relaxed text-muted-foreground md:text-3xl">
+          <p className="max-w-2xl text-xl font-medium leading-[1.55] text-muted-foreground md:text-2xl md:leading-[1.45]">
             {statement}
           </p>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="border border-border/40 bg-foreground/[0.03] p-6">
-              <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
-                Current Focus
-              </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Modular Playwright frameworks, CI/CD observability, and
-                AI-assisted test design.
-              </p>
+          <div className="border-y border-border/40">
+            <div className="grid sm:grid-cols-2">
+              <div className="border-b border-border/35 p-6 sm:border-b-0 sm:border-r">
+                <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
+                  Current Focus
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Turning unstable flows into repeatable checks, clear defects,
+                  and CI signals.
+                </p>
+              </div>
+              <div className="p-6">
+                <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
+                  Operating Domain
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Commerce storefronts, B2B/B2C accounts, content publishing,
+                  APIs, and accessibility.
+                </p>
+              </div>
             </div>
-            <div className="border border-border/40 bg-foreground/[0.03] p-6">
+            <div className="border-t border-border/35 p-6">
               <h3 className="mb-4 font-display text-2xl font-[800] text-foreground">
-                Operating Domain
+                Working Pattern
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                B2B/B2C eCommerce, global storefronts, and high-traffic content
-                validation.
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Most useful when a failure needs a clear cause: app behavior,
+                automation design, data, auth setup, or release risk.
               </p>
             </div>
           </div>
@@ -216,14 +668,14 @@ function SkillsBento() {
       <div className="mx-auto max-w-7xl px-[var(--container-px)]">
         <div className="mb-16 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
           <h2
-            className="max-w-4xl font-display font-[900] leading-none text-foreground"
-            style={{ fontSize: "clamp(3rem, 8vw, 6.8rem)" }}
+            className="max-w-4xl font-display font-[900] leading-[0.96] text-foreground"
+            style={{ fontSize: "clamp(2.6rem, 6vw, 5.4rem)" }}
           >
-            A stack shaped around repeatable evidence.
+            Operating strengths behind clearer release decisions.
           </h2>
           <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
-            Four operating strengths, arranged as a 12-cell bento with no dead
-            corners.
+            Tools stay useful only when they make risk visible, repeatable, and
+            easier to discuss.
           </p>
         </div>
 
@@ -232,7 +684,7 @@ function SkillsBento() {
             <article
               key={card.title}
               className={cn(
-                "group relative overflow-hidden border border-border/50 bg-background p-6 transition-colors duration-500 hover:border-primary/45 hover:bg-foreground/[0.035] lg:p-8",
+                "group relative overflow-hidden border border-border/40 bg-card/35 p-6 transition-colors duration-500 hover:border-primary/45 hover:bg-card/55 lg:p-8",
                 card.className,
               )}
             >
@@ -250,7 +702,7 @@ function SkillsBento() {
               )}
               <div className="relative z-10 flex h-full flex-col justify-between gap-8">
                 <div>
-                  <h3 className="mb-5 font-display text-4xl font-[900] leading-none text-foreground md:text-5xl">
+                  <h3 className="mb-5 font-display text-4xl font-[900] leading-[1.02] text-foreground md:text-5xl">
                     {card.title}
                   </h3>
                   <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
@@ -261,7 +713,7 @@ function SkillsBento() {
                   {card.items.map((item) => (
                     <span
                       key={item}
-                      className="border border-border/60 bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground/80"
+                      className="border border-border/60 bg-background/80 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/80"
                     >
                       {item}
                     </span>
@@ -281,7 +733,7 @@ function CapabilityMarquee() {
 
   return (
     <div className="overflow-hidden border-y border-border/10 bg-background py-5">
-      <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap text-sm font-semibold uppercase text-muted-foreground/60">
+      <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap font-mono text-sm font-semibold uppercase tracking-[0.1em] text-muted-foreground/80">
         {repeated.map((item, index) => (
           <span key={`${item}-${index}`} className="flex items-center gap-10">
             <span>{item}</span>
@@ -299,12 +751,12 @@ function ExperienceStack() {
       id="experience"
       className="relative overflow-hidden py-32 md:py-48"
     >
-      <div className="absolute inset-x-0 top-0 h-96 bg-[radial-gradient(circle_at_72%_10%,rgba(var(--primary-rgb),0.14),transparent_56%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
         <div className="lg:sticky lg:top-32 lg:h-fit">
           <h2
-            className="font-display font-[900] leading-none text-foreground"
-            style={{ fontSize: "clamp(3rem, 8vw, 6.8rem)" }}
+            className="font-display font-[900] leading-[0.96] text-foreground"
+            style={{ fontSize: "clamp(2.6rem, 6vw, 5.4rem)" }}
           >
             Proof over polish.
           </h2>
@@ -318,15 +770,15 @@ function ExperienceStack() {
           {experiences.map((exp, index) => (
             <article
               key={exp.company}
-              className="group border border-border/50 bg-card/95 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.16)] md:p-10 lg:sticky"
+              className="experience-card group border border-border/45 bg-card/80 p-6 shadow-[var(--shadow-evidence-card)] md:p-10 lg:sticky"
               style={{ top: `${112 + index * 26}px` }}
             >
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
-                  <p className="mb-3 text-sm font-semibold text-primary">
+                  <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-primary">
                     {exp.period}
                   </p>
-                  <h3 className="font-display text-4xl font-[900] leading-none text-foreground">
+                  <h3 className="font-display text-4xl font-[900] leading-[1.02] text-foreground">
                     {exp.company}
                   </h3>
                   <p className="mt-3 text-sm font-semibold text-muted-foreground">
@@ -358,90 +810,99 @@ function ExperienceStack() {
   );
 }
 
-function ProofCarousel() {
-  const [active, setActive] = useState(0);
-  const current = proofSlides[active];
-
-  const showPrevious = () => {
-    setActive((index) => (index === 0 ? proofSlides.length - 1 : index - 1));
-  };
-
-  const showNext = () => {
-    setActive((index) => (index + 1) % proofSlides.length);
-  };
-
+function EvidenceDossier() {
   return (
-    <section className="border-y border-border/10 py-32 md:py-48">
-      <div className="mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-24">
-        <div className="relative h-[26rem] overflow-hidden border border-border/50 bg-foreground/[0.035]">
-          <img
-            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=85"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover object-center brightness-75 contrast-125 saturate-[0.75]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/5" />
-          <div className="absolute left-6 top-6 border border-primary/35 bg-background/90 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-            Playwright run
+    <section
+      id="dossier"
+      className="scroll-mt-28 border-y border-border/15 bg-card/45 py-24 md:py-32"
+    >
+      <div className="mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.68fr_1.32fr] lg:gap-20">
+        <div className="lg:sticky lg:top-32 lg:h-fit">
+          <div className="mb-6 flex flex-wrap items-center gap-4">
+            <p className="font-mono text-sm font-semibold uppercase tracking-[0.12em] text-primary">
+              Release evidence
+            </p>
           </div>
-          <div className="absolute bottom-28 left-8 grid w-[min(20rem,calc(100%-4rem))] gap-2 font-mono text-xs text-foreground">
-            {["46 specs passed", "Axe scan clean", "Trace ready"].map((item) => (
-              <div
-                key={item}
-                className="flex items-center justify-between border border-border/45 bg-background/90 px-4 py-3"
-              >
-                <span>{item}</span>
-                <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_18px_rgba(var(--primary-rgb),0.8)]" />
-              </div>
-            ))}
-          </div>
-          <div className="absolute bottom-8 left-8 right-8 flex -space-x-5">
-            {proofSlides.map((slide, index) => (
-              <button
-                key={slide.title}
-                aria-label={`Show ${slide.title}`}
-                onClick={() => setActive(index)}
-                className={cn(
-                  "h-16 w-16 rounded-full border border-background bg-primary text-sm font-bold text-primary-foreground transition-transform duration-300 hover:-translate-y-1",
-                  active !== index && "bg-foreground text-background opacity-70",
-                )}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </button>
-            ))}
-          </div>
+          <h2 className="font-display text-4xl font-[900] leading-[0.98] text-foreground md:text-6xl">
+            Evidence recruiters can scan, engineers can use.
+          </h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            The dossier shows how a failure becomes a decision. The ledger then
+            ties scope, execution, and release signals back to practical team
+            action.
+          </p>
         </div>
 
-        <div>
-          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Evidence carousel
-          </p>
-          <h2 className="mb-8 font-display text-5xl font-[900] leading-none text-foreground md:text-7xl">
-            {current.title}
-          </h2>
-          <p className="mb-8 max-w-2xl text-xl leading-relaxed text-muted-foreground">
-            {current.body}
-          </p>
-          <p className="mb-10 text-sm font-semibold text-foreground/70">
-            {current.source}
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={showPrevious}
-              aria-label="Previous proof"
-              className="inline-flex h-12 w-12 items-center justify-center border border-border/60 bg-background text-foreground transition-colors hover:border-primary hover:text-primary"
+        <div className="border-y border-border/40">
+          <article className="py-8 md:py-10">
+            <div className="grid gap-5 md:grid-cols-[4.5rem_1fr] md:gap-8">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                QA
+              </p>
+              <div>
+                <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  Dossier
+                </p>
+                <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground md:text-4xl">
+                  Failure triage pattern
+                </h3>
+                <div className="mt-7 border-y border-border/35">
+                  {qaDossierRows.map((row) => (
+                    <div
+                      key={row.label}
+                      className="grid gap-2 border-t border-border/30 py-4 first:border-t-0 md:grid-cols-[8.5rem_1fr] md:gap-6"
+                    >
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-primary/85">
+                        {row.label}
+                      </p>
+                      <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+                        {row.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {qaDossierTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-border/55 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {evidenceRecords.map((record, index) => (
+            <article
+              key={record.label}
+              className="grid gap-5 border-t border-border/35 py-8 first:border-t-0 md:grid-cols-[4.5rem_1fr] md:gap-8 md:py-10"
             >
-              <ArrowLeft className="size-5" />
-            </button>
-            <button
-              onClick={showNext}
-              aria-label="Next proof"
-              className="inline-flex h-12 w-12 items-center justify-center border border-primary bg-primary text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              <ArrowRight className="size-5" />
-            </button>
-          </div>
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <div>
+                <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground md:text-4xl">
+                  {record.label}
+                </h3>
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {record.body}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {record.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-border/55 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -451,22 +912,22 @@ function ProofCarousel() {
 function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden py-32 md:py-48">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(var(--primary-rgb),0.16),transparent_45%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
       <div className="relative mx-auto max-w-7xl px-[var(--container-px)]">
         <div className="mb-16 max-w-5xl">
           <h2
-            className="font-display font-[900] leading-[0.88] text-foreground"
-            style={{ fontSize: "clamp(4rem, 12vw, 11rem)" }}
+            className="font-display font-[900] leading-[0.92] text-foreground"
+            style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
           >
             Let's build better release confidence.
           </h2>
-          <p className="mt-10 max-w-2xl text-xl leading-relaxed text-muted-foreground">
+          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground">
             Open for QA automation architecture, framework stabilization,
             technical quality strategy, and senior engineering collaboration.
           </p>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {contacts.map((contact) => (
             <a
               key={contact.href}
@@ -481,10 +942,10 @@ function Contact() {
                 </div>
                 <ArrowUpRight className="size-5 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
               </div>
-              <p className="mb-3 text-sm font-semibold text-muted-foreground">
+              <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                 {contact.label}
               </p>
-              <p className="break-words font-display text-2xl font-[800] leading-tight text-foreground transition-colors group-hover:text-primary">
+              <p className="break-words font-display text-xl font-[800] leading-snug text-foreground transition-colors group-hover:text-primary 2xl:text-2xl">
                 {contact.value}
               </p>
             </a>
@@ -504,7 +965,9 @@ function Footer() {
   return (
     <footer className="border-t border-border/10 bg-card py-8">
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-[var(--container-px)] text-sm text-muted-foreground md:flex-row md:items-center">
-        <div>&copy; {new Date().getFullYear()} Cesar Octavio Garcia Sanchez</div>
+        <div>
+          &copy; {new Date().getFullYear()} Cesar Octavio Garcia Sanchez
+        </div>
         <div>Designed for performance and release confidence</div>
       </div>
     </footer>
@@ -512,7 +975,9 @@ function Footer() {
 }
 
 export default function App() {
+  const appRef = useRef<HTMLDivElement | null>(null);
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -523,8 +988,105 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const desktopMedia = window.matchMedia("(min-width: 768px)");
+    const handleViewportChange = () => {
+      setIsDesktopViewport(desktopMedia.matches);
+    };
+
+    handleViewportChange();
+    desktopMedia.addEventListener("change", handleViewportChange);
+
+    return () => {
+      desktopMedia.removeEventListener("change", handleViewportChange);
+    };
+  }, []);
+
+  useGSAP(
+    () => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduceMotion) return;
+
+      const media = gsap.matchMedia();
+
+      media.add("(min-width: 1024px)", () => {
+        const pinTarget = document.querySelector("[data-proof-pin]");
+        const chapterSection = document.querySelector("[data-proof-chapters]");
+
+        if (pinTarget && chapterSection) {
+          ScrollTrigger.create({
+            trigger: chapterSection,
+            start: "top 120px",
+            end: "bottom bottom",
+            pin: pinTarget,
+            pinSpacing: false,
+          });
+        }
+      });
+
+      gsap.utils.toArray<HTMLElement>("[data-scale-card]").forEach((card) => {
+        const visual = card.querySelector(".chapter-visual");
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "bottom 25%",
+              scrub: true,
+            },
+          })
+          .fromTo(
+            visual ?? card,
+            { scale: 0.84, opacity: 0.32, filter: "brightness(0.72)" },
+            {
+              scale: 1,
+              opacity: 1,
+              filter: "brightness(1)",
+              duration: 0.55,
+              ease: "none",
+            },
+          )
+          .to(visual ?? card, {
+            opacity: 0.72,
+            filter: "brightness(0.84)",
+            duration: 0.45,
+            ease: "none",
+          });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".experience-card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { scale: 0.96 },
+          {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 86%",
+              end: "top 28%",
+              scrub: true,
+            },
+          },
+        );
+      });
+
+      return () => media.revert();
+    },
+    { scope: appRef },
+  );
+
+  const isScrollTopButtonVisible = isDesktopViewport && isScrollTopVisible;
+
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary">
+    <div
+      ref={appRef}
+      className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary"
+    >
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -535,22 +1097,25 @@ export default function App() {
         className="w-full max-w-full overflow-x-hidden focus:outline-none"
       >
         <HeroSection />
+        <ProofComparison />
+        <EvidenceDossier />
+        <CapabilityChapters />
         <About />
         <SkillsBento />
         <CapabilityMarquee />
         <ExperienceStack />
-        <ProofCarousel />
         <Contact />
       </main>
       <Footer />
 
       <button
+        type="button"
         data-scroll-top
-        className={`fixed bottom-8 right-8 z-50 border border-border/50 bg-background/90 p-3 text-foreground transition-[transform,opacity,border-color,background-color] duration-300 hover:border-primary/50 hover:bg-primary/[0.05] ${isScrollTopVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"}`}
+        className={`fixed bottom-8 right-8 z-50 hidden border border-border/50 bg-background/90 p-3 text-foreground transition-[transform,opacity,border-color,background-color] duration-300 hover:border-primary/50 hover:bg-primary/[0.05] md:block ${isScrollTopButtonVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
-        aria-hidden={isScrollTopVisible ? undefined : "true"}
-        tabIndex={isScrollTopVisible ? 0 : -1}
+        aria-hidden={isScrollTopButtonVisible ? undefined : "true"}
+        tabIndex={isScrollTopButtonVisible ? 0 : -1}
       >
         <ArrowRight className="size-5 -rotate-90" />
       </button>

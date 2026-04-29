@@ -3,8 +3,19 @@ dist/
 .vite/
 .DS_Store
 Cesar_Garcia_CV_2026_Senior_QA_Updated.docx
+!public/Cesar_Garcia_CV_2026_Senior_QA_Updated.docx
 .impeccable-live.log
 .impeccable-live.pid
 .impeccable-results.json
-.gitignore
 /.playwright-cli
+
+# keep graph outputs, skip heavy/local-only files
+
+# optional: commit for shared extraction speed, skip to keep repo small
+graphify-out/cache/
+
+# mtime-based, invalid after git clone - always gitignore this
+graphify-out/manifest.json
+
+# local token tracking, not useful to share
+graphify-out/cost.json
