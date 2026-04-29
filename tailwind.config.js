@@ -19,7 +19,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['"Figtree"', 'system-ui', 'sans-serif'],
-        display: ['"Cabinet Grotesk"', '"Figtree"', 'system-ui', 'sans-serif'],
+        display: ['"Satoshi"', '"Figtree"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
@@ -62,26 +62,7 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-        'spotlight': {
-          '0%': { opacity: '0', transform: 'translate(-50%, -50%) scale(0.5)' },
-          '100%': { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'spotlight': 'spotlight 2s ease .75s 1 forwards',
-      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 };

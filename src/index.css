@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --background: 12% 0.012 240;
+    --background: 15% 0.012 240;
     --foreground: 96% 0.01 215;
-    --card: 16% 0.014 240;
+    --card: 19% 0.014 240;
     --card-foreground: 96% 0.01 215;
-    --popover: 16% 0.014 240;
+    --popover: 19% 0.014 240;
     --popover-foreground: 96% 0.01 215;
     --primary: 78% 0.135 188;
     --primary-foreground: 10% 0.014 225;
     --secondary: 70% 0.17 28;
     --secondary-foreground: 11% 0.015 28;
-    --muted: 25% 0.018 235;
-    --muted-foreground: 73% 0.028 215;
+    --muted: 29% 0.018 235;
+    --muted-foreground: 76% 0.026 215;
     --accent: 81% 0.13 152;
     --accent-foreground: 10% 0.014 225;
     --destructive: 62% 0.19 24;
     --destructive-foreground: 96% 0.01 215;
-    --border: 30% 0.025 230;
-    --input: 30% 0.025 230;
+    --border: 35% 0.024 230;
+    --input: 35% 0.024 230;
     --ring: 78% 0.135 188;
     --radius: 0.75rem;
 
@@ -59,6 +59,12 @@
 
     --container-px: clamp(1.25rem, 5vw, 2.5rem);
     --primary-rgb: 38, 210, 206;
+    --shadow-button-signal: 4px 4px 0 oklch(var(--foreground) / 0.1);
+    --shadow-evidence-card: 0 18px 48px oklch(3% 0.01 240 / 0.1);
+    --shadow-hero-visual: 0 26px 80px oklch(3% 0.01 240 / 0.18);
+    --shadow-hero-panel: 0 18px 48px oklch(3% 0.01 240 / 0.14);
+    --shadow-nav-scrolled: 0 14px 36px -24px oklch(3% 0.01 240 / 0.48);
+    --shadow-signal-glow: 0 0 12px oklch(var(--primary) / 0.55);
 
     --section-tight: clamp(4rem, 8vw, 8rem);
     --section-normal: clamp(6rem, 12vw, 12rem);
@@ -66,24 +72,24 @@
   }
 
   .dark {
-    --background: 12% 0.012 240;
+    --background: 15% 0.012 240;
     --foreground: 96% 0.01 215;
-    --card: 16% 0.014 240;
+    --card: 19% 0.014 240;
     --card-foreground: 96% 0.01 215;
-    --popover: 16% 0.014 240;
+    --popover: 19% 0.014 240;
     --popover-foreground: 96% 0.01 215;
     --primary: 78% 0.135 188;
     --primary-foreground: 10% 0.014 225;
     --secondary: 70% 0.17 28;
     --secondary-foreground: 11% 0.015 28;
-    --muted: 25% 0.018 235;
-    --muted-foreground: 73% 0.028 215;
+    --muted: 29% 0.018 235;
+    --muted-foreground: 76% 0.026 215;
     --accent: 81% 0.13 152;
     --accent-foreground: 10% 0.014 225;
     --destructive: 62% 0.19 24;
     --destructive-foreground: 96% 0.01 215;
-    --border: 30% 0.025 230;
-    --input: 30% 0.025 230;
+    --border: 35% 0.024 230;
+    --input: 35% 0.024 230;
     --ring: 78% 0.135 188;
   }
 }
@@ -103,7 +109,12 @@
   }
 
   h1, h2, h3 {
+    letter-spacing: var(--tracking-heading);
     text-wrap: balance;
+  }
+
+  .font-mono {
+    font-variant-numeric: tabular-nums;
   }
 
   article p, section p {
@@ -121,6 +132,18 @@
 
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-2xl focus:font-bold;
+  }
+
+  .hero-visual {
+    background-image: none;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @media (min-width: 768px) {
+    .hero-visual {
+      background-image: url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85");
+    }
   }
 
   @keyframes marquee {

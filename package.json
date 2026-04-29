@@ -15,8 +15,7 @@
     "lucide-react": "^1.11.0",
     "react": "latest",
     "react-dom": "latest",
-    "tailwind-merge": "^3.5.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-28T18:14:00Z",
+  "title": "Design System: Cesar Garcia Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Control Room Black",
+        "canonical": "oklch(12% 0.012 240)",
+        "tonalRamp": [
+          "oklch(15% 0.012 240)",
+          "oklch(25% 0.012 240)",
+          "oklch(35% 0.012 240)",
+          "oklch(45% 0.012 240)",
+          "oklch(55% 0.012 240)",
+          "oklch(68% 0.01 240)",
+          "oklch(82% 0.008 240)",
+          "oklch(95% 0.006 240)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Instrument White",
+        "canonical": "oklch(96% 0.01 215)",
+        "tonalRamp": [
+          "oklch(15% 0.01 215)",
+          "oklch(25% 0.01 215)",
+          "oklch(35% 0.01 215)",
+          "oklch(45% 0.01 215)",
+          "oklch(58% 0.01 215)",
+          "oklch(72% 0.01 215)",
+          "oklch(86% 0.01 215)",
+          "oklch(96% 0.01 215)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Panel Graphite",
+        "canonical": "oklch(16% 0.014 240)",
+        "tonalRamp": [
+          "oklch(15% 0.014 240)",
+          "oklch(24% 0.014 240)",
+          "oklch(34% 0.014 240)",
+          "oklch(44% 0.012 240)",
+          "oklch(55% 0.01 240)",
+          "oklch(68% 0.009 240)",
+          "oklch(82% 0.008 240)",
+          "oklch(95% 0.006 240)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Run Signal Cyan",
+        "canonical": "oklch(78% 0.135 188)",
+        "tonalRamp": [
+          "oklch(15% 0.08 188)",
+          "oklch(25% 0.1 188)",
+          "oklch(35% 0.115 188)",
+          "oklch(48% 0.13 188)",
+          "oklch(62% 0.135 188)",
+          "oklch(78% 0.135 188)",
+          "oklch(88% 0.08 188)",
+          "oklch(95% 0.035 188)"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Incident Ember",
+        "canonical": "oklch(70% 0.17 28)",
+        "tonalRamp": [
+          "oklch(15% 0.08 28)",
+          "oklch(25% 0.11 28)",
+          "oklch(36% 0.14 28)",
+          "oklch(48% 0.16 28)",
+          "oklch(60% 0.17 28)",
+          "oklch(70% 0.17 28)",
+          "oklch(84% 0.09 28)",
+          "oklch(95% 0.035 28)"
+        ]
+      },
+      "accent": {
+        "role": "tertiary",
+        "displayName": "Validation Green",
+        "canonical": "oklch(81% 0.13 152)",
+        "tonalRamp": [
+          "oklch(15% 0.07 152)",
+          "oklch(25% 0.09 152)",
+          "oklch(36% 0.11 152)",
+          "oklch(50% 0.125 152)",
+          "oklch(64% 0.13 152)",
+          "oklch(81% 0.13 152)",
+          "oklch(90% 0.075 152)",
+          "oklch(95% 0.035 152)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Steel",
+        "canonical": "oklch(25% 0.018 235)",
+        "tonalRamp": [
+          "oklch(15% 0.018 235)",
+          "oklch(25% 0.018 235)",
+          "oklch(35% 0.018 235)",
+          "oklch(47% 0.016 235)",
+          "oklch(60% 0.014 235)",
+          "oklch(73% 0.012 235)",
+          "oklch(86% 0.009 235)",
+          "oklch(95% 0.006 235)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Scope Line",
+        "canonical": "oklch(30% 0.025 230)",
+        "tonalRamp": [
+          "oklch(15% 0.02 230)",
+          "oklch(24% 0.022 230)",
+          "oklch(30% 0.025 230)",
+          "oklch(42% 0.02 230)",
+          "oklch(55% 0.016 230)",
+          "oklch(68% 0.012 230)",
+          "oklch(82% 0.009 230)",
+          "oklch(95% 0.006 230)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero claims and first-impression statements."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section-level proof statements."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Cards, proof slides, and contact items."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable professional evidence and explanatory copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation, chips, proof labels, and compact operational text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "stacked-evidence",
+        "value": "0 24px 70px rgba(3, 8, 12, 0.16)",
+        "purpose": "Separate sticky experience cards."
+      },
+      {
+        "name": "hero-proof",
+        "value": "0 24px 72px rgba(3, 8, 12, 0.24)",
+        "purpose": "Lift the desktop hero proof panel over the visual module."
+      },
+      {
+        "name": "signal-glow",
+        "value": "0 0 18px rgba(38, 210, 206, 0.8)",
+        "purpose": "Small status lights only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "enter-up",
+        "value": "700ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default entrance using opacity and translate3d."
+      },
+      {
+        "name": "menu-in",
+        "value": "240ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Mobile menu overlay entrance."
+      },
+      {
+        "name": "hover-lift",
+        "value": "300ms to 700ms ease-out",
+        "purpose": "Small transform-only interaction feedback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "2xl",
+        "value": "1400px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action for contact and forward movement.",
+      "html": "<button class=\"ds-btn-primary\">Contact Me</button>",
+      "css": ".ds-btn-primary { height: 48px; border: 1px solid oklch(var(--primary, 78% 0.135 188)); border-radius: 0; background: oklch(var(--primary, 78% 0.135 188)); color: oklch(var(--primary-foreground, 10% 0.014 225)); padding: 0 36px; font: 700 14px/1 Figtree, system-ui, sans-serif; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { transform: translateY(-4px); background: oklch(74% 0.135 188); box-shadow: 6px 6px 0 rgba(238, 249, 251, 0.14); } .ds-btn-primary:focus-visible { outline: 2px solid oklch(var(--ring, 78% 0.135 188)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action that keeps the primary cyan scarce.",
+      "html": "<button class=\"ds-btn-outline\">View Experience</button>",
+      "css": ".ds-btn-outline { height: 48px; border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 70%, transparent); border-radius: 0; background: color-mix(in oklch, oklch(var(--background, 12% 0.012 240)) 80%, transparent); color: oklch(var(--foreground, 96% 0.01 215)); padding: 0 36px; font: 700 14px/1 Figtree, system-ui, sans-serif; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline:hover { transform: translateY(-4px); border-color: color-mix(in oklch, oklch(var(--primary, 78% 0.135 188)) 60%, transparent); color: oklch(var(--primary, 78% 0.135 188)); } .ds-btn-outline:focus-visible { outline: 2px solid oklch(var(--ring, 78% 0.135 188)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation Shell",
+      "kind": "nav",
+      "refersTo": "nav-shell",
+      "description": "Floating control-room header with compact identity and section links.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-mark\">OGS</span><a class=\"ds-nav-link ds-nav-link-active\" href=\"#hero\">Home</a><a class=\"ds-nav-link\" href=\"#experience\">Experience</a></nav>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; gap: 18px; border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 45%, transparent); border-radius: 9999px; background: color-mix(in oklch, oklch(var(--background, 12% 0.012 240)) 90%, transparent); padding: 14px 20px; color: oklch(var(--foreground, 96% 0.01 215)); font: 600 12px/1 JetBrains Mono, monospace; letter-spacing: 0.08em; text-transform: uppercase; } .ds-nav-mark { color: oklch(var(--primary, 78% 0.135 188)); letter-spacing: 0.1em; } .ds-nav-link { color: color-mix(in oklch, oklch(var(--foreground, 96% 0.01 215)) 72%, transparent); text-decoration: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover, .ds-nav-link-active { color: oklch(var(--primary, 78% 0.135 188)); } .ds-nav-link:focus-visible { outline: 2px solid oklch(var(--ring, 78% 0.135 188)); outline-offset: 4px; }"
+    },
+    {
+      "name": "Proof Panel",
+      "kind": "card",
+      "refersTo": "proof-panel",
+      "description": "Signature evidence surface used in the hero and proof modules.",
+      "html": "<article class=\"ds-proof\"><p class=\"ds-proof-label\">Operating model</p><h3 class=\"ds-proof-title\">Traceable quality from local runs to CI evidence.</h3><div class=\"ds-proof-chips\"><span>Reusable helpers</span><span>Trace-ready</span><span>Release signals</span></div></article>",
+      "css": ".ds-proof { max-width: 360px; border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 50%, transparent); border-radius: 0; background: color-mix(in oklch, oklch(var(--background, 12% 0.012 240)) 90%, transparent); color: oklch(var(--foreground, 96% 0.01 215)); padding: 16px; } .ds-proof-label { margin: 0 0 8px; color: oklch(var(--primary, 78% 0.135 188)); font: 600 10px/1.15 JetBrains Mono, monospace; letter-spacing: 0.12em; text-transform: uppercase; } .ds-proof-title { margin: 0; font: 900 24px/1.02 Satoshi, Figtree, system-ui, sans-serif; letter-spacing: 0; } .ds-proof-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; } .ds-proof-chips span { border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 50%, transparent); padding: 4px 8px; color: color-mix(in oklch, oklch(var(--foreground, 96% 0.01 215)) 72%, transparent); font: 600 11px/1.2 JetBrains Mono, monospace; letter-spacing: 0.06em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Evidence Card",
+      "kind": "card",
+      "refersTo": "proof-panel",
+      "description": "Sticky experience surface for career proof.",
+      "html": "<article class=\"ds-evidence\"><p class=\"ds-evidence-period\">Dec 2021 - Present</p><h3>Thermo Fisher Scientific</h3><p class=\"ds-evidence-role\">Engineer III, Software Quality Assurance</p><p class=\"ds-evidence-proof\">Modular Playwright architecture across shopping, quotes, returns, login, and AEM content workflows.</p></article>",
+      "css": ".ds-evidence { max-width: 520px; border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 50%, transparent); border-radius: 0; background: color-mix(in oklch, oklch(var(--card, 16% 0.014 240)) 95%, transparent); color: oklch(var(--foreground, 96% 0.01 215)); padding: 32px; box-shadow: 0 24px 70px rgba(3, 8, 12, 0.16); } .ds-evidence-period { margin: 0 0 12px; color: oklch(var(--primary, 78% 0.135 188)); font: 600 12px/1.2 JetBrains Mono, monospace; letter-spacing: 0.08em; text-transform: uppercase; } .ds-evidence h3 { margin: 0; font: 900 36px/1.02 Satoshi, Figtree, system-ui, sans-serif; letter-spacing: 0; } .ds-evidence-role { margin: 12px 0 0; color: color-mix(in oklch, oklch(var(--foreground, 96% 0.01 215)) 70%, transparent); font: 700 14px/1.4 Figtree, system-ui, sans-serif; } .ds-evidence-proof { margin: 28px 0 0; color: color-mix(in oklch, oklch(var(--foreground, 96% 0.01 215)) 85%, transparent); font: 600 20px/1.55 Figtree, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Tool Chip",
+      "kind": "chip",
+      "refersTo": "proof-panel",
+      "description": "Compact evidence label for tools, proof states, and operating categories.",
+      "html": "<span class=\"ds-chip\">Playwright</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 28px; border: 1px solid color-mix(in oklch, oklch(var(--border, 30% 0.025 230)) 60%, transparent); border-radius: 0; background: color-mix(in oklch, oklch(var(--background, 12% 0.012 240)) 80%, transparent); color: color-mix(in oklch, oklch(var(--foreground, 96% 0.01 215)) 80%, transparent); padding: 0 12px; font: 600 11px/1 JetBrains Mono, monospace; letter-spacing: 0.06em; text-transform: uppercase; } .ds-chip:focus-visible { outline: 2px solid oklch(var(--ring, 78% 0.135 188)); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Evidence Control Room",
+    "overview": "This system is a dark, kinetic portfolio for recruiters, hiring managers, and developers reviewing QA automation work under focused desktop or mobile browsing conditions. The scene is a technical evaluator scanning proof late in the hiring loop: ambient light is low, attention is limited, and the interface has to feel precise before it feels decorative.\n\nThe visual language is cinematic but disciplined. Large Satoshi headlines create expert confidence, Figtree body copy keeps evidence readable, and cyan OKLCH accents behave like instrumentation signals. Motion is responsive, not ornamental: transform and opacity only, reduced-motion honored, no layout animation.\n\nThe system explicitly rejects generic portfolio templates, light mode defaults, overly complex navigation, \"AI slop\", cliche SaaS designs, hero-metric templates, and identical card grids.",
+    "keyCharacteristics": [
+      "Dark-mode-first control-room atmosphere.",
+      "Proof-forward content with traceable QA evidence.",
+      "Sharp rectangular surfaces, thin borders, and sparse cyan signal.",
+      "Large editorial type balanced by compact operational labels.",
+      "Motion that clarifies state without carrying the story."
+    ],
+    "rules": [
+      {
+        "name": "The Signal Scarcity Rule",
+        "body": "Run Signal Cyan must remain rare enough to feel like state, proof, or action. Do not wash entire sections in cyan.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Light Fallback Rule",
+        "body": "This portfolio is dark-mode-first by strategy. Do not introduce light sections, cream neutrals, or daytime SaaS panels.",
+        "section": "colors"
+      },
+      {
+        "name": "The Proof Before Poetry Rule",
+        "body": "Headlines may be expressive, but every section must quickly resolve into evidence: tools, systems, scope, or action.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Negative Tracking Rule",
+        "body": "Letter spacing stays at zero for display copy. Tightness comes from scale and weight, not squeezed glyphs.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat At Rest Rule",
+        "body": "Most surfaces are flat at rest. Lift appears through sticky context, hover state, or proof hierarchy.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Glass Rule",
+        "body": "Do not use decorative blur or backdrop-filter surfaces. Clarity beats haze.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the site dark-mode-first, using Control Room Black as the base and Instrument White for readable evidence.",
+      "Do use Run Signal Cyan for real state: primary actions, active navigation, focus, proof labels, and status indicators.",
+      "Do lead with proof language: Playwright architecture, accessibility, CI evidence, traces, reusable helpers, global storefront coverage.",
+      "Do preserve reduced-motion behavior and restrict animation to opacity and transform.",
+      "Do keep navigation simple and directly tied to page sections.",
+      "Do use thin full borders or tonal panels instead of decorative side stripes."
+    ],
+    "donts": [
+      "Don't use generic portfolio templates.",
+      "Don't use light mode defaults.",
+      "Don't build overly complex navigation.",
+      "Don't ship \"AI slop\" or cliche SaaS designs.",
+      "Don't use hero-metric templates.",
+      "Don't create identical card grids.",
+      "Don't add gradient text, decorative glassmorphism, blur-heavy panels, or backdrop-filter effects.",
+      "Don't use pure `#000` or `#fff`; every neutral must stay tinted."
+    ]
+  }
+}
