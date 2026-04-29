@@ -8,10 +8,101 @@ const cvDownloadHref = "/Cesar_Garcia_CV_2026_Senior_QA_Updated.docx";
 const menuItems = [
   { name: "Home", href: "#hero" },
   { name: "Proof", href: "#proof" },
+  { name: "Capabilities", href: "#capabilities" },
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ];
+
+function HeroTelemetryVisual() {
+  const statusRows = [
+    ["shopping-flow", "trace", "stable"],
+    ["quote-v2", "network", "review"],
+    ["returns", "guard", "ready"],
+    ["aem-content", "region", "synced"],
+  ];
+
+  return (
+    <div className="relative h-full p-5 md:p-6">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,oklch(var(--primary)/0.18),transparent_26%),radial-gradient(circle_at_82%_62%,oklch(var(--accent)/0.12),transparent_30%)]" />
+      <div className="relative grid h-full grid-rows-[auto_1fr_auto] gap-4">
+        <div className="flex items-center justify-between border border-border/35 bg-background/75 px-4 py-3">
+          <div>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              Release control
+            </p>
+            <p className="mt-1 font-display text-xl font-[900] leading-none text-foreground">
+              QA telemetry live
+            </p>
+          </div>
+          <span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[var(--shadow-signal-glow)]" />
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="overflow-hidden border border-border/35 bg-background/70 p-4">
+            <div className="mb-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+              <span>Trace map</span>
+              <span>17 markets</span>
+            </div>
+            <div className="relative h-[13rem]">
+              {["Auth", "Cart", "Quote", "Return", "AEM"].map(
+                (node, index) => (
+                  <div
+                    key={node}
+                    className="absolute border border-border/45 bg-card/90 px-2.5 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-foreground"
+                    style={{
+                      left: `${(index % 2) * 43 + 4}%`,
+                      top: `${index * 18 + 2}%`,
+                    }}
+                  >
+                    <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+                    {node}
+                  </div>
+                ),
+              )}
+              <span className="absolute left-[19%] top-[18%] h-px w-[52%] rotate-[24deg] bg-primary/35" />
+              <span className="absolute left-[22%] top-[48%] h-px w-[56%] -rotate-[18deg] bg-primary/25" />
+              <span className="absolute left-[18%] top-[75%] h-px w-[58%] rotate-[13deg] bg-primary/25" />
+            </div>
+          </div>
+
+          <div className="grid gap-3">
+            {statusRows.map(([name, signal, state]) => (
+              <div
+                key={name}
+                className="grid grid-cols-[1fr_auto] gap-4 border border-border/35 bg-background/70 px-4 py-3 font-mono text-[11px]"
+              >
+                <div>
+                  <p className="font-semibold uppercase tracking-[0.08em] text-foreground">
+                    {name}
+                  </p>
+                  <p className="mt-1 text-muted-foreground">{signal}</p>
+                </div>
+                <p className="text-primary">{state}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border border-border/35 bg-background/75 p-4">
+          <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+            <span>Suite signal</span>
+            <span>classification</span>
+          </div>
+          <div className="flex h-14 items-end gap-2">
+            {[32, 66, 48, 82, 58, 92, 44, 76, 62, 88].map((height, index) => (
+              <span
+                key={index}
+                className="flex-1 bg-primary/30"
+                style={{ height: `${height}%` }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -104,6 +195,7 @@ export function HeroSection() {
           <div
             className="hero-visual relative ml-auto h-[21rem] w-[78%] overflow-hidden border border-border/45 bg-card/50 shadow-[var(--shadow-hero-visual)] md:h-[27rem] lg:h-[28rem]"
           >
+            <HeroTelemetryVisual />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent mix-blend-multiply" />
           </div>
 
@@ -368,7 +460,7 @@ export const HeroHeader = () => {
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
-              className="mobile-menu-panel fixed inset-0 z-[55] flex h-[100dvh] w-full flex-col bg-background/98 p-8 pt-24 lg:hidden"
+              className="mobile-menu-panel fixed inset-0 z-[55] flex h-[100dvh] w-full flex-col bg-background p-8 pt-24 lg:hidden"
             >
               <div className="flex flex-col gap-8">
                 {menuItems.map((item, index) => {

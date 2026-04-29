@@ -1,13 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bot,
+  CheckCircle2,
+  CircleDot,
+  GitBranch,
   Mail,
   MapPin,
   MessageCircle,
+  Radar,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -89,6 +100,78 @@ const skillCards = [
   },
 ];
 
+const releaseFlow = [
+  {
+    label: "Signal",
+    title: "A commerce check fails",
+    body: "A quote, return, list, login, or content path produces a reproducible failure signal.",
+    value: "Trace captured",
+  },
+  {
+    label: "Evidence",
+    title: "Artifacts get connected",
+    body: "Screenshots, network payloads, auth state, Allure reports, and Jira notes are reviewed together.",
+    value: "Cause isolated",
+  },
+  {
+    label: "Decision",
+    title: "The team gets direction",
+    body: "The failure is classified as app behavior, automation design, data, auth, or release risk.",
+    value: "Action clear",
+  },
+];
+
+const capabilityChapters = [
+  {
+    title: "Playwright architecture",
+    eyebrow: "Reusable journeys",
+    body: "Shared page objects and setup flows turn complex commerce paths into maintainable checks instead of one-off scripts.",
+    tags: ["46+ specs", "53 objects", "B2B/B2C"],
+    icon: GitBranch,
+    variant: "trace",
+  },
+  {
+    title: "Failure triage",
+    eyebrow: "Cause classification",
+    body: "Failures are treated as signals with trace, screenshot, network, data, and auth context before they become Jira evidence.",
+    tags: ["Trace", "Network", "Auth state"],
+    icon: Radar,
+    variant: "status",
+  },
+  {
+    title: "CI observability",
+    eyebrow: "Release signals",
+    body: "Allure reports, GitHub Actions, and Prometheus-style metrics make suite behavior readable across repeated runs.",
+    tags: ["Allure", "Actions", "Prometheus"],
+    icon: CircleDot,
+    variant: "ci",
+  },
+  {
+    title: "API validation",
+    eyebrow: "Payload confidence",
+    body: "REST, SOAP, JSON, XML, and cXML validation connect UI evidence to backend contracts and integration behavior.",
+    tags: ["REST", "SOAP", "cXML"],
+    icon: Bot,
+    variant: "api",
+  },
+  {
+    title: "Accessibility checks",
+    eyebrow: "Inclusive quality",
+    body: "Axe validation keeps visible quality connected to WCAG risk and regression coverage in the same QA story.",
+    tags: ["Axe", "WCAG", "Regression"],
+    icon: ShieldCheck,
+    variant: "accessibility",
+  },
+  {
+    title: "Multi-market execution",
+    eyebrow: "Global storefronts",
+    body: "Country-aware execution keeps regional storefront, account, and content differences visible before release.",
+    tags: ["17 countries", "QA/Prod", "AEM"],
+    icon: CheckCircle2,
+    variant: "markets",
+  },
+];
+
 const evidenceRecords = [
   {
     label: "Framework scope",
@@ -123,7 +206,8 @@ const qaDossierRows = [
   },
   {
     label: "Outcome",
-    value: "The team gets a clear next action instead of a generic failed test.",
+    value:
+      "The team gets a clear next action instead of a generic failed test.",
   },
 ];
 
@@ -170,6 +254,329 @@ const contacts = [
   },
 ];
 
+function ProofComparison() {
+  return (
+    <section
+      id="proof"
+      className="relative overflow-hidden border-y border-border/15 bg-card/25 py-24 md:py-32"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:radial-gradient(circle_at_center,oklch(var(--foreground))_1px,transparent_1px)] [background-size:22px_22px]" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-20">
+        <div>
+          <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Release evidence
+          </p>
+          <h2
+            className="max-w-4xl font-display font-[900] leading-[0.95] text-foreground"
+            style={{ fontSize: "clamp(2.45rem, 4.6vw, 4.6rem)" }}
+          >
+            Failed checks become release decisions.
+          </h2>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            The BetterStack-inspired shift is simple: every QA result should
+            read like telemetry, with signal, evidence, and action visible in
+            one pass.
+          </p>
+        </div>
+
+        <div className="overflow-hidden border border-border/45 bg-background/70 shadow-[var(--shadow-hero-panel)]">
+          <div className="grid border-b border-border/35 bg-foreground/[0.03] sm:grid-cols-3">
+            {releaseFlow.map((item) => (
+              <div
+                key={item.label}
+                className="border-b border-border/25 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+              >
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  {item.label}
+                </p>
+                <p className="mt-2 font-display text-2xl font-[900] leading-none text-foreground">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-0 lg:grid-cols-[1fr_0.9fr]">
+            <div className="p-6 md:p-8">
+              <div className="mb-8 space-y-4">
+                {releaseFlow.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="group border border-border/35 bg-card/45 p-5 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-4">
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">
+                        {String(index + 1).padStart(2, "0")} {item.label}
+                      </p>
+                      <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+                    </div>
+                    <h3 className="font-display text-2xl font-[900] leading-[1.02] text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {["Screenshot", "Trace", "Network", "Allure", "Jira"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {item}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+
+            <div className="border-t border-border/35 bg-card/55 p-6 lg:border-l lg:border-t-0 md:p-8">
+              <div className="mb-5 flex items-center justify-between">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.1em] text-primary">
+                  QA telemetry
+                </p>
+                <span className="h-2 w-2 rounded-full bg-primary shadow-[var(--shadow-signal-glow)]" />
+              </div>
+              <div className="space-y-3 font-mono text-xs">
+                {[
+                  ["checkout.spec", "classified", "app behavior"],
+                  ["quote-v2.spec", "evidence", "network payload"],
+                  ["returns.spec", "guarded", "data unavailable"],
+                  ["aem-content.spec", "signal", "regional content"],
+                ].map(([name, state, detail]) => (
+                  <div
+                    key={name}
+                    className="grid grid-cols-[1fr_auto] gap-4 border border-border/30 bg-background/70 p-3"
+                  >
+                    <div>
+                      <p className="font-semibold text-foreground">{name}</p>
+                      <p className="mt-1 text-muted-foreground">{detail}</p>
+                    </div>
+                    <p className="text-primary">{state}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 h-28 overflow-hidden border border-border/30 bg-background/70 p-4">
+                <div className="flex h-full items-end gap-2">
+                  {[34, 58, 44, 78, 62, 86, 54, 71, 48, 92, 66, 80].map(
+                    (height, index) => (
+                      <span
+                        key={index}
+                        className="flex-1 bg-primary/25"
+                        style={{ height: `${height}%` }}
+                      />
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CapabilityChapters() {
+  return (
+    <section
+      id="capabilities"
+      data-proof-chapters
+      className="relative overflow-hidden py-32 md:py-48"
+    >
+      <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
+      <div className="mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div data-proof-pin className="chapter-pin lg:h-fit">
+          <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Capability chapters
+          </p>
+          <h2
+            className="max-w-3xl font-display font-[900] leading-[0.95] text-foreground"
+            style={{ fontSize: "clamp(2.65rem, 6vw, 5.5rem)" }}
+          >
+            QA work framed as operational telemetry.
+          </h2>
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Each chapter maps to a practical release concern: architecture,
+            triage, CI, APIs, accessibility, and regional execution.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {capabilityChapters.map((chapter) => (
+            <article
+              key={chapter.title}
+              data-scale-card
+              className="group min-h-[31rem] overflow-hidden border border-border/40 bg-card/50 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
+            >
+              <div className="chapter-visual h-56 overflow-hidden border-b border-border/35 bg-background/75">
+                <ChapterVisual variant={chapter.variant} />
+              </div>
+              <div className="flex min-h-[17rem] flex-col justify-between p-6 md:p-7">
+                <div>
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div className="inline-flex h-10 w-10 items-center justify-center border border-border/50 bg-background/80 text-primary transition-colors duration-500 group-hover:border-primary/45 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <chapter.icon className="size-4" />
+                    </div>
+                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                      {chapter.eyebrow}
+                    </p>
+                  </div>
+                  <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground">
+                    {chapter.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {chapter.body}
+                  </p>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {chapter.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ChapterVisual({ variant }: { variant: string }) {
+  if (variant === "trace") {
+    return (
+      <div className="relative h-full p-6">
+        <div className="absolute inset-0 opacity-[0.045] [background-image:radial-gradient(circle_at_center,oklch(var(--foreground))_1px,transparent_1px)] [background-size:18px_18px]" />
+        <div className="relative h-full">
+          {["Cart", "Quote", "Auth", "Return", "List"].map((node, index) => (
+            <div
+              key={node}
+              className="absolute border border-border/45 bg-card/90 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground shadow-[var(--shadow-evidence-card)]"
+              style={{
+                left: `${(index % 3) * 31 + 4}%`,
+                top: `${Math.floor(index / 3) * 43 + (index % 2) * 14 + 8}%`,
+              }}
+            >
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+              {node}
+            </div>
+          ))}
+          <div className="absolute left-[14%] top-[28%] h-px w-[62%] rotate-[14deg] bg-primary/35" />
+          <div className="absolute left-[28%] top-[54%] h-px w-[47%] -rotate-[18deg] bg-primary/25" />
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "api") {
+    return (
+      <div className="h-full p-6 font-mono text-xs">
+        <div className="h-full border border-border/35 bg-background/80 p-4">
+          {[
+            "{",
+            '  "market": "US",',
+            '  "flow": "quote-v2",',
+            '  "payload": "validated",',
+            '  "decision": "release-ready"',
+            "}",
+          ].map((line) => (
+            <p key={line} className="leading-7 text-muted-foreground">
+              <span className="text-primary">&gt;</span> {line}
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "ci") {
+    return (
+      <div className="flex h-full items-end gap-3 p-6">
+        {[44, 72, 58, 88, 63, 80, 52, 92].map((height, index) => (
+          <div
+            key={index}
+            className="flex flex-1 flex-col justify-end border border-border/30 bg-background/70"
+          >
+            <span
+              className="block bg-primary/35 transition-colors duration-500 group-hover:bg-primary/55"
+              style={{ height: `${height}%` }}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (variant === "accessibility") {
+    return (
+      <div className="grid h-full gap-3 p-6">
+        {[
+          "Contrast AA",
+          "Keyboard path",
+          "Focus visible",
+          "Reduced motion",
+        ].map((item) => (
+          <div
+            key={item}
+            className="flex items-center justify-between border border-border/35 bg-background/75 px-4 py-3"
+          >
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-foreground">
+              {item}
+            </span>
+            <CheckCircle2 className="size-4 text-primary" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (variant === "markets") {
+    return (
+      <div className="grid h-full grid-cols-5 gap-2 p-6">
+        {Array.from({ length: 25 }).map((_, index) => (
+          <span
+            key={index}
+            className={cn(
+              "border border-border/30 bg-background/70",
+              [2, 4, 8, 11, 14, 17, 20, 23].includes(index) &&
+                "border-primary/45 bg-primary/20",
+            )}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full p-6">
+      <div className="grid h-full gap-3">
+        {["auth state", "test data", "network", "ui state"].map((item) => (
+          <div
+            key={item}
+            className="grid grid-cols-[1fr_auto] items-center gap-4 border border-border/35 bg-background/75 px-4 py-3 font-mono text-xs"
+          >
+            <span className="font-semibold uppercase tracking-[0.08em] text-foreground">
+              {item}
+            </span>
+            <span className="text-primary">isolated</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function About() {
   const statement =
     "I turn complex commerce journeys into repeatable checks, clear defect evidence, and CI signals that developers and release teams can use.";
@@ -183,25 +590,30 @@ function About() {
       <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
         <div>
           <h2
-            className="flex max-w-4xl flex-col items-start gap-y-1 font-display font-[900] leading-[0.95] text-foreground"
-            style={{ fontSize: "clamp(2.65rem, 6vw, 5.4rem)" }}
+            className="max-w-5xl font-display font-[900] leading-[0.94] text-foreground"
+            style={{ fontSize: "clamp(2.8rem, 5.2vw, 4.85rem)" }}
           >
-            <span className="block">{"I build release "}</span>
-            <span className="block">{"systems teams "}</span>
-            <span className="block">can trust.</span>
+            I build release systems teams can trust.
           </h2>
           <div
             aria-hidden="true"
-            className="mt-8 flex max-w-sm items-center gap-4 md:mt-10"
+            className="mt-8 grid max-w-xl grid-cols-[auto_1fr] items-center gap-4 md:mt-10"
           >
-            <span
-              className="relative block h-4 w-24 shrink-0 overflow-hidden rounded-full border border-border/45 bg-cover bg-left opacity-70 grayscale contrast-125 after:absolute after:inset-0 after:bg-background/35 md:h-6 md:w-36"
-              style={{
-                backgroundImage:
-                  "url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=640&q=85)",
-              }}
-            />
-            <span className="h-px flex-1 bg-border/50" />
+            <div className="flex h-10 items-center gap-1 border border-border/45 bg-card/55 px-3">
+              {[38, 64, 48, 82, 56, 74].map((height, index) => (
+                <span
+                  key={index}
+                  className="w-1.5 bg-primary/45"
+                  style={{ height: `${height}%` }}
+                />
+              ))}
+            </div>
+            <div className="flex min-w-0 items-center gap-4">
+              <span className="h-px flex-1 bg-border/50" />
+              <span className="hidden whitespace-nowrap font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground sm:block">
+                Signal to release
+              </span>
+            </div>
           </div>
         </div>
 
@@ -358,7 +770,7 @@ function ExperienceStack() {
           {experiences.map((exp, index) => (
             <article
               key={exp.company}
-              className="group border border-border/45 bg-card/80 p-6 shadow-[var(--shadow-evidence-card)] md:p-10 lg:sticky"
+              className="experience-card group border border-border/45 bg-card/80 p-6 shadow-[var(--shadow-evidence-card)] md:p-10 lg:sticky"
               style={{ top: `${112 + index * 26}px` }}
             >
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -401,7 +813,7 @@ function ExperienceStack() {
 function EvidenceDossier() {
   return (
     <section
-      id="proof"
+      id="dossier"
       className="scroll-mt-28 border-y border-border/15 bg-card/45 py-24 md:py-32"
     >
       <div className="mx-auto grid max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[0.68fr_1.32fr] lg:gap-20">
@@ -553,7 +965,9 @@ function Footer() {
   return (
     <footer className="border-t border-border/10 bg-card py-8">
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-[var(--container-px)] text-sm text-muted-foreground md:flex-row md:items-center">
-        <div>&copy; {new Date().getFullYear()} Cesar Octavio Garcia Sanchez</div>
+        <div>
+          &copy; {new Date().getFullYear()} Cesar Octavio Garcia Sanchez
+        </div>
         <div>Designed for performance and release confidence</div>
       </div>
     </footer>
@@ -561,6 +975,7 @@ function Footer() {
 }
 
 export default function App() {
+  const appRef = useRef<HTMLDivElement | null>(null);
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
 
@@ -587,10 +1002,91 @@ export default function App() {
     };
   }, []);
 
+  useGSAP(
+    () => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduceMotion) return;
+
+      const media = gsap.matchMedia();
+
+      media.add("(min-width: 1024px)", () => {
+        const pinTarget = document.querySelector("[data-proof-pin]");
+        const chapterSection = document.querySelector("[data-proof-chapters]");
+
+        if (pinTarget && chapterSection) {
+          ScrollTrigger.create({
+            trigger: chapterSection,
+            start: "top 120px",
+            end: "bottom bottom",
+            pin: pinTarget,
+            pinSpacing: false,
+          });
+        }
+      });
+
+      gsap.utils.toArray<HTMLElement>("[data-scale-card]").forEach((card) => {
+        const visual = card.querySelector(".chapter-visual");
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "bottom 25%",
+              scrub: true,
+            },
+          })
+          .fromTo(
+            visual ?? card,
+            { scale: 0.84, opacity: 0.32, filter: "brightness(0.72)" },
+            {
+              scale: 1,
+              opacity: 1,
+              filter: "brightness(1)",
+              duration: 0.55,
+              ease: "none",
+            },
+          )
+          .to(visual ?? card, {
+            opacity: 0.72,
+            filter: "brightness(0.84)",
+            duration: 0.45,
+            ease: "none",
+          });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".experience-card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { scale: 0.96 },
+          {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 86%",
+              end: "top 28%",
+              scrub: true,
+            },
+          },
+        );
+      });
+
+      return () => media.revert();
+    },
+    { scope: appRef },
+  );
+
   const isScrollTopButtonVisible = isDesktopViewport && isScrollTopVisible;
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary">
+    <div
+      ref={appRef}
+      className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary"
+    >
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -601,7 +1097,9 @@ export default function App() {
         className="w-full max-w-full overflow-x-hidden focus:outline-none"
       >
         <HeroSection />
+        <ProofComparison />
         <EvidenceDossier />
+        <CapabilityChapters />
         <About />
         <SkillsBento />
         <CapabilityMarquee />

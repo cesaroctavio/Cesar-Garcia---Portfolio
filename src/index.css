@@ -135,15 +135,22 @@
   }
 
   .hero-visual {
-    background-image: none;
+    background-image:
+      linear-gradient(to bottom, oklch(var(--foreground) / 0.04), transparent),
+      radial-gradient(circle at 20% 20%, oklch(var(--primary) / 0.14), transparent 34%),
+      radial-gradient(circle at 80% 60%, oklch(var(--accent) / 0.08), transparent 30%);
     background-position: center;
     background-size: cover;
   }
 
-  @media (min-width: 768px) {
-    .hero-visual {
-      background-image: url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85");
-    }
+  .chapter-visual {
+    transform-origin: center;
+    will-change: transform, opacity, filter;
+  }
+
+  .experience-card {
+    transform-origin: top center;
+    will-change: transform;
   }
 
   @keyframes marquee {
