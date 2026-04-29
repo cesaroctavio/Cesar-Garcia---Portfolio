@@ -382,11 +382,14 @@ function ProofComparison() {
 }
 
 function CapabilityChapters() {
+  const featuredChapters = capabilityChapters.slice(0, 2);
+  const supportingChapters = capabilityChapters.slice(2);
+
   return (
     <section
       id="capabilities"
       data-proof-chapters
-      className="relative overflow-hidden py-32 md:py-48"
+      className="relative overflow-hidden py-24 md:py-48"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
       <div className="mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
@@ -406,47 +409,91 @@ function CapabilityChapters() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          {capabilityChapters.map((chapter) => (
-            <article
-              key={chapter.title}
-              data-scale-card
-              className="group min-h-[31rem] overflow-hidden border border-border/40 bg-card/50 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
-            >
-              <div className="chapter-visual h-56 overflow-hidden border-b border-border/35 bg-background/75">
-                <ChapterVisual variant={chapter.variant} />
-              </div>
-              <div className="flex min-h-[17rem] flex-col justify-between p-6 md:p-7">
-                <div>
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <div className="inline-flex h-10 w-10 items-center justify-center border border-border/50 bg-background/80 text-primary transition-colors duration-500 group-hover:border-primary/45 group-hover:bg-primary group-hover:text-primary-foreground">
-                      <chapter.icon className="size-4" />
+        <div className="space-y-5 md:space-y-6">
+          <div className="grid gap-5 md:grid-cols-2">
+            {featuredChapters.map((chapter) => (
+              <article
+                key={chapter.title}
+                data-scale-card
+                className="group min-h-[29rem] overflow-hidden border border-border/40 bg-card/50 transition-colors duration-500 hover:border-primary/45 hover:bg-card/70"
+              >
+                <div className="chapter-visual h-52 overflow-hidden border-b border-border/35 bg-background/75 md:h-56">
+                  <ChapterVisual variant={chapter.variant} />
+                </div>
+                <div className="flex min-h-[16rem] flex-col justify-between p-6 md:p-7">
+                  <div>
+                    <div className="mb-5 flex items-center justify-between gap-4">
+                      <div className="inline-flex h-10 w-10 items-center justify-center border border-border/50 bg-background/80 text-primary transition-colors duration-500 group-hover:border-primary/45 group-hover:bg-primary group-hover:text-primary-foreground">
+                        <chapter.icon className="size-4" />
+                      </div>
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                        {chapter.eyebrow}
+                      </p>
                     </div>
-                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-                      {chapter.eyebrow}
+                    <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground">
+                      {chapter.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                      {chapter.body}
                     </p>
                   </div>
-                  <h3 className="font-display text-3xl font-[900] leading-[1.02] text-foreground">
+
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {chapter.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="border-y border-border/40 bg-card/25">
+            {supportingChapters.map((chapter, index) => (
+              <article
+                key={chapter.title}
+                data-scale-card
+                className="group grid gap-5 border-t border-border/35 py-6 first:border-t-0 md:grid-cols-[3.5rem_1fr] md:px-6 md:py-7 lg:grid-cols-[3.5rem_1fr_auto]"
+              >
+                <div className="inline-flex h-10 w-10 items-center justify-center border border-border/50 bg-background/80 text-primary transition-colors duration-500 group-hover:border-primary/45 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <chapter.icon className="size-4" />
+                </div>
+                <div className="min-w-0">
+                  <div className="mb-3 flex flex-wrap items-center gap-3">
+                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-primary/85">
+                      {chapter.eyebrow}
+                    </p>
+                    <span className="h-1 w-1 rounded-full bg-border" />
+                    <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                      {String(index + 3).padStart(2, "0")}
+                    </p>
+                  </div>
+                  <h3 className="font-display text-2xl font-[900] leading-[1.02] text-foreground md:text-3xl">
                     {chapter.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
                     {chapter.body}
                   </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {chapter.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {chapter.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="border border-border/55 bg-background/70 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.06em] text-foreground/75"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
+                <ArrowUpRight className="hidden size-5 self-start text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary lg:block" />
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -584,7 +631,7 @@ function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden border-y border-border/10 py-32 md:py-48"
+      className="relative overflow-hidden border-y border-border/10 py-24 md:py-48"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-border/40" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
@@ -663,10 +710,10 @@ function SkillsBento() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-foreground/[0.02] py-32 md:py-48"
+      className="relative overflow-hidden bg-foreground/[0.02] py-24 md:py-48"
     >
       <div className="mx-auto max-w-7xl px-[var(--container-px)]">
-        <div className="mb-16 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
+        <div className="mb-12 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
           <h2
             className="max-w-4xl font-display font-[900] leading-[0.96] text-foreground"
             style={{ fontSize: "clamp(2.6rem, 6vw, 5.4rem)" }}
@@ -695,6 +742,7 @@ function SkillsBento() {
                     alt=""
                     loading="lazy"
                     decoding="async"
+                    sizes="(min-width: 1024px) 48vw, 100vw"
                     className="h-full w-full scale-100 object-cover grayscale contrast-125 transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
@@ -702,7 +750,7 @@ function SkillsBento() {
               )}
               <div className="relative z-10 flex h-full flex-col justify-between gap-8">
                 <div>
-                  <h3 className="mb-5 font-display text-4xl font-[900] leading-[1.02] text-foreground md:text-5xl">
+                  <h3 className="mb-5 font-display text-3xl font-[900] leading-[1.02] text-foreground md:text-5xl">
                     {card.title}
                   </h3>
                   <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
@@ -749,7 +797,7 @@ function ExperienceStack() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden py-32 md:py-48"
+      className="relative overflow-hidden py-24 md:py-48"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-[var(--container-px)] lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
@@ -766,7 +814,7 @@ function ExperienceStack() {
           </p>
         </div>
 
-        <div className="space-y-8 lg:space-y-14">
+        <div className="space-y-6 lg:space-y-14">
           {experiences.map((exp, index) => (
             <article
               key={exp.company}
@@ -911,10 +959,10 @@ function EvidenceDossier() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-32 md:py-48">
+    <section id="contact" className="relative overflow-hidden py-24 md:py-48">
       <div className="absolute inset-x-0 top-0 h-px bg-border/30" />
       <div className="relative mx-auto max-w-7xl px-[var(--container-px)]">
-        <div className="mb-16 max-w-5xl">
+        <div className="mb-12 max-w-5xl md:mb-16">
           <h2
             className="font-display font-[900] leading-[0.92] text-foreground"
             style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
@@ -932,9 +980,12 @@ function Contact() {
             <a
               key={contact.href}
               href={contact.href}
+              aria-label={`${contact.label}: ${contact.value}${
+                contact.external ? " (opens in a new tab)" : ""
+              }`}
               target={contact.external ? "_blank" : undefined}
               rel={contact.external ? "noopener noreferrer" : undefined}
-              className="group relative min-h-48 overflow-hidden border border-border/50 bg-foreground/[0.03] p-6 outline-none transition-colors duration-500 hover:border-primary/50 hover:bg-primary/[0.05] focus-visible:ring-1 focus-visible:ring-primary"
+              className="group relative min-h-40 overflow-hidden border border-border/50 bg-foreground/[0.03] p-6 outline-none transition-colors duration-500 hover:border-primary/50 hover:bg-primary/[0.05] focus-visible:ring-1 focus-visible:ring-primary md:min-h-48"
             >
               <div className="mb-10 flex items-center justify-between">
                 <div className="inline-flex h-10 w-10 items-center justify-center bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
@@ -947,6 +998,9 @@ function Contact() {
               </p>
               <p className="break-words font-display text-xl font-[800] leading-snug text-foreground transition-colors group-hover:text-primary 2xl:text-2xl">
                 {contact.value}
+                {contact.external && (
+                  <span className="sr-only"> opens in a new tab</span>
+                )}
               </p>
             </a>
           ))}
@@ -1028,7 +1082,8 @@ export default function App() {
       });
 
       gsap.utils.toArray<HTMLElement>("[data-scale-card]").forEach((card) => {
-        const visual = card.querySelector(".chapter-visual");
+        const target =
+          card.querySelector<HTMLElement>(".chapter-visual") ?? card;
 
         gsap
           .timeline({
@@ -1037,22 +1092,26 @@ export default function App() {
               start: "top 85%",
               end: "bottom 25%",
               scrub: true,
+              onEnter: () =>
+                gsap.set(target, { willChange: "transform, opacity" }),
+              onEnterBack: () =>
+                gsap.set(target, { willChange: "transform, opacity" }),
+              onLeave: () => gsap.set(target, { willChange: "auto" }),
+              onLeaveBack: () => gsap.set(target, { willChange: "auto" }),
             },
           })
           .fromTo(
-            visual ?? card,
-            { scale: 0.84, opacity: 0.32, filter: "brightness(0.72)" },
+            target,
+            { scale: 0.86, opacity: 0.36 },
             {
               scale: 1,
               opacity: 1,
-              filter: "brightness(1)",
               duration: 0.55,
               ease: "none",
             },
           )
-          .to(visual ?? card, {
+          .to(target, {
             opacity: 0.72,
-            filter: "brightness(0.84)",
             duration: 0.45,
             ease: "none",
           });
@@ -1070,6 +1129,10 @@ export default function App() {
               start: "top 86%",
               end: "top 28%",
               scrub: true,
+              onEnter: () => gsap.set(card, { willChange: "transform" }),
+              onEnterBack: () => gsap.set(card, { willChange: "transform" }),
+              onLeave: () => gsap.set(card, { willChange: "auto" }),
+              onLeaveBack: () => gsap.set(card, { willChange: "auto" }),
             },
           },
         );

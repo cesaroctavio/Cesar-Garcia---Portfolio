@@ -205,9 +205,9 @@ export function HeroSection() {
             <p className="mb-4 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-primary">
               Evidence model
             </p>
-            <h2 className="font-display text-2xl font-[900] leading-[1.02] text-foreground md:text-4xl">
+            <p className="font-display text-2xl font-[900] leading-[1.02] text-foreground md:text-4xl">
               Clear cause, traceable proof, practical release signals.
-            </h2>
+            </p>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               Designed so recruiters can scan outcomes and engineers can follow
               the debugging trail.

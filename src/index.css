@@ -145,12 +145,10 @@
 
   .chapter-visual {
     transform-origin: center;
-    will-change: transform, opacity, filter;
   }
 
   .experience-card {
     transform-origin: top center;
-    will-change: transform;
   }
 
   @keyframes marquee {
