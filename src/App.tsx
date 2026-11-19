@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUp, ArrowUpRight, Check, Copy } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Bot, Check, Copy, MapPin } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
-import { contactEmail, contacts, cv, skillRows, triageSteps } from "@/content";
+import {
+  about,
+  aiWorkflow,
+  caseStudies,
+  contactEmail,
+  contacts,
+  cv,
+  skillRows,
+  triageSteps,
+} from "@/content";
 
 // Fades sections in as they enter the viewport. Elements opt in with data-reveal; --d staggers siblings.
 function useScrollReveal() {
@@ -28,9 +37,122 @@ function useScrollReveal() {
 
 const stagger = (d: number) => ({ "--d": d }) as React.CSSProperties;
 
+function CaseStudies() {
+  return (
+    <section id="work" className="section" aria-labelledby="work-title">
+      <div className="container">
+        <div className="section__head" data-reveal>
+          <h2 id="work-title">Problems I've solved</h2>
+          <p className="lead">
+            Three real situations from commerce QA: what was wrong, what I did
+            and what changed.
+          </p>
+        </div>
+        <ol className="cases">
+          {caseStudies.map((item, i) => (
+            <li key={item.title} className="case" data-reveal style={stagger(i + 1)}>
+              <p className="case__tag">
+                <span className="num">0{i + 1}</span> {item.tag}
+              </p>
+              <h3 className="case__title">{item.title}</h3>
+              <dl className="case__body">
+                <div>
+                  <dt>Problem</dt>
+                  <dd>{item.problem}</dd>
+                </div>
+                <div>
+                  <dt>What I did</dt>
+                  <dd>{item.approach}</dd>
+                </div>
+                <div className="case__result">
+                  <dt>Result</dt>
+                  <dd>{item.result}</dd>
+                </div>
+              </dl>
+              <ul className="chips case__tools" aria-label="Tools">
+                {item.tools.map((tool) => (
+                  <li key={tool} className="chip">
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function AiWorkflow() {
+  return (
+    <section className="section section--tight" aria-labelledby="ai-title">
+      <div className="container">
+        <div className="ai" data-reveal>
+          <div className="ai__intro">
+            <p className="eyebrow">
+              <Bot width={16} height={16} aria-hidden="true" />
+              AI-assisted QA
+            </p>
+            <h2 id="ai-title">{aiWorkflow.title}</h2>
+            <p className="lead">{aiWorkflow.body}</p>
+          </div>
+          <ol className="ai__tools">
+            {aiWorkflow.tools.map((tool, i) => (
+              <li key={tool.name} data-reveal style={stagger(i + 1)}>
+                <h3>{tool.name}</h3>
+                <p>{tool.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="section" aria-labelledby="about-title">
+      <div className="container about">
+        <figure
+          className="about__photo"
+          data-slot="portrait"
+          data-reveal
+          data-alt="Portrait of Cesar Garcia"
+        >
+          <span className="about__monogram" aria-hidden="true">
+            CG
+          </span>
+          <figcaption data-keep>
+            <MapPin width={16} height={16} aria-hidden="true" />
+            Tijuana, B.C.
+          </figcaption>
+        </figure>
+        <div className="about__text" data-reveal style={stagger(1)}>
+          <h2 id="about-title">Hi, I'm Cesar</h2>
+          {about.paragraphs.map((text) => (
+            <p key={text} className="lead">
+              {text}
+            </p>
+          ))}
+          <dl className="about__facts">
+            {about.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Triage() {
   return (
-    <section id="approach" className="section" aria-labelledby="approach-title">
+    <section id="approach" className="section section--band" aria-labelledby="approach-title">
       <div className="container triage">
         <div>
           <div className="section__head" data-reveal>
@@ -128,7 +250,7 @@ function Triage() {
 
 function Skills() {
   return (
-    <section id="skills" className="section section--band" aria-labelledby="skills-title">
+    <section id="skills" className="section" aria-labelledby="skills-title">
       <div className="container">
         <div className="section__head" data-reveal>
           <h2 id="skills-title">Tools, by the risk they cover</h2>
@@ -311,8 +433,11 @@ export default function App() {
       <HeroHeader />
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
+        <CaseStudies />
+        <AiWorkflow />
         <Triage />
         <Skills />
+        <About />
         <Contact />
       </main>
       <Footer />

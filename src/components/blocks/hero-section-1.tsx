@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { contactEmail, cv, experiences, menuItems } from "@/content";
+import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
 
 // Dark is the default; light is opt-in and remembered. index.html applies it before paint.
 function ThemeToggle() {
@@ -30,6 +30,67 @@ function ThemeToggle() {
     >
       {isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
     </button>
+  );
+}
+
+// Counts up to the real value once the number scrolls into view. Without motion it just shows the value.
+function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = React.useRef<HTMLSpanElement | null>(null);
+  const [shown, setShown] = React.useState(value);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!el || reduce || !("IntersectionObserver" in window)) return;
+    setShown(0);
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        const start = performance.now();
+        const duration = 1400;
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          setShown(Math.round(value * (1 - Math.pow(1 - t, 3))));
+          if (t < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return (
+    <span ref={ref} className="num">
+      {shown}
+      {suffix}
+    </span>
+  );
+}
+
+function Stats() {
+  return (
+    <dl
+      className="stats hero__fade"
+      style={{ "--delay": "650ms" } as React.CSSProperties}
+      aria-label="At a glance"
+    >
+      {stats.map((stat) => (
+        <div key={stat.label} className="stat">
+          <dt className="stat__label">{stat.label}</dt>
+          <dd className="stat__value">
+            <CountUp value={stat.value} suffix={stat.suffix} />
+          </dd>
+          <dd className="stat__note">{stat.note}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -103,12 +164,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div
-          id="experience"
-          className="roles hero__fade"
-          style={{ "--delay": "700ms" } as React.CSSProperties}
-        >
-          <h2 className="visually-hidden">Experience</h2>
+        <Stats />
+
+        <div id="experience" className="experience">
+          <div className="section__head section__head--row" data-reveal>
+            <h2>Where I've done it</h2>
+            <p className="lead">Open a role to see the details.</p>
+          </div>
+          <div className="roles" data-reveal style={{ "--d": 1 } as React.CSSProperties}>
           <ol className="roles__list">
             {experiences.map((exp) => (
               <li key={exp.company} className="role">
@@ -133,6 +196,7 @@ export function HeroSection() {
               </li>
             ))}
           </ol>
+          </div>
         </div>
       </div>
     </section>
