@@ -15,10 +15,10 @@ export const menuItems = [
 
 // Real figures, kept in sync with the CV. Update here and the stats band follows.
 export const stats = [
-  { value: 7, suffix: "+", label: "years in QA", note: "From dev and manual testing to Engineer III" },
-  { value: 17, label: "countries", note: "Storefronts checked by one shared suite" },
-  { value: 55, label: "Playwright specs", note: "Shopping, quotes, returns, login and content" },
-  { value: 60, label: "page object files", note: "Reusable, so a fix lands once" },
+  { value: 7, suffix: "+", label: "years in QA", note: "Dev, manual, then automation" },
+  { value: 17, label: "countries", note: "Thermo Fisher storefronts" },
+  { value: 55, label: "Playwright specs", note: "B2B and B2C journeys" },
+  { value: 60, label: "page object files", note: "Shared across the suite" },
 ];
 
 export type Experience = {
@@ -37,11 +37,7 @@ export const experiences: Experience[] = [
     role: "Engineer III, Software Quality Assurance",
     proof:
       "Modular Playwright architecture across shopping, quotes, returns, login and AEM content workflows.",
-    highlights: [
-      "55 Playwright specs",
-      "60 page object files",
-      "17 country storefronts",
-    ],
+    highlights: ["shared fixtures and parameterized runners", "ServiceNow incidents"],
     points: [
       "Contributed to the design and maintenance of a modular Playwright automation framework with 55 Playwright specs, 60 page object files, shared fixtures and parameterized runners.",
       "Standardized automated execution across 17 country storefronts and multiple QA and production environments for B2B and B2C journeys.",
@@ -98,7 +94,6 @@ export const triageSteps = [
 ];
 
 export type CaseStudy = {
-  tag: string;
   title: string;
   problem: string;
   approach: string;
@@ -108,8 +103,7 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    tag: "Scale",
-    title: "One suite, 17 storefronts",
+    title: "One suite for every storefront",
     problem:
       "Every country storefront has its own catalog, accounts and content. Testing each one by hand does not scale.",
     approach:
@@ -118,7 +112,6 @@ export const caseStudies: CaseStudy[] = [
     tools: ["Playwright", "Fixtures", "GitHub Actions"],
   },
   {
-    tag: "Reliability",
     title: "Flaky tests, fixed at the source",
     problem:
       "Recurring failures were patched spec by spec, with extra waits and one-off workarounds.",
@@ -128,7 +121,6 @@ export const caseStudies: CaseStudy[] = [
     tools: ["Page objects", "Network assertions"],
   },
   {
-    tag: "Production",
     title: "From customer ticket to root cause",
     problem: "A customer reports something broken in production through ServiceNow.",
     approach:
@@ -155,7 +147,7 @@ export const about = {
   ],
   facts: [
     { label: "Education", value: "B.Eng. Computer Engineering, Instituto Tecnológico de Tijuana" },
-    { label: "Based in", value: "Tijuana, Baja California · Pacific Time" },
+    { label: "Based in", value: "Tijuana, Baja California (Pacific Time)" },
     { label: "Works with", value: "Distributed Agile teams in the US and offshore" },
   ],
 };

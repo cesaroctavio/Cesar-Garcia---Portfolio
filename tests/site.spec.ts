@@ -49,4 +49,5 @@ test("light theme persists across reloads", async ({ page, isMobile }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#F5F4FA");
 });

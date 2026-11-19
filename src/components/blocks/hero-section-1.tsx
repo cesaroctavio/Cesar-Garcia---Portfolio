@@ -14,6 +14,9 @@ function ThemeToggle() {
     setIsLight(next);
     if (next) document.documentElement.dataset.theme = "light";
     else delete document.documentElement.dataset.theme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", next ? "#F5F4FA" : "#0C0B12");
     try {
       localStorage.setItem("theme", next ? "light" : "dark");
     } catch {
@@ -128,10 +131,6 @@ export function HeroSection() {
     <section id="hero" className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__head">
-          <p className="eyebrow hero__fade" style={{ "--delay": "0ms" } as React.CSSProperties}>
-            <span className="eyebrow__dot" aria-hidden="true" />
-            Available for remote work · Pacific Time
-          </p>
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">
               <Words text="Senior QA" start={0} />
@@ -145,8 +144,9 @@ export function HeroSection() {
               className="lead hero__lede hero__fade"
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
-              Playwright suites for Thermo Fisher storefronts in 17 countries,
-              built from Tijuana.
+              I'm Cesar Garcia. I build the Playwright suites behind Thermo
+              Fisher's storefront releases. Based in Tijuana, open to remote US
+              teams.
             </p>
             <div
               className="hero__actions hero__fade"
@@ -167,9 +167,9 @@ export function HeroSection() {
         <Stats />
 
         <div id="experience" className="experience">
-          <div className="section__head section__head--row" data-reveal>
-            <h2>Where I've done it</h2>
-            <p className="lead">Open a role to see the details.</p>
+          <div className="section__head section__head--compact" data-reveal>
+            <h2>Where I've worked</h2>
+            <p className="lead">Open a role to see what I did there.</p>
           </div>
           <div className="roles" data-reveal style={{ "--d": 1 } as React.CSSProperties}>
           <ol className="roles__list">

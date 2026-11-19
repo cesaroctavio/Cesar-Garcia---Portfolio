@@ -23,7 +23,12 @@
     <meta name="theme-color" content="#0C0B12" />
     <script>
       document.documentElement.classList.add("js");
-      try { if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#F5F4FA");
+        }
+      } catch (e) {}
     </script>
     <title>Cesar Octavio Garcia Sanchez | Senior QA Automation Engineer</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=indigo" />

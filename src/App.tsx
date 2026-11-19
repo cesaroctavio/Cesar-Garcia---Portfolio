@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUp, ArrowUpRight, Bot, Check, Copy, Download, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, Copy, Download, MapPin } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   about,
@@ -51,9 +51,6 @@ function CaseStudies() {
         <ol className="cases">
           {caseStudies.map((item, i) => (
             <li key={item.title} className="case" data-reveal style={stagger(i + 1)}>
-              <p className="case__tag">
-                <span className="num">0{i + 1}</span> {item.tag}
-              </p>
               <h3 className="case__title">{item.title}</h3>
               <dl className="case__body">
                 <div>
@@ -90,10 +87,6 @@ function AiWorkflow() {
       <div className="container">
         <div className="ai" data-reveal>
           <div className="ai__intro">
-            <p className="eyebrow">
-              <Bot width={16} height={16} aria-hidden="true" />
-              AI-assisted QA
-            </p>
             <h2 id="ai-title">{aiWorkflow.title}</h2>
             <p className="lead">{aiWorkflow.body}</p>
           </div>
@@ -181,15 +174,10 @@ function Triage() {
           data-alt="A real excerpt from a public Playwright repo: a setup project or a page object"
         >
           <figcaption>
-            <span className="code__dots" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
             A simplified sketch of the PunchOut setup pattern, written for this
             page
           </figcaption>
-          <pre>
+          <pre tabIndex={0} aria-label="Code sample: PunchOut setup">
             <code>
               <span className="c">{"// punchout.setup.ts"}</span>
               {"\n"}
@@ -220,12 +208,15 @@ function Triage() {
               <span className="s">{"'example-buyer'"}</span>
               {" });\n\n"}
               {"  "}
-              <span className="k">await</span>
-              {" expect(page.getByRole("}
+              <span className="k">const</span>
+              {" cart = page.getByRole("}
               <span className="s">{"'heading'"}</span>
               {", { name: "}
               <span className="s">{"'Cart'"}</span>
-              {" })).toBeVisible();\n"}
+              {" });\n"}
+              {"  "}
+              <span className="k">await</span>
+              {" expect(cart).toBeVisible();\n"}
               {"  "}
               <span className="k">const</span>
               {" a11y = "}
@@ -235,10 +226,13 @@ function Triage() {
               {" AxeBuilder({ page }).analyze();\n"}
               {"  expect(a11y.violations).toEqual([]);\n\n"}
               {"  "}
-              <span className="k">await</span>
-              {" page.context().storageState({ path: "}
+              <span className="k">const</span>
+              {" path = "}
               <span className="s">{"'.auth/punchout-us.json'"}</span>
-              {" });\n"}
+              {";\n"}
+              {"  "}
+              <span className="k">await</span>
+              {" page.context().storageState({ path });\n"}
               {"});"}
             </code>
           </pre>
