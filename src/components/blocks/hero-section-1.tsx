@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
+import { ArrowUpRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
 
@@ -156,9 +156,9 @@ export function HeroSection() {
                 <Download aria-hidden="true" />
                 {cv.label}
               </a>
-              <a className="btn btn--quiet" href="#contact">
-                Contact
-                <ArrowRight className="btn__arrow" aria-hidden="true" />
+              <a className="btn btn--quiet" href={`mailto:${contactEmail}`}>
+                Email me
+                <ArrowUpRight className="btn__arrow" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -374,7 +374,7 @@ export const HeroHeader = () => {
         </a>
 
         <ul className="site-nav__links">
-          {menuItems.map((item) => {
+          {menuItems.filter((item) => item.href !== "#contact").map((item) => {
             const isActive = activeSection === item.href.replace("#", "");
             return (
               <li key={item.href}>
@@ -392,8 +392,12 @@ export const HeroHeader = () => {
 
         <div className="site-nav__end">
           <ThemeToggle />
-          <a className="site-nav__action" href={`mailto:${contactEmail}`}>
-            Email me
+          <a
+            className="site-nav__action"
+            href="#contact"
+            aria-current={activeSection === "contact" ? "location" : undefined}
+          >
+            Contact
           </a>
           <button
             ref={menuButtonRef}
@@ -436,14 +440,20 @@ export const HeroHeader = () => {
               );
             })}
           </ul>
-          <a
-            className="btn menu-sheet__cv"
-            href={cv.href}
-            download
-            onClick={() => closeMenu(false)}
-          >
-            {cv.label}
-          </a>
+          <div className="menu-sheet__actions">
+            <a className="btn" href={cv.href} download onClick={() => closeMenu(false)}>
+              <Download aria-hidden="true" />
+              {cv.label}
+            </a>
+            <a
+              className="btn btn--quiet"
+              href={`mailto:${contactEmail}`}
+              onClick={() => closeMenu(false)}
+            >
+              Email me
+              <ArrowUpRight className="btn__arrow" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       )}
     </header>

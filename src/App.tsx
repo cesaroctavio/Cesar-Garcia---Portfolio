@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUp, ArrowUpRight, Bot, Check, Copy, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Bot, Check, Copy, Download, MapPin } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   about,
@@ -361,6 +361,10 @@ function Contact() {
               Email me
               <ArrowUpRight className="btn__arrow" aria-hidden="true" />
             </a>
+            <a className="btn btn--quiet" href={cv.href} download>
+              <Download aria-hidden="true" />
+              {cv.label}
+            </a>
             <CopyEmailButton />
           </div>
           <a id="contact-email" className="contact__email" href={`mailto:${contactEmail}`}>
@@ -396,7 +400,7 @@ function Footer() {
         <ul className="footer__links">
           <li>
             <a className="text-link" href={cv.href} download>
-              CV (PDF)
+              {cv.label}
             </a>
           </li>
           <li>
