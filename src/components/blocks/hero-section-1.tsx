@@ -3,217 +3,109 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const cvDownloadHref = "/Cesar_Garcia_CV_2026_Senior_QA_Updated.docx";
+const cv = {
+  href: "/Cesar_Garcia_CV_2026_Senior_QA.pdf",
+  label: "Download CV (PDF)",
+};
 
 const menuItems = [
   { name: "Home", href: "#hero" },
-  { name: "Proof", href: "#proof" },
-  { name: "Capabilities", href: "#capabilities" },
-  { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
+  { name: "Approach", href: "#approach" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
 
-function HeroTelemetryVisual() {
-  const statusRows = [
-    ["shopping-flow", "trace", "stable"],
-    ["quote-v2", "network", "review"],
-    ["returns", "guard", "ready"],
-    ["aem-content", "region", "synced"],
-  ];
+const credentials = [
+  {
+    label: "Now",
+    value: "Engineer III, Software QA at Thermo Fisher Scientific, since 2021",
+  },
+  {
+    label: "Scope",
+    value: "17 country storefronts across B2B and B2C commerce",
+  },
+  {
+    label: "Framework",
+    value: "46+ Playwright specs built on 53 reusable page objects",
+  },
+  { label: "Track", value: "QA and web delivery since 2019" },
+];
 
-  return (
-    <div className="relative h-full p-5 md:p-6">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,oklch(var(--primary)/0.18),transparent_26%),radial-gradient(circle_at_82%_62%,oklch(var(--accent)/0.12),transparent_30%)]" />
-      <div className="relative grid h-full grid-rows-[auto_1fr_auto] gap-4">
-        <div className="flex items-center justify-between border border-border/35 bg-background/75 px-4 py-3">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Release control
-            </p>
-            <p className="mt-1 font-display text-xl font-[900] leading-none text-foreground">
-              QA telemetry live
-            </p>
-          </div>
-          <span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[var(--shadow-signal-glow)]" />
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="overflow-hidden border border-border/35 bg-background/70 p-4">
-            <div className="mb-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
-              <span>Trace map</span>
-              <span>17 markets</span>
-            </div>
-            <div className="relative h-[13rem]">
-              {["Auth", "Cart", "Quote", "Return", "AEM"].map(
-                (node, index) => (
-                  <div
-                    key={node}
-                    className="absolute border border-border/45 bg-card/90 px-2.5 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-foreground"
-                    style={{
-                      left: `${(index % 2) * 43 + 4}%`,
-                      top: `${index * 18 + 2}%`,
-                    }}
-                  >
-                    <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-                    {node}
-                  </div>
-                ),
-              )}
-              <span className="absolute left-[19%] top-[18%] h-px w-[52%] rotate-[24deg] bg-primary/35" />
-              <span className="absolute left-[22%] top-[48%] h-px w-[56%] -rotate-[18deg] bg-primary/25" />
-              <span className="absolute left-[18%] top-[75%] h-px w-[58%] rotate-[13deg] bg-primary/25" />
-            </div>
-          </div>
-
-          <div className="grid gap-3">
-            {statusRows.map(([name, signal, state]) => (
-              <div
-                key={name}
-                className="grid grid-cols-[1fr_auto] gap-4 border border-border/35 bg-background/70 px-4 py-3 font-mono text-[11px]"
-              >
-                <div>
-                  <p className="font-semibold uppercase tracking-[0.08em] text-foreground">
-                    {name}
-                  </p>
-                  <p className="mt-1 text-muted-foreground">{signal}</p>
-                </div>
-                <p className="text-primary">{state}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border border-border/35 bg-background/75 p-4">
-          <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
-            <span>Suite signal</span>
-            <span>classification</span>
-          </div>
-          <div className="flex h-14 items-end gap-2">
-            {[32, 66, 48, 82, 58, 92, 44, 76, 62, 88].map((height, index) => (
-              <span
-                key={index}
-                className="flex-1 bg-primary/30"
-                style={{ height: `${height}%` }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const ctaBase =
+  "h-12 rounded-none px-6 text-sm font-bold transition-[transform,background-color,border-color,color] hover:-translate-y-0.5 md:h-14 md:px-9";
+const ctaOutline = cn(
+  ctaBase,
+  "border-border/70 bg-background/80 text-foreground hover:border-primary/60 hover:bg-primary/[0.06] hover:text-primary",
+);
 
 export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100svh-1rem)] w-full max-w-full overflow-hidden pt-20 md:pt-28 lg:pt-[5.5rem]"
+      className="relative w-full max-w-full overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.026]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, oklch(var(--border) / 0.7) 1px, transparent 1px), linear-gradient(to bottom, oklch(var(--border) / 0.7) 1px, transparent 1px)",
-            backgroundSize: "5rem 5rem",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/78 to-background" />
-      </div>
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-[var(--container-px)] lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
+        <div className="hero-copy min-w-0">
+          <h1
+            className="mb-6 max-w-5xl break-words font-display font-[900] leading-[0.92] text-foreground"
+            style={{ fontSize: "clamp(2.7rem, 8vw, 5.15rem)" }}
+          >
+            Cesar Octavio Garcia Sanchez
+          </h1>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-[var(--container-px)] pb-8 pt-8 md:gap-14 md:pb-14 md:pt-14 lg:grid-cols-[1.14fr_0.86fr] lg:gap-14 lg:pb-8 lg:pt-8">
-        <div className="hero-copy relative min-w-0">
-          <div>
-            <h1
-              className="mb-5 max-w-5xl break-words font-display font-[900] leading-[0.92] tracking-normal text-foreground md:mb-6"
-              style={{ fontSize: "clamp(2.7rem, 8vw, 5.15rem)" }}
+          <p className="mb-4 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-primary md:text-base">
+            Senior QA Automation Engineer
+          </p>
+
+          <p className="max-w-4xl font-display text-[clamp(1.45rem,4vw,2.4rem)] font-[900] leading-[1.05] text-foreground">
+            Commerce quality at scale.
+          </p>
+
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-xl">
+            I turn failed flows into clear cause, practical evidence, and a
+            release decision teams can act on.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              asChild
+              size="lg"
+              className={cn(
+                ctaBase,
+                "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-foreground",
+              )}
             >
-              Cesar Octavio Garcia Sanchez
-            </h1>
-
-            <p className="mb-4 max-w-lg font-mono text-sm font-semibold uppercase tracking-[0.12em] text-primary/80 md:text-base">
-              Senior QA Automation Engineer
-            </p>
-
-            <p className="max-w-4xl font-display text-[clamp(1.45rem,4.6vw,2.65rem)] font-[900] leading-[1.02] text-primary/90 lg:text-[clamp(1.8rem,3vw,2.55rem)]">
-              Commerce quality at scale.
-            </p>
-
-            <p className="mt-5 max-w-full text-base leading-relaxed text-muted-foreground md:mt-6 md:max-w-2xl md:text-xl lg:mt-5">
-              I turn failed flows into clear cause, practical evidence, and a
-              release decision teams can act on.
-            </p>
-
-            <div className="mt-5 grid gap-1 md:mt-9 md:flex md:flex-wrap md:gap-4 lg:mt-7">
-              <Button
-                asChild
-                size="lg"
-                className="h-12 rounded-none bg-primary px-9 text-sm font-bold text-primary-foreground transition-[transform,background-color,box-shadow] hover:-translate-y-1 hover:bg-primary/90 hover:shadow-[var(--shadow-button-signal)] md:h-14"
-              >
-                <a href={cvDownloadHref} download>
-                  Download CV
-                </a>
+              <a href={cv.href} download>
+                {cv.label}
+              </a>
+            </Button>
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-4">
+              <Button asChild size="lg" variant="outline" className={ctaOutline}>
+                <a href="#experience">View experience</a>
               </Button>
-              <div className="grid grid-cols-2 gap-2 md:flex md:gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-none border-border/70 bg-background/80 px-4 text-sm font-bold text-foreground transition-[transform,background-color,border-color,color] hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.06] hover:text-primary md:h-14 md:px-9"
-                >
-                  <a href="#proof">View QA proof</a>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-none border-border/70 bg-background/80 px-4 text-sm font-bold text-foreground transition-[transform,background-color,border-color,color] hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.06] hover:text-primary md:h-14 md:px-9"
-                >
-                  <a href="#contact">Contact</a>
-                </Button>
-              </div>
-            </div>
-
-            <div className="mt-5 border border-border/45 bg-card/70 p-4 md:hidden">
-              <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
-                Evidence model
-              </p>
-              <p className="font-display text-2xl font-[900] leading-[1.02] text-foreground">
-                Clear cause, traceable proof, practical release signals.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
-                <span className="border border-border/50 px-2 py-1">Cause clarity</span>
-                <span className="border border-border/50 px-2 py-1">Trace-ready</span>
-                <span className="border border-border/50 px-2 py-1">Release risk</span>
-              </div>
+              <Button asChild size="lg" variant="outline" className={ctaOutline}>
+                <a href="#contact">Contact</a>
+              </Button>
             </div>
           </div>
         </div>
 
-        <div className="relative hidden min-h-[28rem] md:block md:min-h-[32rem] lg:min-h-[32rem]">
-          <div
-            className="hero-visual relative ml-auto h-[21rem] w-[78%] overflow-hidden border border-border/45 bg-card/50 shadow-[var(--shadow-hero-visual)] md:h-[27rem] lg:h-[28rem]"
-          >
-            <HeroTelemetryVisual />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent mix-blend-multiply" />
-          </div>
-
-          <div
-            className="hero-panel relative z-10 -mt-16 w-[92%] border border-border/45 bg-card/90 p-6 shadow-[var(--shadow-hero-panel)] md:w-[78%] md:p-7 lg:absolute lg:bottom-5 lg:left-0 lg:mt-0"
-          >
-            <p className="mb-4 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-primary">
-              Evidence model
-            </p>
-            <h2 className="font-display text-2xl font-[900] leading-[1.02] text-foreground md:text-4xl">
-              Clear cause, traceable proof, practical release signals.
-            </h2>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              Designed so recruiters can scan outcomes and engineers can follow
-              the debugging trail.
-            </p>
-          </div>
-        </div>
+        <dl className="hero-panel border-t border-border/50 text-sm">
+          {credentials.map((item) => (
+            <div
+              key={item.label}
+              className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-border/35 py-3.5"
+            >
+              <dt className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                {item.label}
+              </dt>
+              <dd className="font-medium leading-snug text-foreground">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -407,6 +299,7 @@ export const HeroHeader = () => {
                     <li key={item.href}>
                       <a
                         href={item.href}
+                        aria-current={isActive ? "location" : undefined}
                         className={cn(
                           "relative inline-flex min-h-11 min-w-11 items-center justify-center py-1 transition-colors duration-200",
                           isActive
@@ -426,14 +319,21 @@ export const HeroHeader = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="hidden lg:block">
+              {/* Hidden while the hero's own CV button is on screen */}
+              <div
+                className={cn(
+                  "hidden transition-[opacity,visibility] duration-300 lg:block",
+                  activeSection === "hero" && "invisible opacity-0",
+                )}
+              >
                 <Button
                   asChild
                   size="sm"
-                  className="min-h-11 rounded-full border-0 bg-foreground/10 px-5 text-foreground hover:bg-foreground/20"
+                  variant="outline"
+                  className="min-h-11 rounded-full border-primary/40 bg-transparent px-5 font-semibold text-primary hover:border-primary hover:bg-primary/[0.08] hover:text-primary"
                 >
-                  <a href={cvDownloadHref} download>
-                    <span>Download CV</span>
+                  <a href={cv.href} download>
+                    <span>{cv.label}</span>
                   </a>
                 </Button>
               </div>
@@ -469,6 +369,7 @@ export const HeroHeader = () => {
                     <a
                       key={item.href}
                       href={item.href}
+                      aria-current={isActive ? "location" : undefined}
                       onClick={() => closeMenu(false)}
                       style={{ "--menu-index": index } as React.CSSProperties}
                       className={cn(
@@ -499,39 +400,13 @@ export const HeroHeader = () => {
                   className="h-16 w-full rounded-none text-lg font-bold"
                 >
                   <a
-                    href={cvDownloadHref}
+                    href={cv.href}
                     download
                     onClick={() => closeMenu(false)}
                   >
-                    Download CV
+                    {cv.label}
                   </a>
                 </Button>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="h-12 rounded-none border-border/60 bg-background/80 text-sm font-bold text-foreground"
-                  >
-                    <a href="#proof" onClick={() => closeMenu(false)}>
-                      View QA proof
-                    </a>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="h-12 rounded-none border-border/60 bg-background/80 text-sm font-bold text-foreground"
-                  >
-                    <a href="#contact" onClick={() => closeMenu(false)}>
-                      Contact
-                    </a>
-                  </Button>
-                </div>
-                <div className="mt-8 flex justify-between font-mono text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground/80">
-                  <span>Trace-ready QA</span>
-                  <span>Release confidence</span>
-                </div>
               </div>
             </div>
         )}

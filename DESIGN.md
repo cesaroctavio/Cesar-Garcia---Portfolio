@@ -24,13 +24,13 @@ colors:
 typography:
   display:
     fontFamily: "Satoshi, Figtree, system-ui, sans-serif"
-    fontSize: "clamp(2.55rem, 11vw, 6.6rem)"
+    fontSize: "clamp(2.7rem, 8vw, 5.15rem)"
     fontWeight: 900
     lineHeight: 0.92
     letterSpacing: "0"
   headline:
     fontFamily: "Satoshi, Figtree, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 8vw, 6.8rem)"
+    fontSize: "clamp(3rem, 8vw, 6rem)"
     fontWeight: 900
     lineHeight: 1
     letterSpacing: "0"
@@ -51,7 +51,7 @@ typography:
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.15
-    letterSpacing: "0.1em"
+    letterSpacing: "0.08em"
 rounded:
   none: "0"
   sm: "calc(0.75rem - 4px)"
@@ -152,11 +152,11 @@ The palette is a restrained dark neutral system with one dominant cyan signal an
 **Character:** The pairing is compact, confident, and technical without becoming terminal cosplay. Display type is heavy and cinematic; body type stays clean enough for resume-level evidence.
 
 ### Hierarchy
-- **Display** (900, `clamp(2.55rem, 11vw, 6.6rem)`, `0.92`): Hero statements and page-defining claims.
-- **Headline** (900, `clamp(3rem, 8vw, 6.8rem)`, `1`): Major section titles and proof-led section openers.
+- **Display** (900, `clamp(2.7rem, 8vw, 5.15rem)`, `0.92`): Hero statements and page-defining claims.
+- **Headline** (900, `clamp(3rem, 8vw, 6rem)`, `1`): Major section titles and proof-led section openers.
 - **Title** (900, `2.25rem`, `1`): Experience cards, skill cards, contact cards, and proof slide titles.
 - **Body** (500, `1rem`, `1.65`): Evidence paragraphs, role descriptions, and explanatory copy. Keep readable text to roughly 65 to 75 characters per line.
-- **Label** (JetBrains Mono, 600, `0.75rem`, `0.1em`, uppercase): Navigation, proof chips, operating labels, and marquee items.
+- **Label** (JetBrains Mono, 600, `0.75rem`, `0.08em`, uppercase): Navigation, proof chips, operating labels, and marquee items.
 
 ### Named Rules
 
