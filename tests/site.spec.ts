@@ -51,3 +51,18 @@ test("light theme persists across reloads", async ({ page, isMobile }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#F5F4FA");
 });
+
+test("metadata points at the canonical domain", async ({ page, request, isMobile }) => {
+  test.skip(isMobile, "metadata is the same on every viewport");
+  await page.goto("/");
+  const canonical = "https://cesargarcia.dev/";
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonical);
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", canonical);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `${canonical}og-image.png`);
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+
+  for (const path of ["/og-image.png", "/sitemap.xml", "/robots.txt"]) {
+    expect((await request.get(path)).status(), path).toBe(200);
+  }
+  expect(await (await request.get("/robots.txt")).text()).toContain(`${canonical}sitemap.xml`);
+});
