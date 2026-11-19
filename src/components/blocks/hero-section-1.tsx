@@ -1,7 +1,53 @@
 import React from "react";
-import { Menu, Plus, X } from "lucide-react";
+import { ArrowRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contactEmail, cv, experiences, menuItems } from "@/content";
+
+// Dark is the default; light is opt-in and remembered. index.html applies it before paint.
+function ThemeToggle() {
+  const [isLight, setIsLight] = React.useState(
+    () => document.documentElement.dataset.theme === "light",
+  );
+
+  const toggle = () => {
+    const next = !isLight;
+    setIsLight(next);
+    if (next) document.documentElement.dataset.theme = "light";
+    else delete document.documentElement.dataset.theme;
+    try {
+      localStorage.setItem("theme", next ? "light" : "dark");
+    } catch {
+      /* storage blocked: theme still applies for this visit */
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={toggle}
+      aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+    >
+      {isLight ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
+    </button>
+  );
+}
+
+// Splits a phrase into words that blur in one after another; `start` continues the stagger across lines.
+function Words({ text, start = 0 }: { text: string; start?: number }) {
+  return (
+    <>
+      {text.split(" ").map((word, i) => (
+        <React.Fragment key={word + i}>
+          {i > 0 && " "}
+          <span className="word" style={{ "--i": start + i } as React.CSSProperties}>
+            {word}
+          </span>
+        </React.Fragment>
+      ))}
+    </>
+  );
+}
 
 function Highlighted({ text, terms }: { text: string; terms?: string[] }) {
   if (!terms?.length) return <>{text}</>;
@@ -21,24 +67,47 @@ export function HeroSection() {
     <section id="hero" className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__head">
-          <div className="hero__text">
-            <h1 id="hero-title">Senior QA automation engineer</h1>
-            <p className="lead hero__lede">
+          <p className="eyebrow hero__fade" style={{ "--delay": "0ms" } as React.CSSProperties}>
+            <span className="eyebrow__dot" aria-hidden="true" />
+            Available for remote work · Pacific Time
+          </p>
+          <h1 id="hero-title" className="hero__title">
+            <span className="hero__line">
+              <Words text="Senior QA" start={0} />
+            </span>{" "}
+            <span className="hero__line hero__accent">
+              <Words text="automation engineer" start={2} />
+            </span>
+          </h1>
+          <div className="hero__row">
+            <p
+              className="lead hero__lede hero__fade"
+              style={{ "--delay": "450ms" } as React.CSSProperties}
+            >
               Playwright suites for Thermo Fisher storefronts in 17 countries,
               built from Tijuana.
             </p>
-          </div>
-          <div className="hero__actions">
-            <a className="btn" href={cv.href} download>
-              {cv.label}
-            </a>
-            <a className="btn btn--quiet" href="#contact">
-              Contact
-            </a>
+            <div
+              className="hero__actions hero__fade"
+              style={{ "--delay": "550ms" } as React.CSSProperties}
+            >
+              <a className="btn" href={cv.href} download>
+                <Download aria-hidden="true" />
+                {cv.label}
+              </a>
+              <a className="btn btn--quiet" href="#contact">
+                Contact
+                <ArrowRight className="btn__arrow" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div id="experience" className="roles">
+        <div
+          id="experience"
+          className="roles hero__fade"
+          style={{ "--delay": "700ms" } as React.CSSProperties}
+        >
           <h2 className="visually-hidden">Experience</h2>
           <ol className="roles__list">
             {experiences.map((exp) => (
@@ -234,7 +303,8 @@ export const HeroHeader = () => {
 
   return (
     <header className="site-nav" data-scrolled={isScrolled ? "true" : undefined}>
-      <nav className="container site-nav__bar" aria-label="Primary">
+      <div className="container">
+      <nav className="site-nav__bar" aria-label="Primary">
         <a href="#hero" className="wordmark" aria-label="Cesar Garcia, back to top">
           Cesar Garcia
         </a>
@@ -257,6 +327,7 @@ export const HeroHeader = () => {
         </ul>
 
         <div className="site-nav__end">
+          <ThemeToggle />
           <a className="site-nav__action" href={`mailto:${contactEmail}`}>
             Email me
           </a>
@@ -273,6 +344,7 @@ export const HeroHeader = () => {
           </button>
         </div>
       </nav>
+      </div>
 
       {menuState && (
         <div

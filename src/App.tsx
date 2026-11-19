@@ -1,14 +1,39 @@
-import { useEffect, useState } from "react";
-import { ArrowUp, Check, Copy } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowUp, ArrowUpRight, Check, Copy } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import { contactEmail, contacts, cv, skillRows, triageSteps } from "@/content";
+
+// Fades sections in as they enter the viewport. Elements opt in with data-reveal; --d staggers siblings.
+function useScrollReveal() {
+  useEffect(() => {
+    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((el) => (el.dataset.revealed = "true"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).dataset.revealed = "true";
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
+const stagger = (d: number) => ({ "--d": d }) as React.CSSProperties;
 
 function Triage() {
   return (
     <section id="approach" className="section" aria-labelledby="approach-title">
       <div className="container triage">
         <div>
-          <div className="section__head">
+          <div className="section__head" data-reveal>
             <h2 id="approach-title">What happens when a check fails</h2>
             <p className="lead">
               Every failure is traced, classified and handed over with a next
@@ -16,8 +41,8 @@ function Triage() {
             </p>
           </div>
           <ol className="steps">
-            {triageSteps.map((step) => (
-              <li key={step.label}>
+            {triageSteps.map((step, i) => (
+              <li key={step.label} data-reveal style={stagger(i + 1)}>
                 <h3>{step.label}</h3>
                 <p>{step.value}</p>
               </li>
@@ -26,12 +51,19 @@ function Triage() {
         </div>
 
         <figure
+          data-reveal
+          style={stagger(2)}
           className="code"
           data-slot="code"
           data-kind="product"
           data-alt="A real excerpt from a public Playwright repo: a setup project or a page object"
         >
           <figcaption>
+            <span className="code__dots" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
             A simplified sketch of the PunchOut setup pattern, written for this
             page
           </figcaption>
@@ -98,9 +130,10 @@ function Skills() {
   return (
     <section id="skills" className="section section--band" aria-labelledby="skills-title">
       <div className="container">
-        <div className="section__head">
+        <div className="section__head" data-reveal>
           <h2 id="skills-title">Tools, by the risk they cover</h2>
         </div>
+        <div className="skills-card" data-reveal style={stagger(1)}>
         <table className="skills">
           <thead>
             <tr>
@@ -114,11 +147,20 @@ function Skills() {
               <tr key={row.title}>
                 <td className="skills__area">{row.title}</td>
                 <td className="skills__body">{row.body}</td>
-                <td className="skills__tools">{row.tools}</td>
+                <td className="skills__tools">
+                  <ul className="chips">
+                    {row.tools.split(", ").map((tool) => (
+                      <li key={tool} className="chip">
+                        {tool}
+                      </li>
+                    ))}
+                  </ul>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </section>
   );
@@ -184,20 +226,24 @@ function Contact() {
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="container">
-        <div className="section__head">
-          <h2 id="contact-title">Open to remote US teams</h2>
-          <p className="lead">
-            Pacific Time, based in Tijuana. QA automation architecture,
-            framework stabilization and quality strategy.
-          </p>
-        </div>
-        <div className="contact">
-          <div>
-            <a id="contact-email" className="contact__email" href={`mailto:${contactEmail}`}>
-              {contactEmail}
+        <div className="contact-card" data-reveal>
+          <div className="contact-card__head">
+            <h2 id="contact-title">Open to remote US teams</h2>
+            <p className="lead">
+              Pacific Time, based in Tijuana. QA automation architecture,
+              framework stabilization and quality strategy.
+            </p>
+          </div>
+          <div className="contact-card__actions">
+            <a className="btn" href={`mailto:${contactEmail}`}>
+              Email me
+              <ArrowUpRight className="btn__arrow" aria-hidden="true" />
             </a>
             <CopyEmailButton />
           </div>
+          <a id="contact-email" className="contact__email" href={`mailto:${contactEmail}`}>
+            {contactEmail}
+          </a>
           <ul className="channels">
             {contacts.map((contact) => (
               <li key={contact.href}>
@@ -248,6 +294,7 @@ function Footer() {
 }
 
 export default function App() {
+  useScrollReveal();
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
 
   useEffect(() => {
