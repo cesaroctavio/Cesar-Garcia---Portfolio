@@ -47,11 +47,17 @@ typography:
     lineHeight: 1.65
     letterSpacing: "0.005em"
   label:
+    fontFamily: "Figtree, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "0"
+  code:
     fontFamily: "JetBrains Mono, monospace"
-    fontSize: "0.75rem"
-    fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "0.08em"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.7
+    letterSpacing: "0"
 rounded:
   none: "0"
   sm: "calc(0.75rem - 4px)"
@@ -86,11 +92,11 @@ components:
     rounded: "{rounded.none}"
     padding: "0 2.25rem"
     height: "3rem"
-  nav-shell:
+  nav-bar:
     backgroundColor: "{colors.background}"
     textColor: "{colors.foreground}"
-    rounded: "{rounded.full}"
-    padding: "0.875rem 1.25rem"
+    rounded: "{rounded.none}"
+    height: "72px"
   proof-panel:
     backgroundColor: "{colors.background}"
     textColor: "{colors.foreground}"
@@ -147,7 +153,7 @@ The palette is a restrained dark neutral system with one dominant cyan signal an
 
 **Display Font:** Satoshi, with Figtree and system sans fallbacks  
 **Body Font:** Figtree, with system sans fallback  
-**Label/Mono Font:** JetBrains Mono where code-like proof labels need a technical voice
+**Code Font:** JetBrains Mono, only for code. Never for labels, dates, nav or tags.
 
 **Character:** The pairing is compact, confident, and technical without becoming terminal cosplay. Display type is heavy and cinematic; body type stays clean enough for resume-level evidence.
 
@@ -156,7 +162,12 @@ The palette is a restrained dark neutral system with one dominant cyan signal an
 - **Headline** (900, `clamp(3rem, 8vw, 6rem)`, `1`): Major section titles and proof-led section openers.
 - **Title** (900, `2.25rem`, `1`): Experience cards, skill cards, contact cards, and proof slide titles.
 - **Body** (500, `1rem`, `1.65`): Evidence paragraphs, role descriptions, and explanatory copy. Keep readable text to roughly 65 to 75 characters per line.
-- **Label** (JetBrains Mono, 600, `0.75rem`, `0.08em`, uppercase): Navigation, proof chips, operating labels, and marquee items.
+- **Label** (Figtree, 400, `0.875rem`, no tracking, sentence case): navigation, dates, table heads, captions.
+- **Code** (JetBrains Mono, 400, `0.875rem`): code samples only.
+
+**The No Costume Rule.** No uppercase, no letter-spacing and no monospace on labels. A label is the body face, one step smaller, in sentence case.
+
+**The One Head Rule.** A section head is one line of plain words that says what the reader will see (*What happens when a check fails*). No "Word." headline with a grey slogan under it.
 
 ### Named Rules
 
@@ -166,12 +177,7 @@ The palette is a restrained dark neutral system with one dominant cyan signal an
 
 ## 4. Elevation
 
-Depth is mostly tonal and structural: thin borders, darker panels, image overlays, sticky stacking, and subtle hover transforms. Shadows are allowed only when they clarify a raised evidence surface or a primary interaction.
-
-### Shadow Vocabulary
-- **Stacked Evidence Shadow** (`0 24px 70px rgba(3, 8, 12, 0.16)`): Used on sticky experience cards to separate stacked proof surfaces.
-- **Hero Proof Shadow** (`0 24px 72px rgba(3, 8, 12, 0.24)`): Used on the hero proof panel when it overlaps the visual module on larger screens.
-- **Signal Glow** (`0 0 18px rgba(38, 210, 206, 0.8)`): Used only for small status indicators, never large backgrounds.
+Depth is tonal and structural only: hairlines (`--color-rule`), one tinted band (`--color-paper-2`) for the skills table, and a bordered panel for the code sample. No shadows and no glows.
 
 ### Named Rules
 
@@ -204,21 +210,24 @@ Depth is mostly tonal and structural: thin borders, darker panels, image overlay
 - **Error / Disabled:** Use Incident Ember for error states and opacity reduction for disabled states. Do not blur disabled content.
 
 ### Navigation
-- **Style:** Floating pill header on all viewports, with a cyan signal mark, bold identity text, and compact labels.
-- **States:** Desktop links use underline tracks and active cyan text. Mobile opens as a modal dialog with inert background, trapped focus, Escape close, and restored focus.
-- **Mobile Treatment:** Keep the hero proof visible below the header. The menu should feel like a control overlay, not a separate page.
+- **Style:** Edge-aligned sticky bar: the wordmark "Cesar Garcia" in Satoshi at left; section links and an outlined "Email me" at right. A hairline appears under it once the page scrolls. No pill, no logo mark.
+- **States:** Links are muted, ink on hover, cyan and underlined when their section is in view. Under 60rem the links move into a full-screen dialog with inert background, trapped focus, Escape close and restored focus.
 
-### Proof Modules
+### The Roles Index
 
-Proof modules are the signature pattern. They combine concise operational copy, tool chips, trace/status language, and dark bordered panels. They must appear early, especially on mobile, because the portfolio promise is evidence before decoration.
+The signature pattern. The first screen is the list of roles: period, company, title and one line of proof per row, each row a disclosure that opens to its evidence. Evidence before decoration: no slogans, dashboards or status dots above it.
+
+### Code Sample
+
+One code figure in a `data-slot`, captioned honestly. Replace the current sketch with a real excerpt from a public repo when one exists.
 
 ## 6. Do's and Don'ts
 
 ### Do:
 - **Do** keep the site dark-mode-first, using Control Room Black as the base and Instrument White for readable evidence.
-- **Do** use Run Signal Cyan for real state: primary actions, active navigation, focus, proof labels, and status indicators.
+- **Do** use Run Signal Cyan for real state: the one primary action, active navigation, focus and step numerals.
 - **Do** lead with proof language: Playwright architecture, accessibility, CI evidence, traces, reusable helpers, global storefront coverage.
-- **Do** preserve reduced-motion behavior and restrict animation to opacity and transform.
+- **Do** preserve reduced-motion behavior and restrict animation to opacity and transform. One hero settle; no scroll-scrubbed motion.
 - **Do** keep navigation simple and directly tied to page sections.
 - **Do** use thin full borders or tonal panels instead of decorative side stripes.
 
@@ -231,3 +240,5 @@ Proof modules are the signature pattern. They combine concise operational copy, 
 - **Don't** create identical card grids.
 - **Don't** add gradient text, decorative glassmorphism, blur-heavy panels, or backdrop-filter effects.
 - **Don't** use pure `#000` or `#fff`; every neutral must stay tinted.
+- **Don't** use tracked uppercase or monospace labels, eyebrows, middle-dot meta strings or status dots.
+- **Don't** write slogans ("Proof over polish", "release confidence"). Say the fact: the storefronts, the tools, the result.
