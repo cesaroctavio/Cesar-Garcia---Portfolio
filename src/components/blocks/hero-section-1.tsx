@@ -415,7 +415,7 @@ export const HeroHeader = () => {
       <div className="container">
       <nav className="site-nav__bar" aria-label="Primary">
         <a href="#hero" className="wordmark" aria-label="Cesar Garcia, back to top">
-          Cesar Garcia
+          <span className="wordmark__text">Cesar Garcia</span>
         </a>
 
         <ul className="site-nav__links">

@@ -90,6 +90,35 @@ test.describe("health on every device", () => {
     });
   }
 
+  test("at 200% text nothing runs past the screen edge and the menu stays reachable", async ({ page }) => {
+    // html and body clip horizontal overflow, so measure real edges instead of scrollWidth.
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    await page.evaluate(() => (document.documentElement.style.fontSize = "200%"));
+    const result = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      const inScroller = (el: Element | null) => {
+        for (let x = el; x && x !== document.documentElement; x = x.parentElement) {
+          const o = getComputedStyle(x).overflowX;
+          if (o === "auto" || o === "scroll") return true;
+        }
+        return false;
+      };
+      const overflowing = [...document.querySelectorAll<HTMLElement>("body *")]
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && (r.right > vw + 1 || r.left < -1) && !el.closest("[aria-hidden='true'], .menu-sheet, .skip") && !inScroller(el.parentElement);
+        })
+        .map((el) => `${el.tagName.toLowerCase()}.${el.className} → ${Math.round(el.getBoundingClientRect().right)}px`)
+        .slice(0, 5);
+      const toggle = document.querySelector(".site-nav__toggle")!.getBoundingClientRect();
+      const toggleOk = toggle.width === 0 || (toggle.left >= 0 && toggle.right <= vw);
+      return { overflowing, toggleOk };
+    });
+    expect(result.overflowing).toEqual([]);
+    expect(result.toggleOk).toBe(true);
+  });
+
   test("interactive targets are at least 24px on touch screens", async ({ page, isMobile }) => {
     test.skip(!isMobile, "touch target size matters on touch devices");
     await page.goto("/");
