@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrowUpRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
 
 // Dark is the default; light is opt-in and remembered. index.html applies it before paint.
@@ -441,7 +440,7 @@ export const HeroHeader = () => {
                     href={item.href}
                     aria-current={isActive ? "location" : undefined}
                     onClick={() => closeMenu(false)}
-                    className={cn("menu-sheet__link")}
+                    className="menu-sheet__link"
                   >
                     {item.name}
                   </a>
