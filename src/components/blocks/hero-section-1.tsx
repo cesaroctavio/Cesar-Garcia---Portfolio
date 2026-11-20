@@ -71,8 +71,14 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
 
   return (
     <span ref={ref} className="num">
-      {shown}
-      {suffix}
+      <span aria-hidden="true">
+        {shown}
+        {suffix}
+      </span>
+      <span className="visually-hidden">
+        {value}
+        {suffix}
+      </span>
     </span>
   );
 }
