@@ -86,7 +86,7 @@ main:focus { outline: none; }
 .site-nav__toggle { transition: transform var(--dur-micro) var(--ease-out), color var(--dur-short) var(--ease-out); }
 .site-nav__toggle:active { transform: scale(0.9); }
 
-.menu-backdrop { position: fixed; inset: 0; z-index: calc(var(--z-modal) - 1); background: color-mix(in oklab, var(--color-paper) 55%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity 200ms var(--ease-out), visibility 0s linear 200ms; }
+.menu-backdrop { position: fixed; inset: 0; z-index: calc(var(--z-modal) - 1); background: color-mix(in oklab, var(--color-paper) 55%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity 260ms var(--ease-out), visibility 0s linear 260ms; }
 .menu-backdrop[data-state="open"] { opacity: 1; visibility: visible; transition: opacity 320ms var(--ease-out), visibility 0s; }
 
 .menu-sheet { --menu-top: calc(var(--space-sm) + 60px + var(--space-xs));
@@ -94,12 +94,13 @@ main:focus { outline: none; }
   display: flex; flex-direction: column; gap: var(--space-sm); max-height: calc(100dvh - var(--menu-top) - var(--space-md)); overflow-y: auto; overscroll-behavior: contain;
   padding: var(--space-xs) var(--space-sm) var(--space-sm); border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); background: var(--card-sheen), var(--color-paper-2); box-shadow: var(--shadow-demo);
   visibility: hidden; opacity: 0; transform: translateY(-6px); clip-path: inset(0 0 100% 0);
-  transition: clip-path 220ms var(--ease-in), transform 220ms var(--ease-in), opacity 160ms var(--ease-in) 60ms, visibility 0s linear 220ms; }
+  /* Closing folds up straight away (ease-out) so content and panel leave together; an ease-in start left an empty shell on screen. */
+  transition: clip-path 260ms var(--ease-out), transform 260ms var(--ease-out), opacity 200ms linear 60ms, visibility 0s linear 260ms; }
 /* The negative inset leaves room for the shadow once the panel is fully open. */
 .menu-sheet[data-state="open"] { visibility: visible; opacity: 1; transform: none; clip-path: inset(-24px -24px -64px -24px);
   transition: clip-path 460ms var(--ease-out), transform 460ms var(--ease-out), opacity 180ms var(--ease-out), visibility 0s; }
 .menu-sheet__links { display: flex; flex-direction: column; }
-.menu-sheet__item { opacity: 0; transform: translateY(10px); transition: opacity 120ms var(--ease-out), transform 120ms var(--ease-out); }
+.menu-sheet__item { opacity: 0; transform: translateY(8px); transition: opacity 180ms var(--ease-out), transform 260ms var(--ease-out); }
 .menu-sheet[data-state="open"] .menu-sheet__item { opacity: 1; transform: none; transition: opacity 360ms var(--ease-out), transform 460ms var(--ease-out); transition-delay: calc(90ms + var(--i, 0) * 40ms); }
 .menu-sheet__item + .menu-sheet__item { border-top: 1px solid var(--color-rule); }
 .menu-sheet__link { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto 18px; align-items: center; gap: var(--space-sm); min-height: 56px; margin-block: 2px; padding: 0 var(--space-xs); border-radius: var(--radius-md); font: 600 var(--text-lg)/1.2 var(--font-body); color: var(--color-ink); text-decoration: none; -webkit-tap-highlight-color: transparent; transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
