@@ -190,7 +190,7 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 
 A single centred column up to 1440px with 64px gutters (24px under 60rem, 16px under 40rem). Sections sit 144px apart on desktop, tighter on smaller screens. Inside sections, a 12-column feel is expressed as two-column splits (5:7 or 7:5) that collapse to one column under 60rem; the stats run four across, two across on tablets and phones; case studies run three across, stacking on tablets and phones.
 
-Page order: centred hero, the Checkpoint demo, real numbers, experience index, case studies, AI-assisted QA, the triage process with code, skills by risk, about, contact.
+Page order: centred hero, the Checkpoint demo, real numbers, experience index, about, case studies, AI-assisted QA, the triage process with code, skills by risk, contact.
 
 **The Evidence First Rule.** Within two scrolls a visitor must reach a real fact about the work (a number, a role, a result). Anything placed above that has to earn the space.
 
@@ -226,7 +226,7 @@ Precise and calm.
 - **Internal Padding:** 24px, 40px for feature panels.
 
 ### Navigation
-A floating pill bar 12px below the top of the viewport: wordmark with a small indigo square on the left, text links in Margin Note, a theme toggle, and a solid Instrument White "Contact" pill that turns indigo when the contact section is active. Active links get a 18% indigo tint. Under 60rem the links collapse into a full-screen sheet with large Satoshi links and Download CV / Email me at the bottom; the bar stays above the sheet so the close button is always reachable.
+A floating pill bar 12px below the top of the viewport: wordmark with a small indigo square on the left, text links in Margin Note, a theme toggle, and a solid Instrument White "Contact" pill that turns indigo when the contact section is active. Active links get a 18% indigo tint. Under 60rem the links move into a panel that unfolds from just under the bar over a dimmed, blurred page (full width on phones, a 420px card under the toggle on tablets). Each link has an icon tile, a chevron and an indigo dot on the current section, with Download CV and Email me side by side at the bottom. Motion: the burger's lines morph into an ✕, the panel reveals top-down with a clip-path (460 ms ease-out) while links cascade in 40 ms apart, and closing folds back in about 220 ms with no cascade. Links press in on tap. Tapping the dimmed page, Escape or the ✕ closes it; the bar stays above so the ✕ is always reachable. Scroll is locked on `<html>` (never `<body>`, which would unstick the nav) and focus moves with `preventScroll`. With reduced motion it's a plain fade.
 
 ### Hero
 Centred: an eyebrow pill with a green dot ("Open to remote US teams"), the two-line display title, the lead, then Download CV (PDF) and Email me. Behind it sit the indigo glow and the faded grid.

@@ -7,9 +7,9 @@ export const contactEmail = "garcia.cpu@gmail.com";
 
 export const menuItems = [
   { name: "Experience", href: "#experience" },
+  { name: "About", href: "#about" },
   { name: "Work", href: "#work" },
   { name: "Skills", href: "#skills" },
-  { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -142,8 +142,8 @@ export const aiWorkflow = {
 
 export const about = {
   paragraphs: [
-    "I started as a web developer at Bajalogics, shipping ASP.NET features and testing them myself. The testing part stuck.",
-    "At BioSoft I moved into manual, API and regression testing. At Thermo Fisher I help build the automation a whole commerce team relies on before every release.",
+    "Because I wrote production code first, I read a failing check the way a developer would: what changed, where, and why. A bug report from me comes with the trace, the cause and a next step, so it's ready to fix.",
+    "Day to day I work with distributed Agile teams in the US and offshore, keeping suites stable enough that a red check always means something real.",
   ],
   facts: [
     { label: "Education", value: "B.Eng. Computer Engineering, Instituto Tecnológico de Tijuana" },

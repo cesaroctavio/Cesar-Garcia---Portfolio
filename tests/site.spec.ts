@@ -25,6 +25,30 @@ test.describe("mobile menu", () => {
     await page.keyboard.press("Escape");
     await expect(sheet).toBeHidden();
   });
+
+  test("tapping the dimmed page closes it, and closed links can't take focus", async ({ page }) => {
+    await page.goto("/");
+    const firstLink = page.locator("#mobile-navigation a").first();
+    expect(await firstLink.evaluate((el) => (el.focus(), document.activeElement === el))).toBe(false);
+
+    await page.getByRole("button", { name: "Open menu" }).click();
+    const sheet = page.getByRole("dialog", { name: "Site menu" });
+    await expect(sheet).toBeVisible();
+    const viewport = page.viewportSize()!;
+    await page.mouse.click(viewport.width / 2, viewport.height - 20);
+    await expect(sheet).toBeHidden();
+    await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
+  });
+
+  test("opening it mid-page keeps the reader's place and the close button in view", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo({ top: 1400, behavior: "instant" }));
+    const box = (await page.locator(".site-nav__toggle").boundingBox())!;
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await expect(page.getByRole("dialog", { name: "Site menu" })).toBeVisible();
+    expect(await page.evaluate(() => window.scrollY)).toBe(1400);
+    await expect(page.getByRole("button", { name: "Close menu" })).toBeInViewport();
+  });
 });
 
 test("CV downloads as a PDF", async ({ page }) => {

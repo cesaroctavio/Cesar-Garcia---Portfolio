@@ -1,5 +1,18 @@
 import React from "react";
-import { ArrowUpRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Briefcase,
+  ChevronRight,
+  Download,
+  FolderKanban,
+  Mail,
+  Moon,
+  Plus,
+  Sun,
+  User,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
 import { CheckpointDemo } from "@/components/demo/CheckpointDemo";
 
@@ -155,8 +168,9 @@ export function HeroSection() {
               className="lead hero__lede hero__fade"
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
-              I'm Cesar Garcia. I build the Playwright suites behind Thermo
-              Fisher's storefront releases, from Tijuana.
+              I'm Cesar Garcia. I began as a developer, testing my own work,
+              and the testing part won. Today I build Playwright suites that
+              catch problems before release.
             </p>
             <div
               className="hero__actions hero__fade"
@@ -218,6 +232,15 @@ export function HeroSection() {
   );
 }
 
+// One icon per section in the mobile menu.
+const menuIcons: Record<string, LucideIcon> = {
+  "#experience": Briefcase,
+  "#work": FolderKanban,
+  "#skills": Wrench,
+  "#about": User,
+  "#contact": Mail,
+};
+
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -241,7 +264,7 @@ export const HeroHeader = () => {
     // The active section is the last one whose top has passed a reading line at 40% of the
     // viewport. A fixed band near the top misread sections separated by tall padding.
     // Every section is tracked (not only nav items), so Triage clears the "Work" highlight.
-    const sectionIds = ["hero", "experience", "work", "approach", "skills", "about", "contact"];
+    const sectionIds = ["hero", "experience", "about", "work", "approach", "skills", "contact"];
     let frame = 0;
 
     const update = () => {
@@ -288,12 +311,15 @@ export const HeroHeader = () => {
         previousAriaHidden: element.getAttribute("aria-hidden"),
       }));
 
-    const previousOverflow = document.body.style.overflow;
+    // Lock scroll on <html>, not <body>: an overflow-hidden body becomes its own scroll container,
+    // which unsticks the nav and jumps the page.
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
     guardedElements.forEach(({ element }) => {
       element.setAttribute("inert", "");
       element.setAttribute("aria-hidden", "true");
     });
-    document.body.style.overflow = "hidden";
+    root.style.overflow = "hidden";
 
     return () => {
       guardedElements.forEach(({ element, hadInert, previousAriaHidden }) => {
@@ -309,7 +335,7 @@ export const HeroHeader = () => {
           element.setAttribute("aria-hidden", previousAriaHidden);
         }
       });
-      document.body.style.overflow = previousOverflow;
+      root.style.overflow = previousOverflow;
     };
   }, [menuState]);
 
@@ -336,7 +362,8 @@ export const HeroHeader = () => {
         );
       });
 
-    menuButtonRef.current?.focus();
+    // preventScroll: the toggle sits inside scroll-padding-top, so a plain focus() scrolls the page.
+    menuButtonRef.current?.focus({ preventScroll: true });
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -378,7 +405,7 @@ export const HeroHeader = () => {
             ? previousActiveElement
             : menuButtonRef.current;
 
-        restoreTarget?.focus();
+        restoreTarget?.focus({ preventScroll: true });
       }
     };
   }, [closeMenu, menuState]);
@@ -426,54 +453,71 @@ export const HeroHeader = () => {
             aria-label={menuState ? "Close menu" : "Open menu"}
             className="site-nav__toggle"
           >
-            {menuState ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            <span className="burger" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
           </button>
         </div>
       </nav>
       </div>
 
-      {menuState && (
+      {/* Always mounted so closing can animate; inert and hidden from assistive tech while closed. */}
+      <div
+        className="menu-backdrop keep-motion"
+        data-state={menuState ? "open" : "closed"}
+        onClick={() => closeMenu(true)}
+        aria-hidden="true"
+      />
+      <div
+        id={mobileMenuId}
+        ref={mobileMenuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        aria-hidden={!menuState}
+        inert={!menuState}
+        data-state={menuState ? "open" : "closed"}
+        className="menu-sheet keep-motion"
+      >
+        <ul className="menu-sheet__links">
+          {menuItems.map((item, i) => {
+            const isActive = activeSection === item.href.replace("#", "");
+            const Icon = menuIcons[item.href] ?? ChevronRight;
+            return (
+              <li key={item.href} className="menu-sheet__item" style={{ "--i": i } as React.CSSProperties}>
+                <a
+                  href={item.href}
+                  aria-current={isActive ? "location" : undefined}
+                  onClick={() => closeMenu(false)}
+                  className="menu-sheet__link"
+                >
+                  <span className="menu-sheet__icon">
+                    <Icon aria-hidden="true" />
+                  </span>
+                  {item.name}
+                  {isActive && <span className="menu-sheet__dot" aria-hidden="true" />}
+                  <ChevronRight className="menu-sheet__chevron" aria-hidden="true" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
         <div
-          id={mobileMenuId}
-          ref={mobileMenuRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site menu"
-          className="menu-sheet"
+          className="menu-sheet__actions menu-sheet__item"
+          style={{ "--i": menuItems.length } as React.CSSProperties}
         >
-          <ul className="menu-sheet__links">
-            {menuItems.map((item) => {
-              const isActive = activeSection === item.href.replace("#", "");
-              return (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    aria-current={isActive ? "location" : undefined}
-                    onClick={() => closeMenu(false)}
-                    className="menu-sheet__link"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-          <div className="menu-sheet__actions">
-            <a className="btn" href={cv.href} download onClick={() => closeMenu(false)}>
-              <Download aria-hidden="true" />
-              {cv.label}
-            </a>
-            <a
-              className="btn btn--quiet"
-              href={`mailto:${contactEmail}`}
-              onClick={() => closeMenu(false)}
-            >
-              Email me
-              <ArrowUpRight className="btn__arrow" aria-hidden="true" />
-            </a>
-          </div>
+          <a className="btn" href={cv.href} download onClick={() => closeMenu(false)}>
+            <Download aria-hidden="true" />
+            {cv.label}
+          </a>
+          <a className="btn btn--quiet" href={`mailto:${contactEmail}`} onClick={() => closeMenu(false)}>
+            Email me
+            <ArrowUpRight className="btn__arrow" aria-hidden="true" />
+          </a>
         </div>
-      )}
+      </div>
     </header>
   );
 };
