@@ -13,9 +13,9 @@ function ThemeToggle() {
     setIsLight(next);
     if (next) document.documentElement.dataset.theme = "light";
     else delete document.documentElement.dataset.theme;
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", next ? "#F5F4FA" : "#0C0B12");
+    // Read the page colour from the tokens so the browser bar never drifts from tokens.css.
+    const paper = getComputedStyle(document.documentElement).getPropertyValue("--color-paper").trim();
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", paper);
     try {
       localStorage.setItem("theme", next ? "light" : "dark");
     } catch {

@@ -250,6 +250,19 @@ test.describe("preferences", () => {
     await expect(html).not.toHaveAttribute("data-theme", "light");
   });
 
+  test("browser bar colour matches the page background in both themes", async ({ page }) => {
+    const paper = () =>
+      page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--color-paper").trim().toUpperCase());
+    const meta = () => page.locator('meta[name="theme-color"]').getAttribute("content").then((v) => v?.toUpperCase());
+
+    await page.goto("/");
+    expect(await meta()).toBe(await paper());
+    await page.getByRole("button", { name: "Switch to light mode" }).click();
+    expect(await meta()).toBe(await paper());
+    await page.reload();
+    expect(await meta()).toBe(await paper());
+  });
+
   test("reduced motion shows everything immediately", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
