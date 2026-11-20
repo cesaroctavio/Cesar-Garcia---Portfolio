@@ -79,7 +79,8 @@ test("light theme persists across reloads", async ({ page, isMobile }) => {
 test("metadata points at the canonical domain", async ({ page, request, isMobile }) => {
   test.skip(isMobile, "metadata is the same on every viewport");
   await page.goto("/");
-  const canonical = "https://cesargarcia.dev/";
+  // The live domain until cesargarcia.dev resolves; switch every reference together when it does.
+  const canonical = "https://cesar-garcia-portfolio.vercel.app/";
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonical);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", canonical);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `${canonical}og-image.png`);
