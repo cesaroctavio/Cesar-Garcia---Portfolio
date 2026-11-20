@@ -173,7 +173,7 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 **Character:** Satoshi Black is loud and compact, so it carries the personality; Figtree is plain and friendly, so evidence reads easily under it.
 
 ### Hierarchy
-- **Display** (900, clamp 2.75rem to 6.75rem, line-height 0.98, -0.025em): the hero title only, set on two lines with the second in indigo.
+- **Display** (900, clamp 2.75rem to 6.25rem, line-height 1, -0.03em): the hero title only, centred on two lines, the second in an indigo-to-blue gradient.
 - **Headline** (900, clamp 2rem to 3.5rem, 1.05): section heads. One line of plain words that says what the reader will see.
 - **Title** (900, clamp 1.25rem to 1.625rem, 1.2): company names, case-study titles, skill areas.
 - **Lead** (400, clamp 1.125rem to 1.375rem, 1.45): the sentence under a head, max 52ch.
@@ -182,7 +182,7 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 - **Code** (400, 0.875rem, 1.7): code samples only.
 
 ### Named Rules
-**The Plain Head Rule.** Headings are plain statements of content ("What happens when a check fails", "Problems I've solved"). No slogans, no kicker or eyebrow label above them.
+**The Plain Head Rule.** Headings are plain statements of content ("What happens when a check fails", "Problems I've solved"). No slogans. A short uppercase eyebrow in indigo ("Case studies", "Stack") may sit above a section head to name the section; the hero's eyebrow is a pill.
 
 **The Mono Means Code Rule.** JetBrains Mono appears only inside real code or command output, never as a costume for labels or tool names.
 
@@ -190,15 +190,15 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 
 A single centred column up to 1440px with 64px gutters (24px under 60rem, 16px under 40rem). Sections sit 144px apart on desktop, tighter on smaller screens. Inside sections, a 12-column feel is expressed as two-column splits (5:7 or 7:5) that collapse to one column under 60rem; the stats run four across, two across on tablets and phones; case studies run three across, stacking on tablets and phones.
 
-Page order is evidence-first: hero, real numbers, experience index, case studies, AI-assisted QA, the triage process with code, skills by risk, about, contact.
+Page order: centred hero, the Checkpoint demo, real numbers, experience index, case studies, AI-assisted QA, the triage process with code, skills by risk, about, contact.
 
 **The Evidence First Rule.** Within two scrolls a visitor must reach a real fact about the work (a number, a role, a result). Anything placed above that has to earn the space.
 
 ## Elevation & Depth
 
-Flat at rest. Depth comes from tonal layering (night, bench, shelf) and 1px hairlines, not from shadows. The only shadows are the scrolled nav bar (`0 16px 40px -24px rgb(0 0 0 / 0.5)`) and the primary button's hover. The nav bar is translucent with a backdrop blur because it floats over moving content; that is the one functional use of blur.
+Mostly flat. Depth comes from tonal layering (night, bench, shelf), 1px hairlines, a faint top sheen on cards (`--card-sheen`) and soft indigo glows (`--glow`, `--glow-2`): behind the hero over a faded 56px grid, under the demo window, and inside the AI and contact panels. Shadows: the scrolled nav bar, the primary button, and the demo window and its toasts (`--shadow-demo`). Backdrop blur is used where something floats over content: the nav bar, the stats card and the demo tab bar.
 
-**The Calm Surface Rule.** Cards do not lift or glow. Only interactive elements respond to hover, and they respond with a border or fill change, not elevation. If it isn't clickable, it doesn't move.
+**The Calm Surface Rule.** Glows are ambient and fixed; they never pulse or follow the pointer. Case-study cards are the one static container that lifts (3px) on hover.
 
 ## Shapes
 
@@ -228,8 +228,17 @@ Precise and calm.
 ### Navigation
 A floating pill bar 12px below the top of the viewport: wordmark with a small indigo square on the left, text links in Margin Note, a theme toggle, and a solid Instrument White "Contact" pill that turns indigo when the contact section is active. Active links get a 18% indigo tint. Under 60rem the links collapse into a full-screen sheet with large Satoshi links and Download CV / Email me at the bottom; the bar stays above the sheet so the close button is always reachable.
 
+### Hero
+Centred: an eyebrow pill with a green dot ("Open to remote US teams"), the two-line display title, the lead, then Download CV (PDF) and Email me. Behind it sit the indigo glow and the faded grid.
+
+### Checkpoint demo
+An animated, made-up QA app under the hero buttons (`src/components/demo/`). A tab bar (Runs, Trace, AI assistant, Ticket, Board, plus pause) sits over a window with a sidebar and one scene at a time. A fake cursor glides, clicks with a ripple, types and drags. The scenes tell one loop: a spec fails on the DE storefront, its trace shows a pricing 500, the AI assistant names the cause, a ticket is filed, and the board updates.
+- **Honesty:** the app is invented and says so in a caption under the window. Any number that describes Cesar's work is real (55 specs, 17 storefronts); IDs and durations are obvious filler.
+- **Motion:** each scene renders from one clock value, so pausing and reduced motion are exact. It autoplays about every 7 seconds, pauses on mouse hover over the window, off screen (under 30% visible), in a hidden browser tab, and with the pause button. With reduced motion there is no autoplay and no cursor, and each tab shows its end state.
+- **Size:** laid out at 1100 by 620 and scaled to fit; under 40rem it drops the sidebar and uses 600 by 680. On phones inactive tabs show only their icon.
+
 ### Stats Band
-Four real figures from the CV (years in QA, countries, Playwright specs, page object files) in Satoshi Black indigo, each with a plain label and a one-line note. Numbers count up once on first view and render instantly with reduced motion.
+Four real figures from the CV (years in QA, countries, Playwright specs, page object files) in Satoshi Black with an indigo gradient, centred in one translucent card. Numbers count up once on first view and render instantly with reduced motion.
 
 ### Experience Index
 A list of roles inside one card: period, company and title, a one-line proof, and a plus toggle. Opening a role reveals bullet evidence with the real numbers in bold.
@@ -241,16 +250,16 @@ Problem, What I did, Result, then the tools as chips. The result line is the onl
 
 ### Do:
 - **Do** keep dark as the default theme and make light a remembered opt-in that applies before first paint.
-- **Do** use Night Signal Indigo for the primary action, the hero's second line, stat figures, active nav and step numerals only.
+- **Do** use Night Signal Indigo for the primary action, the hero's second line, stat figures, eyebrows, active nav and tabs, and step numerals only.
 - **Do** show each number once, where it carries the most weight.
 - **Do** prefer a real artefact (a trace, a report, a spec, a photo) to a decorative stand-in.
 - **Do** respect reduced motion: reveals, the word blur-in and the count-up all render final state immediately.
 - **Do** cover every interactive flow with a Playwright spec (`npm run test:e2e`).
 
 ### Don't:
-- **Don't** add hover lift or glow to anything that isn't clickable.
-- **Don't** put an eyebrow or kicker label above a heading.
-- **Don't** fake product chrome: no decorative window dots, no mock dashboards, no invented telemetry.
+- **Don't** add hover lift to anything that isn't clickable, except case-study cards.
+- **Don't** present invented numbers as Cesar's results. The Checkpoint demo may invent the app, never his figures.
+- **Don't** add window traffic-light dots.
 - **Don't** write slogans in headings or meta descriptions.
 - **Don't** use monospace, tracked uppercase or middle-dot strings as decoration.
 - **Don't** use pure `#000` or `#fff` for text or backgrounds.

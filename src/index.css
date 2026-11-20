@@ -96,7 +96,7 @@ main:focus { outline: none; }
   background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px; background-position: center top;
   -webkit-mask-image: radial-gradient(60% 55% at 50% 30%, #000 30%, transparent 80%); mask-image: radial-gradient(60% 55% at 50% 30%, #000 30%, transparent 80%); }
-.hero__inner { display: grid; gap: var(--space-3xl); }
+.hero__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3xl); }
 .hero__head { display: grid; justify-items: center; gap: var(--space-lg); text-align: center; }
 .hero__title { font-size: clamp(2.75rem, 6vw + 0.5rem, 6.25rem); max-width: 14ch; line-height: 1; letter-spacing: -0.03em; }
 .hero__line { display: block; }
@@ -104,6 +104,7 @@ main:focus { outline: none; }
 .hero__row { display: grid; justify-items: center; gap: var(--space-xl); }
 .hero__lede { color: var(--color-ink-2); max-width: 42ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; }
+.hero__demo { margin-top: calc(-1 * var(--space-xl)); animation: settle 900ms var(--ease-out) 650ms both; }
 
 /* Eyebrow: small accent label above a heading; the pill version sits on the hero */
 .eyebrow { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); }
@@ -311,7 +312,7 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .menu-sheet, .site-nav__bar, .role__points { animation: none; }
-  .word, .hero__fade { animation: none; opacity: 1; filter: none; transform: none; }
+  .word, .hero__fade, .hero__demo { animation: none; opacity: 1; filter: none; transform: none; }
   .js [data-reveal] { transition: none; opacity: 1; transform: none; }
   .btn:hover, .channels a:hover, .site-nav__action:hover { transform: none; }
   .btn, .to-top, .role__icon { transition: none; }

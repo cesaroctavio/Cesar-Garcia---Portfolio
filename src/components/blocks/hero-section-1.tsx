@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowUpRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
 import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
+import { CheckpointDemo } from "@/components/demo/CheckpointDemo";
 
 // Dark is the default; light is opt-in and remembered. index.html applies it before paint.
 function ThemeToggle() {
@@ -171,6 +172,10 @@ export function HeroSection() {
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="hero__demo">
+          <CheckpointDemo />
         </div>
 
         <Stats />
