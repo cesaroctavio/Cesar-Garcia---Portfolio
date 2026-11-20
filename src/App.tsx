@@ -424,11 +424,11 @@ export default function App() {
       <HeroHeader />
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
+        <About />
         <CaseStudies />
         <AiWorkflow />
         <Triage />
         <Skills />
-        <About />
         <Contact />
       </main>
       <Footer />

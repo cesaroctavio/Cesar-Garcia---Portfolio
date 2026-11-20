@@ -118,7 +118,7 @@ test.describe("navigation", () => {
     test.skip(isMobile, "desktop nav links collapse into the menu on small screens");
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Primary" });
-    for (const name of ["Work", "Skills", "About"]) {
+    for (const name of ["About", "Work", "Skills"]) {
       const link = nav.getByRole("link", { name, exact: true });
       await link.click();
       await scrollSettled(page);
@@ -136,7 +136,7 @@ test.describe("navigation", () => {
     const nav = page.getByRole("navigation", { name: "Primary" });
     const current = nav.locator('[aria-current="location"]');
 
-    // The About heading sits mid-screen while Skills padding still fills the top quarter.
+    // The About heading sits mid-screen while Experience still fills the top quarter.
     await page.evaluate(() => {
       const heading = document.getElementById("about-title")!;
       window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - innerHeight * 0.5, behavior: "instant" });

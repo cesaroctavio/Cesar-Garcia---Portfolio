@@ -168,8 +168,9 @@ export function HeroSection() {
               className="lead hero__lede hero__fade"
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
-              I'm Cesar Garcia. I build the Playwright suites behind Thermo
-              Fisher's storefront releases, from Tijuana.
+              I'm Cesar Garcia. I began as a developer, testing my own work,
+              and the testing part won. Today I build Playwright suites that
+              catch problems before release.
             </p>
             <div
               className="hero__actions hero__fade"
@@ -263,7 +264,7 @@ export const HeroHeader = () => {
     // The active section is the last one whose top has passed a reading line at 40% of the
     // viewport. A fixed band near the top misread sections separated by tall padding.
     // Every section is tracked (not only nav items), so Triage clears the "Work" highlight.
-    const sectionIds = ["hero", "experience", "work", "approach", "skills", "about", "contact"];
+    const sectionIds = ["hero", "experience", "about", "work", "approach", "skills", "contact"];
     let frame = 0;
 
     const update = () => {

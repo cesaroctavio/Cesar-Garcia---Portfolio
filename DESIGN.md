@@ -190,7 +190,7 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 
 A single centred column up to 1440px with 64px gutters (24px under 60rem, 16px under 40rem). Sections sit 144px apart on desktop, tighter on smaller screens. Inside sections, a 12-column feel is expressed as two-column splits (5:7 or 7:5) that collapse to one column under 60rem; the stats run four across, two across on tablets and phones; case studies run three across, stacking on tablets and phones.
 
-Page order: centred hero, the Checkpoint demo, real numbers, experience index, case studies, AI-assisted QA, the triage process with code, skills by risk, about, contact.
+Page order: centred hero, the Checkpoint demo, real numbers, experience index, about, case studies, AI-assisted QA, the triage process with code, skills by risk, contact.
 
 **The Evidence First Rule.** Within two scrolls a visitor must reach a real fact about the work (a number, a role, a result). Anything placed above that has to earn the space.
 
