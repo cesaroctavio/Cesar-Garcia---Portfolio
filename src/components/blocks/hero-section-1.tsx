@@ -229,35 +229,38 @@ export const HeroHeader = () => {
   };
 
   React.useEffect(() => {
-    const handleScroll = () => {
+    // The active section is the last one whose top has passed a reading line at 40% of the
+    // viewport. A fixed band near the top misread sections separated by tall padding.
+    // Every section is tracked (not only nav items), so Triage clears the "Work" highlight.
+    const sectionIds = ["hero", "experience", "work", "approach", "skills", "about", "contact"];
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
       setIsScrolled(window.scrollY > 50);
+      const line = window.innerHeight * 0.4;
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      let current = "hero";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActiveSection(atBottom ? sectionIds[sectionIds.length - 1] : current);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    const watched = ["hero", ...menuItems.map((item) => item.href.replace("#", ""))];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-20% 0px -70% 0px",
-        threshold: 0,
-      },
-    );
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
 
-    watched.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
     };
   }, []);
 

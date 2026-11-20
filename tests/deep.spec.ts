@@ -115,6 +115,31 @@ test.describe("navigation", () => {
     await expect(page.locator("#contact")).toBeInViewport();
   });
 
+  test("nav highlights the section being read, not the padding above it", async ({ page, isMobile }) => {
+    test.skip(isMobile, "the highlight lives in the desktop nav");
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Primary" });
+    const current = nav.locator('[aria-current="location"]');
+
+    // The About heading sits mid-screen while Skills padding still fills the top quarter.
+    await page.evaluate(() => {
+      const heading = document.getElementById("about-title")!;
+      window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - innerHeight * 0.5, behavior: "instant" });
+    });
+    await expect(current).toHaveText("About");
+
+    // Triage has no nav entry, so nothing stays highlighted from Work.
+    await page.evaluate(() => {
+      const heading = document.getElementById("approach-title")!;
+      window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - innerHeight * 0.3, behavior: "instant" });
+    });
+    await expect(current).toHaveCount(0);
+
+    // At the very bottom the last section wins even if it never reaches the reading line.
+    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+    await expect(current).toHaveText("Contact");
+  });
+
   test("mobile menu links close the sheet and reach their section", async ({ page, isMobile }) => {
     test.skip(!isMobile, "the menu sheet only exists on small screens");
     await page.goto("/");
