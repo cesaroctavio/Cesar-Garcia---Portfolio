@@ -183,7 +183,7 @@
       },
       {
         "name": "reveal",
-        "value": "800ms ease-out, 90ms stagger, translateY(28px) + blur(6px)",
+        "value": "800ms ease-out, 90ms stagger, translateY(28px) + opacity (no blur: it stalls Safari smooth scroll)",
         "purpose": "Sections entering the viewport."
       },
       {
@@ -260,7 +260,7 @@
       "Indigo-black night surfaces, one indigo signal colour, cool lavender-grey neutrals.",
       "Satoshi Black for display, Figtree for reading, JetBrains Mono only for real code.",
       "Rounded containers (24px cards, pill controls) with 1px hairlines, flat at rest.",
-      "One authored entrance (the headline's word blur-in), quiet scroll reveals after it.",
+      "One authored entrance (the headline's word blur-in), quiet scroll reveals after it (opacity and a short rise, never blur).",
       "Real numbers and real artefacts over ornament."
     ],
     "rules": [

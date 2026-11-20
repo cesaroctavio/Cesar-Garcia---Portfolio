@@ -136,7 +136,7 @@ The system is dark by default and offers a daylight variant behind a toggle; bot
 - Indigo-black night surfaces, one indigo signal colour, cool lavender-grey neutrals.
 - Satoshi Black for display, Figtree for reading, JetBrains Mono only for real code.
 - Rounded containers (24px cards, pill controls) with 1px hairlines, flat at rest.
-- One authored entrance (the headline's word blur-in), quiet scroll reveals after it.
+- One authored entrance (the headline's word blur-in), quiet scroll reveals after it (opacity and a short rise, never blur).
 - Real numbers and real artefacts over ornament.
 
 ## Colors
