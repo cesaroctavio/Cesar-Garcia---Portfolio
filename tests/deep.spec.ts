@@ -41,6 +41,21 @@ test.describe("health on every device", () => {
     expect(problems).toEqual([]);
   });
 
+  test("fonts are self-hosted and actually load", async ({ page }) => {
+    const thirdParty: string[] = [];
+    page.on("request", (req) => {
+      const host = new URL(req.url()).host;
+      if (/fonts\.googleapis|fonts\.gstatic|fontshare/.test(host)) thirdParty.push(req.url());
+    });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    const loaded = await page.evaluate(() =>
+      [...document.fonts].filter((f) => f.status === "loaded").map((f) => `${f.family.replace(/"/g, "")} ${f.weight}`),
+    );
+    expect(thirdParty).toEqual([]);
+    expect(loaded).toEqual(expect.arrayContaining(["Satoshi 900", "Figtree 400", "Figtree 600"]));
+  });
+
   test("never scrolls sideways", async ({ page }) => {
     await page.goto("/");
     await scrollThrough(page);
