@@ -192,11 +192,6 @@ export const skillRows = [
 
 export const contacts = [
   {
-    href: "https://wa.me/526642648910",
-    value: "+52 664 264 8910",
-    label: "WhatsApp",
-  },
-  {
     href: "https://www.linkedin.com/in/cesar-ogs/",
     value: "in/cesar-ogs",
     label: "LinkedIn",
