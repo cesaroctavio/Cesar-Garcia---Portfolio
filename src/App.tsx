@@ -42,6 +42,7 @@ function CaseStudies() {
     <section id="work" className="section" aria-labelledby="work-title">
       <div className="container">
         <div className="section__head" data-reveal>
+          <p className="eyebrow">Case studies</p>
           <h2 id="work-title">Problems I've solved</h2>
           <p className="lead">
             Three real situations from commerce QA: what was wrong, what I did
@@ -87,6 +88,7 @@ function AiWorkflow() {
       <div className="container">
         <div className="ai" data-reveal>
           <div className="ai__intro">
+            <p className="eyebrow">AI-assisted QA</p>
             <h2 id="ai-title">{aiWorkflow.title}</h2>
             <p className="lead">{aiWorkflow.body}</p>
           </div>
@@ -137,6 +139,7 @@ function Triage() {
       <div className="container triage">
         <div>
           <div className="section__head" data-reveal>
+            <p className="eyebrow">Triage</p>
             <h2 id="approach-title">What happens when a check fails</h2>
             <p className="lead">
               Every failure is traced, classified and handed over with a next
@@ -235,6 +238,7 @@ function Skills() {
     <section id="skills" className="section" aria-labelledby="skills-title">
       <div className="container">
         <div className="section__head" data-reveal>
+          <p className="eyebrow">Stack</p>
           <h2 id="skills-title">Tools, by the risk they cover</h2>
         </div>
         <div className="skills-card" data-reveal style={stagger(1)}>
@@ -332,6 +336,7 @@ function Contact() {
       <div className="container">
         <div className="contact-card" data-reveal>
           <div className="contact-card__head">
+            <p className="eyebrow">Contact</p>
             <h2 id="contact-title">Open to remote US teams</h2>
             <p className="lead">
               Pacific Time, based in Tijuana. QA automation architecture,

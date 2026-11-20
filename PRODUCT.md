@@ -14,7 +14,7 @@ To showcase my professional experience, skills, and projects as a Senior QA Engi
 High-craft, cinematic, dark-mode-first (with a light option), kinetic, calm. Professional yet technologically sophisticated, with personality carried by type and motion rather than ornament.
 
 ## Anti-references
-Generic portfolio templates, light mode as the default, overly complex navigation, "AI slop" or cliche SaaS designs: decorative or invented metrics (real figures from the CV are fine), identical card grids used as the whole page structure, fake product chrome such as mock dashboards or window dots.
+Generic portfolio templates, light mode as the default, overly complex navigation, "AI slop" or cliche SaaS designs: invented numbers presented as my results (real figures from the CV are fine), identical card grids used as the whole page structure, window traffic-light dots. The hero's Checkpoint demo is a made-up app on purpose, labelled as such.
 
 ## Design Principles
 - Practice what you preach (high quality, bug-free).

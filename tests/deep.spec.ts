@@ -290,3 +290,49 @@ test.describe("preferences", () => {
     expect(hidden).toBe(0);
   });
 });
+
+test.describe("Checkpoint demo", () => {
+  const selectedTab = (page: Page) => page.locator('.cp-tab[aria-selected="true"]');
+
+  test("tabs switch scenes by click and by arrow keys", async ({ page }) => {
+    await page.goto("/");
+    const tabs = page.getByRole("tablist", { name: "Checkpoint demo scenes" }).getByRole("tab");
+    await expect(tabs).toHaveCount(5);
+    await page.getByRole("tab", { name: "Ticket" }).click();
+    await expect(page.getByRole("tab", { name: "Ticket" })).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tabpanel")).toHaveAttribute("aria-labelledby", "cp-tab-ticket");
+    await page.keyboard.press("ArrowRight");
+    await expect(page.getByRole("tab", { name: "Board" })).toBeFocused();
+    await expect(page.getByRole("tab", { name: "Board" })).toHaveAttribute("aria-selected", "true");
+    await page.keyboard.press("ArrowRight");
+    await expect(page.getByRole("tab", { name: "Runs" })).toHaveAttribute("aria-selected", "true");
+  });
+
+  test("autoplays through scenes and the pause button holds it", async ({ page, browserName, isMobile }) => {
+    test.skip(browserName !== "chromium" || isMobile, "timing check runs once, on desktop Chromium");
+    test.setTimeout(45_000);
+    await page.goto("/");
+    await page.locator(".cp").scrollIntoViewIfNeeded();
+    await expect(selectedTab(page)).toHaveText("Runs");
+    await expect(selectedTab(page)).toHaveText("Trace", { timeout: 12_000 });
+    await page.getByRole("button", { name: "Pause demo" }).click();
+    await page.waitForTimeout(8_500);
+    await expect(selectedTab(page)).toHaveText("Trace");
+    await page.getByRole("button", { name: "Play demo" }).click();
+    await expect(selectedTab(page)).toHaveText("AI assistant", { timeout: 12_000 });
+  });
+
+  test("with reduced motion it holds still and shows each scene's end state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    await page.locator(".cp").scrollIntoViewIfNeeded();
+    await expect(page.locator(".cp-row[data-state='failed']")).toBeVisible();
+    await expect(page.locator(".cp-count")).toContainText("54 / 55 passed");
+    await expect(page.locator(".cp-cursor")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Pause demo" })).toHaveCount(0);
+    await page.waitForTimeout(8_000);
+    await expect(selectedTab(page)).toHaveText("Runs");
+    await page.getByRole("tab", { name: "Ticket" }).click();
+    await expect(page.locator(".cp-toast")).toContainText("QA-1432 created");
+  });
+});
