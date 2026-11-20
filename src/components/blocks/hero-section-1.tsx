@@ -134,8 +134,13 @@ function Highlighted({ text, terms }: { text: string; terms?: string[] }) {
 export function HeroSection() {
   return (
     <section id="hero" className="hero" aria-labelledby="hero-title">
+      <div className="hero__backdrop" aria-hidden="true" />
       <div className="container hero__inner">
         <div className="hero__head">
+          <p className="eyebrow eyebrow--pill hero__fade">
+            <span className="eyebrow__dot" aria-hidden="true" />
+            Open to remote US teams
+          </p>
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">
               <Words text="Senior QA" start={0} />
@@ -150,8 +155,7 @@ export function HeroSection() {
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
               I'm Cesar Garcia. I build the Playwright suites behind Thermo
-              Fisher's storefront releases. Based in Tijuana, open to remote US
-              teams.
+              Fisher's storefront releases, from Tijuana.
             </p>
             <div
               className="hero__actions hero__fade"
@@ -173,6 +177,7 @@ export function HeroSection() {
 
         <div id="experience" className="experience">
           <div className="section__head section__head--compact" data-reveal>
+            <p className="eyebrow">Experience</p>
             <h2>Where I've worked</h2>
             <p className="lead">Open a role to see what I did there.</p>
           </div>
