@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUp, ArrowUpRight, Check, Copy, Download, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   about,
@@ -108,36 +108,24 @@ function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
       <div className="container about">
-        <figure
-          className="about__photo"
-          data-slot="portrait"
-          data-reveal
-          data-alt="Portrait of Cesar Garcia"
-        >
-          <span className="about__monogram" aria-hidden="true">
-            CG
-          </span>
-          <figcaption data-keep>
-            <MapPin width={16} height={16} aria-hidden="true" />
-            Tijuana, B.C.
-          </figcaption>
-        </figure>
-        <div className="about__text" data-reveal style={stagger(1)}>
-          <h2 id="about-title">Hi, I'm Cesar</h2>
+        <h2 id="about-title" className="about__title" data-reveal>
+          Hi, I'm Cesar
+        </h2>
+        <div className="about__story" data-reveal style={stagger(1)}>
           {about.paragraphs.map((text) => (
             <p key={text} className="lead">
               {text}
             </p>
           ))}
-          <dl className="about__facts">
-            {about.facts.map((fact) => (
-              <div key={fact.label}>
-                <dt>{fact.label}</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
+        <dl className="about__facts" data-reveal style={stagger(2)}>
+          {about.facts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
