@@ -1,6 +1,5 @@
 import React from "react";
-import { ArrowRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowUpRight, Download, Menu, Moon, Plus, Sun, X } from "lucide-react";
 import { contactEmail, cv, experiences, menuItems, stats } from "@/content";
 
 // Dark is the default; light is opt-in and remembered. index.html applies it before paint.
@@ -14,6 +13,9 @@ function ThemeToggle() {
     setIsLight(next);
     if (next) document.documentElement.dataset.theme = "light";
     else delete document.documentElement.dataset.theme;
+    // Read the page colour from the tokens so the browser bar never drifts from tokens.css.
+    const paper = getComputedStyle(document.documentElement).getPropertyValue("--color-paper").trim();
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", paper);
     try {
       localStorage.setItem("theme", next ? "light" : "dark");
     } catch {
@@ -68,8 +70,14 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
 
   return (
     <span ref={ref} className="num">
-      {shown}
-      {suffix}
+      <span aria-hidden="true">
+        {shown}
+        {suffix}
+      </span>
+      <span className="visually-hidden">
+        {value}
+        {suffix}
+      </span>
     </span>
   );
 }
@@ -128,10 +136,6 @@ export function HeroSection() {
     <section id="hero" className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__head">
-          <p className="eyebrow hero__fade" style={{ "--delay": "0ms" } as React.CSSProperties}>
-            <span className="eyebrow__dot" aria-hidden="true" />
-            Available for remote work · Pacific Time
-          </p>
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">
               <Words text="Senior QA" start={0} />
@@ -145,8 +149,9 @@ export function HeroSection() {
               className="lead hero__lede hero__fade"
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
-              Playwright suites for Thermo Fisher storefronts in 17 countries,
-              built from Tijuana.
+              I'm Cesar Garcia. I build the Playwright suites behind Thermo
+              Fisher's storefront releases. Based in Tijuana, open to remote US
+              teams.
             </p>
             <div
               className="hero__actions hero__fade"
@@ -156,9 +161,9 @@ export function HeroSection() {
                 <Download aria-hidden="true" />
                 {cv.label}
               </a>
-              <a className="btn btn--quiet" href="#contact">
-                Contact
-                <ArrowRight className="btn__arrow" aria-hidden="true" />
+              <a className="btn btn--quiet" href={`mailto:${contactEmail}`}>
+                Email me
+                <ArrowUpRight className="btn__arrow" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -167,9 +172,9 @@ export function HeroSection() {
         <Stats />
 
         <div id="experience" className="experience">
-          <div className="section__head section__head--row" data-reveal>
-            <h2>Where I've done it</h2>
-            <p className="lead">Open a role to see the details.</p>
+          <div className="section__head section__head--compact" data-reveal>
+            <h2>Where I've worked</h2>
+            <p className="lead">Open a role to see what I did there.</p>
           </div>
           <div className="roles" data-reveal style={{ "--d": 1 } as React.CSSProperties}>
           <ol className="roles__list">
@@ -223,35 +228,38 @@ export const HeroHeader = () => {
   };
 
   React.useEffect(() => {
-    const handleScroll = () => {
+    // The active section is the last one whose top has passed a reading line at 40% of the
+    // viewport. A fixed band near the top misread sections separated by tall padding.
+    // Every section is tracked (not only nav items), so Triage clears the "Work" highlight.
+    const sectionIds = ["hero", "experience", "work", "approach", "skills", "about", "contact"];
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
       setIsScrolled(window.scrollY > 50);
+      const line = window.innerHeight * 0.4;
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      let current = "hero";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActiveSection(atBottom ? sectionIds[sectionIds.length - 1] : current);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    const watched = ["hero", ...menuItems.map((item) => item.href.replace("#", ""))];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-20% 0px -70% 0px",
-        threshold: 0,
-      },
-    );
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
 
-    watched.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -374,7 +382,7 @@ export const HeroHeader = () => {
         </a>
 
         <ul className="site-nav__links">
-          {menuItems.map((item) => {
+          {menuItems.filter((item) => item.href !== "#contact").map((item) => {
             const isActive = activeSection === item.href.replace("#", "");
             return (
               <li key={item.href}>
@@ -392,8 +400,12 @@ export const HeroHeader = () => {
 
         <div className="site-nav__end">
           <ThemeToggle />
-          <a className="site-nav__action" href={`mailto:${contactEmail}`}>
-            Email me
+          <a
+            className="site-nav__action"
+            href="#contact"
+            aria-current={activeSection === "contact" ? "location" : undefined}
+          >
+            Contact
           </a>
           <button
             ref={menuButtonRef}
@@ -428,7 +440,7 @@ export const HeroHeader = () => {
                     href={item.href}
                     aria-current={isActive ? "location" : undefined}
                     onClick={() => closeMenu(false)}
-                    className={cn("menu-sheet__link")}
+                    className="menu-sheet__link"
                   >
                     {item.name}
                   </a>
@@ -436,14 +448,20 @@ export const HeroHeader = () => {
               );
             })}
           </ul>
-          <a
-            className="btn menu-sheet__cv"
-            href={cv.href}
-            download
-            onClick={() => closeMenu(false)}
-          >
-            {cv.label}
-          </a>
+          <div className="menu-sheet__actions">
+            <a className="btn" href={cv.href} download onClick={() => closeMenu(false)}>
+              <Download aria-hidden="true" />
+              {cv.label}
+            </a>
+            <a
+              className="btn btn--quiet"
+              href={`mailto:${contactEmail}`}
+              onClick={() => closeMenu(false)}
+            >
+              Email me
+              <ArrowUpRight className="btn__arrow" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       )}
     </header>

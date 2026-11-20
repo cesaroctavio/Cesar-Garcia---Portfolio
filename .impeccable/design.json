@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T22:49:37Z",
+  "title": "Design System: Cesar Garcia Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "night-signal-indigo": {
+        "role": "primary",
+        "displayName": "Night Signal Indigo",
+        "canonical": "#A89BFF",
+        "tonalRamp": [
+          "oklch(15% 0.07 285)",
+          "oklch(25% 0.07 285)",
+          "oklch(35% 0.14 285)",
+          "oklch(45% 0.14 285)",
+          "oklch(55% 0.14 285)",
+          "oklch(68% 0.14 285)",
+          "oklch(82% 0.14 285)",
+          "oklch(95% 0.07 285)"
+        ]
+      },
+      "day-indigo": {
+        "role": "primary",
+        "displayName": "Day Indigo (light theme)",
+        "canonical": "#5440D6",
+        "tonalRamp": [
+          "oklch(15% 0.1 282)",
+          "oklch(25% 0.1 282)",
+          "oklch(35% 0.2 282)",
+          "oklch(45% 0.2 282)",
+          "oklch(55% 0.2 282)",
+          "oklch(68% 0.2 282)",
+          "oklch(82% 0.2 282)",
+          "oklch(95% 0.1 282)"
+        ]
+      },
+      "lab-night": {
+        "role": "neutral",
+        "displayName": "Lab Night",
+        "canonical": "#0C0B12",
+        "tonalRamp": [
+          "oklch(15% 0.007 290)",
+          "oklch(25% 0.007 290)",
+          "oklch(35% 0.015 290)",
+          "oklch(45% 0.015 290)",
+          "oklch(55% 0.015 290)",
+          "oklch(68% 0.015 290)",
+          "oklch(82% 0.015 290)",
+          "oklch(95% 0.007 290)"
+        ]
+      },
+      "lab-bench": {
+        "role": "neutral",
+        "displayName": "Lab Bench",
+        "canonical": "#16141F",
+        "tonalRamp": [
+          "oklch(15% 0.01 290)",
+          "oklch(25% 0.01 290)",
+          "oklch(35% 0.02 290)",
+          "oklch(45% 0.02 290)",
+          "oklch(55% 0.02 290)",
+          "oklch(68% 0.02 290)",
+          "oklch(82% 0.02 290)",
+          "oklch(95% 0.01 290)"
+        ]
+      },
+      "instrument-white": {
+        "role": "neutral",
+        "displayName": "Instrument White",
+        "canonical": "#EEEDF5",
+        "tonalRamp": [
+          "oklch(15% 0.006 290)",
+          "oklch(25% 0.006 290)",
+          "oklch(35% 0.012 290)",
+          "oklch(45% 0.012 290)",
+          "oklch(55% 0.012 290)",
+          "oklch(68% 0.012 290)",
+          "oklch(82% 0.012 290)",
+          "oklch(95% 0.006 290)"
+        ]
+      },
+      "margin-note": {
+        "role": "neutral",
+        "displayName": "Margin Note",
+        "canonical": "#9693A8",
+        "tonalRamp": [
+          "oklch(15% 0.015 290)",
+          "oklch(25% 0.015 290)",
+          "oklch(35% 0.03 290)",
+          "oklch(45% 0.03 290)",
+          "oklch(55% 0.03 290)",
+          "oklch(68% 0.03 290)",
+          "oklch(82% 0.03 290)",
+          "oklch(95% 0.015 290)"
+        ]
+      },
+      "day-paper": {
+        "role": "neutral",
+        "displayName": "Day Paper (light theme)",
+        "canonical": "#F5F4FA",
+        "tonalRamp": [
+          "oklch(15% 0.005 290)",
+          "oklch(25% 0.005 290)",
+          "oklch(35% 0.01 290)",
+          "oklch(45% 0.01 290)",
+          "oklch(55% 0.01 290)",
+          "oklch(68% 0.01 290)",
+          "oklch(82% 0.01 290)",
+          "oklch(95% 0.005 290)"
+        ]
+      },
+      "pass-green": {
+        "role": "tertiary",
+        "displayName": "Pass Green",
+        "canonical": "#6EE7A8",
+        "tonalRamp": [
+          "oklch(15% 0.06 160)",
+          "oklch(25% 0.06 160)",
+          "oklch(35% 0.12 160)",
+          "oklch(45% 0.12 160)",
+          "oklch(55% 0.12 160)",
+          "oklch(68% 0.12 160)",
+          "oklch(82% 0.12 160)",
+          "oklch(95% 0.06 160)"
+        ]
+      },
+      "fail-coral": {
+        "role": "tertiary",
+        "displayName": "Fail Coral",
+        "canonical": "#FF8E8A",
+        "tonalRamp": [
+          "oklch(15% 0.065 25)",
+          "oklch(25% 0.065 25)",
+          "oklch(35% 0.13 25)",
+          "oklch(45% 0.13 25)",
+          "oklch(55% 0.13 25)",
+          "oklch(68% 0.13 25)",
+          "oklch(82% 0.13 25)",
+          "oklch(95% 0.065 25)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero title only, two lines, second line in indigo, blurs in word by word."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Plain one-line section heads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Company names, case-study titles, skill areas."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Real code samples only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "nav-scrolled",
+        "value": "0 16px 40px -24px rgb(0 0 0 / 0.5)",
+        "purpose": "Floating nav bar once the page scrolls."
+      },
+      {
+        "name": "primary-hover",
+        "value": "0 12px 32px -12px color-mix(in oklab, var(--color-accent) 70%, transparent)",
+        "purpose": "Primary button hover only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default for entrances and state changes."
+      },
+      {
+        "name": "word-in",
+        "value": "900ms ease-out, 90ms stagger, blur(12px) to 0",
+        "purpose": "The one authored entrance: hero headline words."
+      },
+      {
+        "name": "reveal",
+        "value": "800ms ease-out, 90ms stagger, translateY(28px) + opacity (no blur: it stalls Safari smooth scroll)",
+        "purpose": "Sections entering the viewport."
+      },
+      {
+        "name": "count-up",
+        "value": "1400ms ease-out cubic",
+        "purpose": "Stat figures on first view."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "60rem"
+      },
+      {
+        "name": "phone",
+        "value": "40rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action per view: Download CV (PDF).",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download CV (PDF)</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;border:1px solid var(--color-accent,#A89BFF);border-radius:999px;background:var(--color-accent,#A89BFF);color:var(--color-accent-ink,#14102E);font:600 1rem/1 Figtree,system-ui,sans-serif;text-decoration:none;transition:background-color .22s cubic-bezier(.16,1,.3,1),transform .22s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{transform:translateY(-2px);background:color-mix(in oklab,var(--color-accent,#A89BFF) 88%,var(--color-ink,#EEEDF5))}.ds-btn-primary:focus-visible{outline:2px solid var(--color-focus,#BDB3FF);outline-offset:3px}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Secondary actions: Email me, Copy email.",
+      "html": "<a class=\"ds-btn-quiet\" href=\"#\">Email me</a>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;border:1px solid var(--color-rule-2,#3A3652);border-radius:999px;background:transparent;color:var(--color-ink,#EEEDF5);font:600 1rem/1 Figtree,system-ui,sans-serif;text-decoration:none;transition:background-color .22s,border-color .22s}.ds-btn-quiet:hover{background:var(--color-paper-2,#16141F);border-color:var(--color-ink-2,#CFCCE0)}.ds-btn-quiet:focus-visible{outline:2px solid var(--color-focus,#BDB3FF);outline-offset:3px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Floating pill bar with links and the Contact pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-mark\" href=\"#\">Cesar Garcia</a><a class=\"ds-nav-link\" href=\"#\">Experience</a><a class=\"ds-nav-link ds-nav-link--on\" href=\"#\">Work</a><a class=\"ds-nav-cta\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:4px;min-height:60px;padding:0 8px 0 24px;border:1px solid var(--color-rule,#26233A);border-radius:999px;background:color-mix(in oklab,var(--color-paper-2,#16141F) 78%,transparent);backdrop-filter:blur(16px)}.ds-nav-mark{margin-right:auto;font:900 1.25rem/1 Satoshi,Figtree,sans-serif;color:var(--color-ink,#EEEDF5);text-decoration:none}.ds-nav-link{padding:10px 14px;border-radius:999px;font:400 .875rem Figtree,sans-serif;color:var(--color-muted,#9693A8);text-decoration:none}.ds-nav-link:hover{color:var(--color-ink,#EEEDF5);background:var(--color-paper-3,#1E1B2B)}.ds-nav-link--on{color:var(--color-ink,#EEEDF5);background:color-mix(in oklab,var(--color-accent,#A89BFF) 18%,transparent)}.ds-nav-cta{margin-left:8px;padding:13px 24px;border-radius:999px;background:var(--color-ink,#EEEDF5);color:var(--color-paper,#0C0B12);font:600 .875rem Figtree,sans-serif;text-decoration:none}.ds-nav-cta:hover{background:var(--color-accent,#A89BFF);color:var(--color-accent-ink,#14102E)}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A tool name in skills or case studies.",
+      "html": "<span class=\"ds-chip\">Playwright</span>",
+      "css": ".ds-chip{display:inline-block;padding:4px 12px;border:1px solid var(--color-rule-2,#3A3652);border-radius:999px;font:400 .875rem Figtree,sans-serif;color:var(--color-ink-2,#CFCCE0)}"
+    },
+    {
+      "name": "Stat",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "One real figure from the CV with label and note.",
+      "html": "<div class=\"ds-stat\"><span class=\"ds-stat-value\">17</span><span class=\"ds-stat-label\">countries</span><span class=\"ds-stat-note\">Storefronts checked by one shared suite</span></div>",
+      "css": ".ds-stat{display:grid;gap:4px;padding:24px;border:1px solid var(--color-rule,#26233A);border-radius:24px;background:var(--color-paper-2,#16141F)}.ds-stat-value{font:900 4rem/1 Satoshi,Figtree,sans-serif;letter-spacing:-.03em;color:var(--color-accent,#A89BFF)}.ds-stat-label{font:600 1rem Figtree,sans-serif;color:var(--color-ink,#EEEDF5)}.ds-stat-note{font:400 .875rem Figtree,sans-serif;color:var(--color-muted,#9693A8)}"
+    },
+    {
+      "name": "Case Study",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Problem, what I did, result, tools.",
+      "html": "<article class=\"ds-case\"><h3>Flaky tests, fixed at the source</h3><p class=\"ds-case-k\">Problem</p><p>Recurring failures were patched spec by spec.</p><p class=\"ds-case-k\">Result</p><p class=\"ds-case-r\">A fix lands once and every spec gets it.</p></article>",
+      "css": ".ds-case{display:grid;gap:8px;padding:40px 24px;border:1px solid var(--color-rule,#26233A);border-radius:24px;background:var(--color-paper-2,#16141F);color:var(--color-ink-2,#CFCCE0);font:400 1rem/1.55 Figtree,sans-serif}.ds-case h3{margin:0 0 8px;font:900 1.5625rem/1.15 Satoshi,Figtree,sans-serif;color:var(--color-ink,#EEEDF5)}.ds-case p{margin:0}.ds-case-k{font:600 .8125rem Figtree,sans-serif;color:var(--color-muted,#9693A8)}.ds-case-r{font-weight:600;color:var(--color-ink,#EEEDF5)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Shift Lab",
+    "overview": "A QA lab after hours: the room is deep indigo-black, and the only things lit are the evidence on the bench. Personality comes from scale and motion while the surfaces stay calm and flat. Dark by default with a remembered daylight variant.",
+    "keyCharacteristics": [
+      "Indigo-black night surfaces, one indigo signal colour, cool lavender-grey neutrals.",
+      "Satoshi Black for display, Figtree for reading, JetBrains Mono only for real code.",
+      "Rounded containers (24px cards, pill controls) with 1px hairlines, flat at rest.",
+      "One authored entrance (the headline's word blur-in), quiet scroll reveals after it (opacity and a short rise, never blur).",
+      "Real numbers and real artefacts over ornament."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Indigo marks action, state, or the single most important figure.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinted Neutral Rule",
+        "body": "Every neutral carries the indigo hue. No #000, no #fff, no default greys.",
+        "section": "colors"
+      },
+      {
+        "name": "The Plain Head Rule",
+        "body": "Headings are plain statements of content. No slogans, no kicker or eyebrow above them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Means Code Rule",
+        "body": "JetBrains Mono appears only inside real code or command output.",
+        "section": "typography"
+      },
+      {
+        "name": "The Calm Surface Rule",
+        "body": "Cards do not lift or glow. If it isn't clickable, it doesn't move.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep dark as the default theme and make light a remembered opt-in that applies before first paint.",
+      "Do use Night Signal Indigo for the primary action, the hero's second line, stat figures, active nav and step numerals only.",
+      "Do show each number once, where it carries the most weight.",
+      "Do prefer a real artefact (a trace, a report, a spec, a photo) to a decorative stand-in.",
+      "Do respect reduced motion: reveals, the word blur-in and the count-up all render final state immediately.",
+      "Do cover every interactive flow with a Playwright spec (npm run test:e2e)."
+    ],
+    "donts": [
+      "Don't add hover lift or glow to anything that isn't clickable.",
+      "Don't put an eyebrow or kicker label above a heading.",
+      "Don't fake product chrome: no decorative window dots, no mock dashboards, no invented telemetry.",
+      "Don't write slogans in headings or meta descriptions.",
+      "Don't use monospace, tracked uppercase or middle-dot strings as decoration.",
+      "Don't use pure #000 or #fff for text or backgrounds.",
+      "Don't add a marquee or logo wall."
+    ]
+  }
+}

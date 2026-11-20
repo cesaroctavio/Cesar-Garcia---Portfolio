@@ -19,3 +19,7 @@ graphify-out/manifest.json
 
 # local token tracking, not useful to share
 graphify-out/cost.json
+
+# Playwright output
+test-results/
+playwright-report/

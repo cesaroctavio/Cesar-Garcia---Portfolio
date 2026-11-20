@@ -13,6 +13,7 @@
   --color-rule: #26233A; --color-rule-2: #3A3652;
   --color-accent: #A89BFF; --color-accent-ink: #14102E; --color-focus: #BDB3FF;
   --color-error: #FF8E8A; --color-success: #6EE7A8;
+  --shadow-nav: 0 16px 40px -24px rgb(6 5 12 / 0.6);
   --font-display: "Satoshi", "Figtree", ui-sans-serif, system-ui, sans-serif; --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif; --font-outlier: "JetBrains Mono", ui-monospace, monospace;
   --display-weight: 900; --nav-h: 84px;
   --radius-card: 24px; --radius-md: 16px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
@@ -26,4 +27,5 @@
   --color-rule: #DDDAEA; --color-rule-2: #C3BFD6;
   --color-accent: #5440D6; --color-accent-ink: #FFFFFF; --color-focus: #5440D6;
   --color-error: #C2342B; --color-success: #1E7A4A;
+  --shadow-nav: 0 16px 40px -24px rgb(20 18 28 / 0.2);
 }

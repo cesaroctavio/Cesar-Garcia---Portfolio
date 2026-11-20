@@ -1,244 +1,257 @@
 ---
 name: "Cesar Garcia Portfolio"
-description: "A dark kinetic QA portfolio built around traceable proof and release confidence."
+description: "An indigo, dark-first QA portfolio where real evidence does the talking."
 colors:
-  background: "oklch(12% 0.012 240)"
-  foreground: "oklch(96% 0.01 215)"
-  card: "oklch(16% 0.014 240)"
-  card-foreground: "oklch(96% 0.01 215)"
-  popover: "oklch(16% 0.014 240)"
-  popover-foreground: "oklch(96% 0.01 215)"
-  primary: "oklch(78% 0.135 188)"
-  primary-foreground: "oklch(10% 0.014 225)"
-  secondary: "oklch(70% 0.17 28)"
-  secondary-foreground: "oklch(11% 0.015 28)"
-  accent: "oklch(81% 0.13 152)"
-  accent-foreground: "oklch(10% 0.014 225)"
-  muted: "oklch(25% 0.018 235)"
-  muted-foreground: "oklch(73% 0.028 215)"
-  border: "oklch(30% 0.025 230)"
-  input: "oklch(30% 0.025 230)"
-  ring: "oklch(78% 0.135 188)"
-  destructive: "oklch(62% 0.19 24)"
-  destructive-foreground: "oklch(96% 0.01 215)"
+  night-signal-indigo: "#A89BFF"
+  night-signal-ink: "#14102E"
+  night-signal-focus: "#BDB3FF"
+  lab-night: "#0C0B12"
+  lab-bench: "#16141F"
+  lab-shelf: "#1E1B2B"
+  instrument-white: "#EEEDF5"
+  readout-grey: "#CFCCE0"
+  margin-note: "#9693A8"
+  hairline: "#26233A"
+  hairline-strong: "#3A3652"
+  pass-green: "#6EE7A8"
+  fail-coral: "#FF8E8A"
+  day-indigo: "#5440D6"
+  day-paper: "#F5F4FA"
+  day-card: "#FFFFFF"
+  day-shelf: "#ECEAF4"
+  day-ink: "#14121C"
+  day-ink-2: "#3A3748"
+  day-muted: "#5E5B6E"
+  day-hairline: "#DDDAEA"
+  day-hairline-strong: "#C3BFD6"
+  day-pass: "#1E7A4A"
+  day-fail: "#C2342B"
 typography:
   display:
-    fontFamily: "Satoshi, Figtree, system-ui, sans-serif"
-    fontSize: "clamp(2.7rem, 8vw, 5.15rem)"
+    fontFamily: "Satoshi, Figtree, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 6.4vw + 0.5rem, 6.75rem)"
     fontWeight: 900
-    lineHeight: 0.92
-    letterSpacing: "0"
+    lineHeight: 0.98
+    letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Satoshi, Figtree, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 8vw, 6rem)"
+    fontFamily: "Satoshi, Figtree, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 2.5vw + 1rem, 3.5rem)"
     fontWeight: 900
-    lineHeight: 1
-    letterSpacing: "0"
+    lineHeight: 1.05
+    letterSpacing: "-0.01em"
   title:
-    fontFamily: "Satoshi, Figtree, system-ui, sans-serif"
-    fontSize: "2.25rem"
+    fontFamily: "Satoshi, Figtree, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem)"
     fontWeight: 900
-    lineHeight: 1
-    letterSpacing: "0"
+    lineHeight: 1.2
+    letterSpacing: "-0.01em"
   body:
-    fontFamily: "Figtree, system-ui, sans-serif"
+    fontFamily: "Figtree, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
-    fontWeight: 500
-    lineHeight: 1.65
-    letterSpacing: "0.005em"
-  label:
-    fontFamily: "Figtree, system-ui, sans-serif"
-    fontSize: "0.875rem"
     fontWeight: 400
+    lineHeight: 1.55
+  lead:
+    fontFamily: "Figtree, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.125rem, 0.35vw + 1rem, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.45
+  label:
+    fontFamily: "Figtree, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "0"
   code:
-    fontFamily: "JetBrains Mono, monospace"
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.7
-    letterSpacing: "0"
 rounded:
-  none: "0"
-  sm: "calc(0.75rem - 4px)"
-  md: "calc(0.75rem - 2px)"
-  lg: "0.75rem"
-  full: "9999px"
+  control: "999px"
+  inner: "16px"
+  card: "24px"
+  feature: "32px"
 spacing:
-  xs: "0.25rem"
-  sm: "0.5rem"
-  md: "0.75rem"
-  lg: "1rem"
-  xl: "1.5rem"
-  2xl: "2rem"
-  3xl: "3rem"
-  4xl: "4rem"
-  5xl: "6rem"
-  6xl: "8rem"
-  container-x: "clamp(1.25rem, 5vw, 2.5rem)"
-  section-tight: "clamp(4rem, 8vw, 8rem)"
-  section-normal: "clamp(6rem, 12vw, 12rem)"
-  section-generous: "clamp(8rem, 16vw, 16rem)"
+  3xs: "2px"
+  2xs: "4px"
+  xs: "8px"
+  sm: "12px"
+  md: "16px"
+  lg: "24px"
+  xl: "40px"
+  2xl: "64px"
+  3xl: "96px"
+  4xl: "144px"
+  gutter: "64px"
+  gutter-tablet: "24px"
+  gutter-phone: "16px"
 components:
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.primary-foreground}"
-    rounded: "{rounded.none}"
-    padding: "0 2.25rem"
-    height: "3rem"
-  button-outline:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.foreground}"
-    rounded: "{rounded.none}"
-    padding: "0 2.25rem"
-    height: "3rem"
+    backgroundColor: "{colors.night-signal-indigo}"
+    textColor: "{colors.night-signal-ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.control}"
+    padding: "0 24px"
+    height: "48px"
+  button-quiet:
+    backgroundColor: "transparent"
+    textColor: "{colors.instrument-white}"
+    typography: "{typography.label}"
+    rounded: "{rounded.control}"
+    padding: "0 24px"
+    height: "48px"
   nav-bar:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.foreground}"
-    rounded: "{rounded.none}"
-    height: "72px"
-  proof-panel:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.foreground}"
-    rounded: "{rounded.none}"
-    padding: "1rem"
+    backgroundColor: "{colors.lab-bench}"
+    textColor: "{colors.margin-note}"
+    rounded: "{rounded.control}"
+    height: "60px"
+  nav-contact:
+    backgroundColor: "{colors.instrument-white}"
+    textColor: "{colors.lab-night}"
+    typography: "{typography.label}"
+    rounded: "{rounded.control}"
+    height: "44px"
+  chip:
+    backgroundColor: "transparent"
+    textColor: "{colors.readout-grey}"
+    rounded: "{rounded.control}"
+    padding: "4px 12px"
+  card:
+    backgroundColor: "{colors.lab-bench}"
+    textColor: "{colors.instrument-white}"
+    rounded: "{rounded.card}"
+    padding: "24px"
 ---
 
 # Design System: Cesar Garcia Portfolio
 
-## 1. Overview
+## Overview
 
-**Creative North Star: "The Evidence Control Room"**
+**Creative North Star: "The Night Shift Lab"**
 
-This system is a dark, kinetic portfolio for recruiters, hiring managers, and developers reviewing QA automation work under focused desktop or mobile browsing conditions. The scene is a technical evaluator scanning proof late in the hiring loop: ambient light is low, attention is limited, and the interface has to feel precise before it feels decorative.
+A QA lab after hours: the room is deep indigo-black, and the only things lit are the evidence on the bench. The visitor should feel they are looking over the shoulder of someone who traces failures carefully, not reading a brochure. Personality comes from scale and motion, a big two-tone headline that blurs into focus and sections that rise in as you reach them, while the surfaces themselves stay calm and flat.
 
-The visual language is cinematic but disciplined. Large Satoshi headlines create expert confidence, Figtree body copy keeps evidence readable, and cyan OKLCH accents behave like instrumentation signals. Motion is responsive, not ornamental: transform and opacity only, reduced-motion honored, no layout animation.
-
-The system explicitly rejects generic portfolio templates, light mode defaults, overly complex navigation, "AI slop", cliche SaaS designs, hero-metric templates, and identical card grids.
+The system is dark by default and offers a daylight variant behind a toggle; both themes share every rule here. Density is generous: large type, wide gutters, rounded containers that group related evidence. The site was redesigned in late 2026 with personality borrowed from brhpsd.com (floating pill nav, two-tone display headline, rounded cards, staged reveals), then pulled back toward evidence: anything decorative has to justify itself as proof.
 
 **Key Characteristics:**
-- Dark-mode-first control-room atmosphere.
-- Proof-forward content with traceable QA evidence.
-- Sharp rectangular surfaces, thin borders, and sparse cyan signal.
-- Large editorial type balanced by compact operational labels.
-- Motion that clarifies state without carrying the story.
+- Indigo-black night surfaces, one indigo signal colour, cool lavender-grey neutrals.
+- Satoshi Black for display, Figtree for reading, JetBrains Mono only for real code.
+- Rounded containers (24px cards, pill controls) with 1px hairlines, flat at rest.
+- One authored entrance (the headline's word blur-in), quiet scroll reveals after it (opacity and a short rise, never blur).
+- Real numbers and real artefacts over ornament.
 
-## 2. Colors
+## Colors
 
-The palette is a restrained dark neutral system with one dominant cyan signal and two reserved support hues.
+One saturated signal in a field of tinted neutrals; nothing is pure black or white.
 
 ### Primary
-- **Run Signal Cyan**: The primary action and active-state color. Use it for the logo signal, primary CTAs, menu state, proof status dots, focused rings, and small evidence labels.
-
-### Secondary
-- **Incident Ember**: A warm alert/support color. Use only when a secondary or destructive contrast is needed. It should never compete with Run Signal Cyan on the same local surface.
-
-### Tertiary
-- **Validation Green**: A reserved success/support accent. Use for validation-oriented moments where cyan would overstate importance.
+- **Night Signal Indigo** (`night-signal-indigo`): the one accent in dark mode. The primary button, the accent line of the hero headline, the stat figures, the active nav pill, step numerals, focus rings (via `night-signal-focus`). Text placed on it uses `night-signal-ink`.
+- **Day Indigo** (`day-indigo`): the same role in light mode, darkened so it holds AA as text on `day-paper`; text placed on it is white.
 
 ### Neutral
-- **Control Room Black**: The page background. It is tinted toward blue, never pure black.
-- **Instrument White**: The main text color. It is tinted cool, never pure white.
-- **Panel Graphite**: Card and footer surfaces. Use it for contained evidence modules, not for every section.
-- **Quiet Steel**: The muted text family and low-emphasis fills.
-- **Scope Line**: The border, input, and divider color. Keep it thin and technical.
+- **Lab Night** (`lab-night`): page background in dark mode. Light mode: `day-paper`.
+- **Lab Bench** (`lab-bench`): cards, the nav bar, the contact card, banded sections. Light mode: `day-card`.
+- **Lab Shelf** (`lab-shelf`): hover fill for rows and nav links. Light mode: `day-shelf`.
+- **Instrument White** (`instrument-white`): headings and primary text. Light mode: `day-ink`.
+- **Readout Grey** (`readout-grey`): body copy and leads. Light mode: `day-ink-2`.
+- **Margin Note** (`margin-note`): periods, captions, labels, nav links at rest. Light mode: `day-muted`.
+- **Hairline / Hairline Strong** (`hairline`, `hairline-strong`): dividers and card borders; the strong one for quiet buttons and emphasized rules. Light mode: `day-hairline`, `day-hairline-strong`.
+
+### Status
+- **Pass Green** (`pass-green`) and **Fail Coral** (`fail-coral`): only for real state, such as availability or the copy-email error. Light mode: `day-pass`, `day-fail`.
 
 ### Named Rules
+**The One Signal Rule.** Indigo marks action, state, or the single most important figure. If more than one thing in a viewport competes in indigo for a reason other than state, one of them loses its indigo.
 
-**The Signal Scarcity Rule.** Run Signal Cyan must remain rare enough to feel like state, proof, or action. Do not wash entire sections in cyan.
+**The Tinted Neutral Rule.** Every neutral carries the indigo hue. No `#000`, no `#fff` text on dark, no default greys.
 
-**The No Light Fallback Rule.** This portfolio is dark-mode-first by strategy. Do not introduce light sections, cream neutrals, or daytime SaaS panels.
+## Typography
 
-## 3. Typography
+**Display Font:** Satoshi (with Figtree, system sans)
+**Body Font:** Figtree (with system sans)
+**Code Font:** JetBrains Mono
 
-**Display Font:** Satoshi, with Figtree and system sans fallbacks  
-**Body Font:** Figtree, with system sans fallback  
-**Code Font:** JetBrains Mono, only for code. Never for labels, dates, nav or tags.
-
-**Character:** The pairing is compact, confident, and technical without becoming terminal cosplay. Display type is heavy and cinematic; body type stays clean enough for resume-level evidence.
+**Character:** Satoshi Black is loud and compact, so it carries the personality; Figtree is plain and friendly, so evidence reads easily under it.
 
 ### Hierarchy
-- **Display** (900, `clamp(2.7rem, 8vw, 5.15rem)`, `0.92`): Hero statements and page-defining claims.
-- **Headline** (900, `clamp(3rem, 8vw, 6rem)`, `1`): Major section titles and proof-led section openers.
-- **Title** (900, `2.25rem`, `1`): Experience cards, skill cards, contact cards, and proof slide titles.
-- **Body** (500, `1rem`, `1.65`): Evidence paragraphs, role descriptions, and explanatory copy. Keep readable text to roughly 65 to 75 characters per line.
-- **Label** (Figtree, 400, `0.875rem`, no tracking, sentence case): navigation, dates, table heads, captions.
-- **Code** (JetBrains Mono, 400, `0.875rem`): code samples only.
-
-**The No Costume Rule.** No uppercase, no letter-spacing and no monospace on labels. A label is the body face, one step smaller, in sentence case.
-
-**The One Head Rule.** A section head is one line of plain words that says what the reader will see (*What happens when a check fails*). No "Word." headline with a grey slogan under it.
+- **Display** (900, clamp 2.75rem to 6.75rem, line-height 0.98, -0.025em): the hero title only, set on two lines with the second in indigo.
+- **Headline** (900, clamp 2rem to 3.5rem, 1.05): section heads. One line of plain words that says what the reader will see.
+- **Title** (900, clamp 1.25rem to 1.625rem, 1.2): company names, case-study titles, skill areas.
+- **Lead** (400, clamp 1.125rem to 1.375rem, 1.45): the sentence under a head, max 52ch.
+- **Body** (400, 1rem, 1.55): everything else, max 65ch.
+- **Label** (600, 0.875rem): buttons, chips, stat labels.
+- **Code** (400, 0.875rem, 1.7): code samples only.
 
 ### Named Rules
+**The Plain Head Rule.** Headings are plain statements of content ("What happens when a check fails", "Problems I've solved"). No slogans, no kicker or eyebrow label above them.
 
-**The Proof Before Poetry Rule.** Headlines may be expressive, but every section must quickly resolve into evidence: tools, systems, scope, or action.
+**The Mono Means Code Rule.** JetBrains Mono appears only inside real code or command output, never as a costume for labels or tool names.
 
-**The No Negative Tracking Rule.** Letter spacing stays at zero for display copy. Tightness comes from scale and weight, not squeezed glyphs.
+## Layout
 
-## 4. Elevation
+A single centred column up to 1440px with 64px gutters (24px under 60rem, 16px under 40rem). Sections sit 144px apart on desktop, tighter on smaller screens. Inside sections, a 12-column feel is expressed as two-column splits (5:7 or 7:5) that collapse to one column under 60rem; the stats run four across, two across on tablets and phones; case studies run three across, stacking on tablets and phones.
 
-Depth is tonal and structural only: hairlines (`--color-rule`), one tinted band (`--color-paper-2`) for the skills table, and a bordered panel for the code sample. No shadows and no glows.
+Page order is evidence-first: hero, real numbers, experience index, case studies, AI-assisted QA, the triage process with code, skills by risk, about, contact.
 
-### Named Rules
+**The Evidence First Rule.** Within two scrolls a visitor must reach a real fact about the work (a number, a role, a result). Anything placed above that has to earn the space.
 
-**The Flat At Rest Rule.** Most surfaces are flat at rest. Lift appears through sticky context, hover state, or proof hierarchy.
+## Elevation & Depth
 
-**The No Glass Rule.** Do not use decorative blur or backdrop-filter surfaces. Clarity beats haze.
+Flat at rest. Depth comes from tonal layering (night, bench, shelf) and 1px hairlines, not from shadows. The only shadows are the scrolled nav bar (`0 16px 40px -24px rgb(0 0 0 / 0.5)`) and the primary button's hover. The nav bar is translucent with a backdrop blur because it floats over moving content; that is the one functional use of blur.
 
-## 5. Components
+**The Calm Surface Rule.** Cards do not lift or glow. Only interactive elements respond to hover, and they respond with a border or fill change, not elevation. If it isn't clickable, it doesn't move.
+
+## Shapes
+
+Controls are pills (999px): buttons, chips, nav links, the nav bar itself. Containers use generous rounding: cards 24px, inner rows and AI tool tiles 16px, feature panels (the contact card) 32px, which falls back to 24px on phones. Borders are always a full 1px hairline; never a single coloured side.
+
+## Components
 
 ### Buttons
-- **Shape:** Industrial rectangle, no radius (`0`).
-- **Primary:** Run Signal Cyan background, dark primary-foreground text, bold 14px label, 48px mobile height, 56px desktop height.
-- **Hover / Focus:** Translate up by 4px, tint the background, keep focus rings cyan and visible.
-- **Secondary / Outline:** Transparent dark surface with Scope Line border. It may turn cyan on hover but must not become a second primary.
+Precise and calm.
+- **Shape:** pill (999px), 48px tall, 24px side padding, label type, icon at 18px with an 8px gap.
+- **Primary:** Night Signal Indigo fill with Night Signal Ink text. One per view where possible: Download CV (PDF).
+- **Quiet:** transparent with a Hairline Strong border and Instrument White text: Email me, Copy email.
+- **Hover / Focus:** fill shifts slightly toward ink; trailing arrows slide 3px. Focus is a 2px Night Signal Focus outline offset 3px.
+- **Naming:** each action has one name everywhere. "Download CV (PDF)" downloads the PDF, "Email me" opens mail, "Contact" goes to the contact section.
 
 ### Chips
-- **Style:** Thin Scope Line border, dark surface, compact 11px to 12px bold text.
-- **State:** Chips label proof categories and tools. They are not decorative tags, and they should not form identical card-grid filler.
+- **Style:** transparent pill with a Hairline Strong border, Readout Grey label at 0.875rem. Used for tools in skills and case studies.
+- **State:** static; they brighten only when their row is hovered.
 
 ### Cards / Containers
-- **Corner Style:** Square by default (`0`) with rare pill treatment only for the header shell or circular proof controls.
-- **Background:** Use Control Room Black, Panel Graphite, or a low-opacity foreground tint.
-- **Shadow Strategy:** Follow the Flat At Rest Rule. Borders carry most boundaries.
-- **Border:** 1px Scope Line, usually at 40 to 60 percent alpha.
-- **Internal Padding:** 24px mobile, 32px to 40px desktop for evidence-heavy surfaces.
-
-### Inputs / Fields
-- **Style:** Use the same dark surface, 1px Scope Line border, and square geometry as cards.
-- **Focus:** Cyan ring with clear offset against the dark background.
-- **Error / Disabled:** Use Incident Ember for error states and opacity reduction for disabled states. Do not blur disabled content.
+- **Corner Style:** 24px.
+- **Background:** Lab Bench on Lab Night (inverted to white on Day Paper in light mode).
+- **Shadow Strategy:** none (see Elevation).
+- **Border:** 1px Hairline.
+- **Internal Padding:** 24px, 40px for feature panels.
 
 ### Navigation
-- **Style:** Edge-aligned sticky bar: the wordmark "Cesar Garcia" in Satoshi at left; section links and an outlined "Email me" at right. A hairline appears under it once the page scrolls. No pill, no logo mark.
-- **States:** Links are muted, ink on hover, cyan and underlined when their section is in view. Under 60rem the links move into a full-screen dialog with inert background, trapped focus, Escape close and restored focus.
+A floating pill bar 12px below the top of the viewport: wordmark with a small indigo square on the left, text links in Margin Note, a theme toggle, and a solid Instrument White "Contact" pill that turns indigo when the contact section is active. Active links get a 18% indigo tint. Under 60rem the links collapse into a full-screen sheet with large Satoshi links and Download CV / Email me at the bottom; the bar stays above the sheet so the close button is always reachable.
 
-### The Roles Index
+### Stats Band
+Four real figures from the CV (years in QA, countries, Playwright specs, page object files) in Satoshi Black indigo, each with a plain label and a one-line note. Numbers count up once on first view and render instantly with reduced motion.
 
-The signature pattern. The first screen is the list of roles: period, company, title and one line of proof per row, each row a disclosure that opens to its evidence. Evidence before decoration: no slogans, dashboards or status dots above it.
+### Experience Index
+A list of roles inside one card: period, company and title, a one-line proof, and a plus toggle. Opening a role reveals bullet evidence with the real numbers in bold.
 
-### Code Sample
+### Case Study
+Problem, What I did, Result, then the tools as chips. The result line is the only bold line in the card.
 
-One code figure in a `data-slot`, captioned honestly. Replace the current sketch with a real excerpt from a public repo when one exists.
-
-## 6. Do's and Don'ts
+## Do's and Don'ts
 
 ### Do:
-- **Do** keep the site dark-mode-first, using Control Room Black as the base and Instrument White for readable evidence.
-- **Do** use Run Signal Cyan for real state: the one primary action, active navigation, focus and step numerals.
-- **Do** lead with proof language: Playwright architecture, accessibility, CI evidence, traces, reusable helpers, global storefront coverage.
-- **Do** preserve reduced-motion behavior and restrict animation to opacity and transform. One hero settle; no scroll-scrubbed motion.
-- **Do** keep navigation simple and directly tied to page sections.
-- **Do** use thin full borders or tonal panels instead of decorative side stripes.
+- **Do** keep dark as the default theme and make light a remembered opt-in that applies before first paint.
+- **Do** use Night Signal Indigo for the primary action, the hero's second line, stat figures, active nav and step numerals only.
+- **Do** show each number once, where it carries the most weight.
+- **Do** prefer a real artefact (a trace, a report, a spec, a photo) to a decorative stand-in.
+- **Do** respect reduced motion: reveals, the word blur-in and the count-up all render final state immediately.
+- **Do** cover every interactive flow with a Playwright spec (`npm run test:e2e`).
 
 ### Don't:
-- **Don't** use generic portfolio templates.
-- **Don't** use light mode defaults.
-- **Don't** build overly complex navigation.
-- **Don't** ship "AI slop" or cliche SaaS designs.
-- **Don't** use hero-metric templates.
-- **Don't** create identical card grids.
-- **Don't** add gradient text, decorative glassmorphism, blur-heavy panels, or backdrop-filter effects.
-- **Don't** use pure `#000` or `#fff`; every neutral must stay tinted.
-- **Don't** use tracked uppercase or monospace labels, eyebrows, middle-dot meta strings or status dots.
-- **Don't** write slogans ("Proof over polish", "release confidence"). Say the fact: the storefronts, the tools, the result.
+- **Don't** add hover lift or glow to anything that isn't clickable.
+- **Don't** put an eyebrow or kicker label above a heading.
+- **Don't** fake product chrome: no decorative window dots, no mock dashboards, no invented telemetry.
+- **Don't** write slogans in headings or meta descriptions.
+- **Don't** use monospace, tracked uppercase or middle-dot strings as decoration.
+- **Don't** use pure `#000` or `#fff` for text or backgrounds.
+- **Don't** add a marquee or logo wall.

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUp, ArrowUpRight, Bot, Check, Copy, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
   about,
@@ -51,9 +51,6 @@ function CaseStudies() {
         <ol className="cases">
           {caseStudies.map((item, i) => (
             <li key={item.title} className="case" data-reveal style={stagger(i + 1)}>
-              <p className="case__tag">
-                <span className="num">0{i + 1}</span> {item.tag}
-              </p>
               <h3 className="case__title">{item.title}</h3>
               <dl className="case__body">
                 <div>
@@ -90,10 +87,6 @@ function AiWorkflow() {
       <div className="container">
         <div className="ai" data-reveal>
           <div className="ai__intro">
-            <p className="eyebrow">
-              <Bot width={16} height={16} aria-hidden="true" />
-              AI-assisted QA
-            </p>
             <h2 id="ai-title">{aiWorkflow.title}</h2>
             <p className="lead">{aiWorkflow.body}</p>
           </div>
@@ -115,36 +108,24 @@ function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
       <div className="container about">
-        <figure
-          className="about__photo"
-          data-slot="portrait"
-          data-reveal
-          data-alt="Portrait of Cesar Garcia"
-        >
-          <span className="about__monogram" aria-hidden="true">
-            CG
-          </span>
-          <figcaption data-keep>
-            <MapPin width={16} height={16} aria-hidden="true" />
-            Tijuana, B.C.
-          </figcaption>
-        </figure>
-        <div className="about__text" data-reveal style={stagger(1)}>
-          <h2 id="about-title">Hi, I'm Cesar</h2>
+        <h2 id="about-title" className="about__title" data-reveal>
+          Hi, I'm Cesar
+        </h2>
+        <div className="about__story" data-reveal style={stagger(1)}>
           {about.paragraphs.map((text) => (
             <p key={text} className="lead">
               {text}
             </p>
           ))}
-          <dl className="about__facts">
-            {about.facts.map((fact) => (
-              <div key={fact.label}>
-                <dt>{fact.label}</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
+        <dl className="about__facts" data-reveal style={stagger(2)}>
+          {about.facts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -181,15 +162,10 @@ function Triage() {
           data-alt="A real excerpt from a public Playwright repo: a setup project or a page object"
         >
           <figcaption>
-            <span className="code__dots" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
             A simplified sketch of the PunchOut setup pattern, written for this
             page
           </figcaption>
-          <pre>
+          <pre tabIndex={0} aria-label="Code sample: PunchOut setup">
             <code>
               <span className="c">{"// punchout.setup.ts"}</span>
               {"\n"}
@@ -220,12 +196,15 @@ function Triage() {
               <span className="s">{"'example-buyer'"}</span>
               {" });\n\n"}
               {"  "}
-              <span className="k">await</span>
-              {" expect(page.getByRole("}
+              <span className="k">const</span>
+              {" cart = page.getByRole("}
               <span className="s">{"'heading'"}</span>
               {", { name: "}
               <span className="s">{"'Cart'"}</span>
-              {" })).toBeVisible();\n"}
+              {" });\n"}
+              {"  "}
+              <span className="k">await</span>
+              {" expect(cart).toBeVisible();\n"}
               {"  "}
               <span className="k">const</span>
               {" a11y = "}
@@ -235,10 +214,13 @@ function Triage() {
               {" AxeBuilder({ page }).analyze();\n"}
               {"  expect(a11y.violations).toEqual([]);\n\n"}
               {"  "}
-              <span className="k">await</span>
-              {" page.context().storageState({ path: "}
+              <span className="k">const</span>
+              {" path = "}
               <span className="s">{"'.auth/punchout-us.json'"}</span>
-              {" });\n"}
+              {";\n"}
+              {"  "}
+              <span className="k">await</span>
+              {" page.context().storageState({ path });\n"}
               {"});"}
             </code>
           </pre>
@@ -361,6 +343,10 @@ function Contact() {
               Email me
               <ArrowUpRight className="btn__arrow" aria-hidden="true" />
             </a>
+            <a className="btn btn--quiet" href={cv.href} download>
+              <Download aria-hidden="true" />
+              {cv.label}
+            </a>
             <CopyEmailButton />
           </div>
           <a id="contact-email" className="contact__email" href={`mailto:${contactEmail}`}>
@@ -396,7 +382,7 @@ function Footer() {
         <ul className="footer__links">
           <li>
             <a className="text-link" href={cv.href} download>
-              CV (PDF)
+              {cv.label}
             </a>
           </li>
           <li>
