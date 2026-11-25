@@ -84,7 +84,8 @@ test.describe("health on every device", () => {
       await setTheme(page, theme);
       await page.goto("/");
       await scrollThrough(page);
-      await page.evaluate(() => window.scrollTo(0, 0));
+      // Instant, not the page's smooth scroll: a capture mid-scroll repeats the header and hero.
+      await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
       await page.waitForTimeout(300);
       await page.screenshot({ path: testInfo.outputPath(`${theme}-full.png`), fullPage: true });
     });
@@ -147,7 +148,7 @@ test.describe("navigation", () => {
     test.skip(isMobile, "desktop nav links collapse into the menu on small screens");
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Primary" });
-    for (const name of ["About", "Work", "Skills"]) {
+    for (const name of ["Experience", "Work", "Skills"]) {
       const link = nav.getByRole("link", { name, exact: true });
       await link.click();
       await scrollSettled(page);
@@ -165,19 +166,12 @@ test.describe("navigation", () => {
     const nav = page.getByRole("navigation", { name: "Primary" });
     const current = nav.locator('[aria-current="location"]');
 
-    // The About heading sits mid-screen while Experience still fills the top quarter.
+    // The Work heading sits mid-screen while Experience still fills the top of the viewport.
     await page.evaluate(() => {
-      const heading = document.getElementById("about-title")!;
-      window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - innerHeight * 0.5, behavior: "instant" });
-    });
-    await expect(current).toHaveText("About");
-
-    // Triage has no nav entry, so nothing stays highlighted from Work.
-    await page.evaluate(() => {
-      const heading = document.getElementById("approach-title")!;
+      const heading = document.getElementById("work-title")!;
       window.scrollTo({ top: heading.getBoundingClientRect().top + window.scrollY - innerHeight * 0.3, behavior: "instant" });
     });
-    await expect(current).toHaveCount(0);
+    await expect(current).toHaveText("Work");
 
     // At the very bottom the last section wins even if it never reaches the reading line.
     await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
@@ -220,9 +214,17 @@ test.describe("navigation", () => {
 });
 
 test.describe("content and actions", () => {
+  test("the current role starts open", async ({ page }) => {
+    await page.goto("/");
+    const roles = page.locator(".role__details");
+    await expect(roles.first()).toHaveAttribute("open", "");
+    await expect(roles.first().locator(".role__points li").first()).toBeVisible();
+    await expect(roles.nth(1)).not.toHaveAttribute("open", "");
+  });
+
   test("roles open and close with pointer and keyboard", async ({ page }) => {
     await page.goto("/");
-    const role = page.locator(".role__details").first();
+    const role = page.locator(".role__details").nth(1);
     const summary = role.locator("summary");
     await summary.scrollIntoViewIfNeeded();
     await summary.click();
@@ -318,6 +320,13 @@ test.describe("preferences", () => {
     );
     expect(hidden).toBe(0);
   });
+});
+
+test("the public demo repo is linked from Work", async ({ page }) => {
+  await page.goto("/");
+  const repo = page.locator("#work").getByRole("link", { name: /playwright-qa-demo/ });
+  await expect(repo).toHaveAttribute("href", "https://github.com/cesaroctavio/playwright-qa-demo");
+  await expect(repo).toHaveAttribute("target", "_blank");
 });
 
 test.describe("Checkpoint demo", () => {

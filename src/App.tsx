@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { ArrowUp, ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { HeroHeader, HeroSection } from "@/components/blocks/hero-section-1";
 import {
-  about,
-  aiWorkflow,
   caseStudies,
   contactEmail,
   contacts,
   cv,
-  skillRows,
-  triageSteps,
+  demoRepo,
+  siteTests,
+  stack,
 } from "@/content";
 
 // Fades sections in as they enter the viewport. Elements opt in with data-reveal; --d staggers siblings.
@@ -77,157 +76,33 @@ function CaseStudies() {
             </li>
           ))}
         </ol>
-      </div>
-    </section>
-  );
-}
-
-function AiWorkflow() {
-  return (
-    <section className="section section--tight" aria-labelledby="ai-title">
-      <div className="container">
-        <div className="ai" data-reveal>
-          <div className="ai__intro">
-            <p className="eyebrow">AI-assisted QA</p>
-            <h2 id="ai-title">{aiWorkflow.title}</h2>
-            <p className="lead">{aiWorkflow.body}</p>
-          </div>
-          <ol className="ai__tools">
-            {aiWorkflow.tools.map((tool, i) => (
-              <li key={tool.name} data-reveal style={stagger(i + 1)}>
-                <h3>{tool.name}</h3>
-                <p>{tool.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section id="about" className="section" aria-labelledby="about-title">
-      <div className="container about">
-        <h2 id="about-title" className="about__title" data-reveal>
-          Hi, I'm Cesar
-        </h2>
-        <div className="about__story" data-reveal style={stagger(1)}>
-          {about.paragraphs.map((text) => (
-            <p key={text} className="lead">
-              {text}
-            </p>
-          ))}
-        </div>
-        <dl className="about__facts" data-reveal style={stagger(2)}>
-          {about.facts.map((fact) => (
-            <div key={fact.label}>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
-  );
-}
-
-function Triage() {
-  return (
-    <section id="approach" className="section section--band" aria-labelledby="approach-title">
-      <div className="container triage">
-        <div>
-          <div className="section__head" data-reveal>
-            <p className="eyebrow">Triage</p>
-            <h2 id="approach-title">What happens when a check fails</h2>
-            <p className="lead">
-              Every failure is traced, classified and handed over with a next
-              action.
-            </p>
-          </div>
-          <ol className="steps">
-            {triageSteps.map((step, i) => (
-              <li key={step.label} data-reveal style={stagger(i + 1)}>
-                <h3>{step.label}</h3>
-                <p>{step.value}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <figure
+        <a
+          className="repo"
+          href={demoRepo.href}
+          target="_blank"
+          rel="noopener noreferrer"
           data-reveal
-          style={stagger(2)}
-          className="code"
-          data-slot="code"
-          data-kind="product"
-          data-alt="A real excerpt from a public Playwright repo: a setup project or a page object"
+          style={stagger(4)}
         >
-          <figcaption>
-            A simplified sketch of the PunchOut setup pattern, written for this
-            page
-          </figcaption>
-          <pre tabIndex={0} aria-label="Code sample: PunchOut setup">
-            <code>
-              <span className="c">{"// punchout.setup.ts"}</span>
-              {"\n"}
-              <span className="k">import</span>
-              {" { test as setup, expect } "}
-              <span className="k">from</span> <span className="s">{"'@playwright/test'"}</span>;{"\n"}
-              <span className="k">import</span>
-              {" { PunchOutSession } "}
-              <span className="k">from</span> <span className="s">{"'./pages/punchout-session'"}</span>;{"\n"}
-              <span className="k">import</span>
-              {" AxeBuilder "}
-              <span className="k">from</span> <span className="s">{"'@axe-core/playwright'"}</span>;{"\n\n"}
-              {"setup("}
-              <span className="s">{"'B2B PunchOut session'"}</span>
-              {", "}
-              <span className="k">async</span>
-              {" ({ page, request }) => {\n"}
-              {"  "}
-              <span className="k">const</span>
-              {" session = "}
-              <span className="k">new</span>
-              {" PunchOutSession(page, request);\n"}
-              {"  "}
-              <span className="k">await</span>
-              {" session.start({ storefront: "}
-              <span className="s">{"'us'"}</span>
-              {", buyer: "}
-              <span className="s">{"'example-buyer'"}</span>
-              {" });\n\n"}
-              {"  "}
-              <span className="k">const</span>
-              {" cart = page.getByRole("}
-              <span className="s">{"'heading'"}</span>
-              {", { name: "}
-              <span className="s">{"'Cart'"}</span>
-              {" });\n"}
-              {"  "}
-              <span className="k">await</span>
-              {" expect(cart).toBeVisible();\n"}
-              {"  "}
-              <span className="k">const</span>
-              {" a11y = "}
-              <span className="k">await</span>
-              {" "}
-              <span className="k">new</span>
-              {" AxeBuilder({ page }).analyze();\n"}
-              {"  expect(a11y.violations).toEqual([]);\n\n"}
-              {"  "}
-              <span className="k">const</span>
-              {" path = "}
-              <span className="s">{"'.auth/punchout-us.json'"}</span>
-              {";\n"}
-              {"  "}
-              <span className="k">await</span>
-              {" page.context().storageState({ path });\n"}
-              {"});"}
-            </code>
-          </pre>
-        </figure>
+          <span className="repo__text">
+            <span className="eyebrow">Public code</span>
+            <span className="repo__name">{demoRepo.name}</span>
+            <span className="repo__body">{demoRepo.body}</span>
+          </span>
+          <span className="repo__cta">
+            View on GitHub
+            <ArrowUpRight className="btn__arrow" aria-hidden="true" />
+          </span>
+          <span className="visually-hidden"> (opens in a new tab)</span>
+        </a>
+        <p className="repo-note" data-reveal style={stagger(5)}>
+          This site is tested too:{" "}
+          <a className="text-link" href={siteTests.href} target="_blank" rel="noopener noreferrer">
+            {siteTests.label}
+            <span className="visually-hidden"> (opens in a new tab)</span>
+          </a>{" "}
+          checks accessibility in both themes, text at 200% and touch target sizes.
+        </p>
       </div>
     </section>
   );
@@ -239,36 +114,24 @@ function Skills() {
       <div className="container">
         <div className="section__head" data-reveal>
           <p className="eyebrow">Stack</p>
-          <h2 id="skills-title">Tools, by the risk they cover</h2>
+          <h2 id="skills-title">Tools I use</h2>
         </div>
-        <div className="skills-card" data-reveal style={stagger(1)}>
-        <table className="skills">
-          <thead>
-            <tr>
-              <th scope="col">Risk</th>
-              <th scope="col">How it is covered</th>
-              <th scope="col">Tools</th>
-            </tr>
-          </thead>
-          <tbody>
-            {skillRows.map((row) => (
-              <tr key={row.title}>
-                <td className="skills__area">{row.title}</td>
-                <td className="skills__body">{row.body}</td>
-                <td className="skills__tools">
-                  <ul className="chips">
-                    {row.tools.split(", ").map((tool) => (
-                      <li key={tool} className="chip">
-                        {tool}
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
+        <dl className="skills-card stack" data-reveal style={stagger(1)}>
+          {stack.map((row) => (
+            <div key={row.area} className="stack__row">
+              <dt className="stack__area">{row.area}</dt>
+              <dd>
+                <ul className="chips">
+                  {row.tools.split(", ").map((tool) => (
+                    <li key={tool} className="chip">
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -339,8 +202,8 @@ function Contact() {
             <p className="eyebrow">Contact</p>
             <h2 id="contact-title">Open to remote US teams</h2>
             <p className="lead">
-              Pacific Time, based in Tijuana. QA automation architecture,
-              framework stabilization and quality strategy.
+              Based in Tijuana on Pacific Time, working with distributed Agile
+              teams in the US and offshore. B.Eng. in Computer Engineering.
             </p>
           </div>
           <div className="contact-card__actions">
@@ -424,10 +287,7 @@ export default function App() {
       <HeroHeader />
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
-        <About />
         <CaseStudies />
-        <AiWorkflow />
-        <Triage />
         <Skills />
         <Contact />
       </main>
