@@ -9,7 +9,6 @@ import {
   Moon,
   Plus,
   Sun,
-  User,
   Wrench,
   type LucideIcon,
 } from "lucide-react";
@@ -153,7 +152,7 @@ export function HeroSection() {
         <div className="hero__head">
           <p className="eyebrow eyebrow--pill hero__fade">
             <span className="eyebrow__dot" aria-hidden="true" />
-            Open to remote US teams
+            Open to remote US teams, on Pacific Time
           </p>
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">
@@ -198,13 +197,14 @@ export function HeroSection() {
           <div className="section__head section__head--compact" data-reveal>
             <p className="eyebrow">Experience</p>
             <h2>Where I've worked</h2>
-            <p className="lead">Open a role to see what I did there.</p>
+            <p className="lead">Open a role for the details.</p>
           </div>
           <div className="roles" data-reveal style={{ "--d": 1 } as React.CSSProperties}>
           <ol className="roles__list">
-            {experiences.map((exp) => (
+            {experiences.map((exp, i) => (
               <li key={exp.company} className="role">
-                <details className="role__details">
+                {/* The current role starts open so a quick scan still sees its bullets. */}
+                <details className="role__details" open={i === 0}>
                   <summary className="role__summary">
                     <span className="role__period num">{exp.period}</span>
                     <span className="role__name">
@@ -237,7 +237,6 @@ const menuIcons: Record<string, LucideIcon> = {
   "#experience": Briefcase,
   "#work": FolderKanban,
   "#skills": Wrench,
-  "#about": User,
   "#contact": Mail,
 };
 
@@ -263,8 +262,7 @@ export const HeroHeader = () => {
   React.useEffect(() => {
     // The active section is the last one whose top has passed a reading line at 40% of the
     // viewport. A fixed band near the top misread sections separated by tall padding.
-    // Every section is tracked (not only nav items), so Triage clears the "Work" highlight.
-    const sectionIds = ["hero", "experience", "about", "work", "approach", "skills", "contact"];
+    const sectionIds = ["hero", "experience", "work", "skills", "contact"];
     let frame = 0;
 
     const update = () => {

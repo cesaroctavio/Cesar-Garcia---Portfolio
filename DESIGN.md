@@ -190,13 +190,13 @@ One saturated signal in a field of tinted neutrals; nothing is pure black or whi
 
 A single centred column up to 1440px with 64px gutters (24px under 60rem, 16px under 40rem). Sections sit 144px apart on desktop, tighter on smaller screens. Inside sections, a 12-column feel is expressed as two-column splits (5:7 or 7:5) that collapse to one column under 60rem; the stats run four across, two across on tablets and phones; case studies run three across, stacking on tablets and phones.
 
-Page order: centred hero, the Checkpoint demo, real numbers, experience index, about, case studies, AI-assisted QA, the triage process with code, skills by risk, contact.
+Page order (five blocks, 2026-11-24 cut for scan speed): centred hero, the Checkpoint demo, real numbers, experience index, case studies plus the public `playwright-qa-demo` repo card, skills by area, contact. Each fact appears once: numbers in the stats band, multi-market, flaky-test and incident stories in the case studies.
 
 **The Evidence First Rule.** Within two scrolls a visitor must reach a real fact about the work (a number, a role, a result). Anything placed above that has to earn the space.
 
 ## Elevation & Depth
 
-Mostly flat. Depth comes from tonal layering (night, bench, shelf), 1px hairlines, a faint top sheen on cards (`--card-sheen`) and soft indigo glows (`--glow`, `--glow-2`): behind the hero over a faded 56px grid, under the demo window, and inside the AI and contact panels. Shadows: the scrolled nav bar, the primary button, and the demo window and its toasts (`--shadow-demo`). Backdrop blur is used where something floats over content: the nav bar, the stats card and the demo tab bar.
+Mostly flat. Depth comes from tonal layering (night, bench, shelf), 1px hairlines, a faint top sheen on cards (`--card-sheen`) and soft indigo glows (`--glow`, `--glow-2`): behind the hero over a faded 56px grid, under the demo window, and inside the repo and contact cards. Shadows: the scrolled nav bar, the primary button, and the demo window and its toasts (`--shadow-demo`). Backdrop blur is used where something floats over content: the nav bar, the stats card and the demo tab bar.
 
 **The Calm Surface Rule.** Glows are ambient and fixed; they never pulse or follow the pointer. Case-study cards are the one static container that lifts (3px) on hover.
 
