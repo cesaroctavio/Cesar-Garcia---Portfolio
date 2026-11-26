@@ -235,12 +235,9 @@ test.describe("content and actions", () => {
     await expect(role).not.toHaveAttribute("open", "");
   });
 
-  test("stats count up to their real values", async ({ page }) => {
+  test("stats show their real values from the first frame", async ({ page }) => {
     await page.goto("/");
-    const stats = page.locator(".stats");
-    await expect(stats.locator(".visually-hidden")).toHaveText(["7+", "17", "55", "60"]);
-    await stats.scrollIntoViewIfNeeded();
-    await expect(stats.locator(".stat__value [aria-hidden]")).toHaveText(["7+", "17", "55", "60"], { timeout: 6000 });
+    await expect(page.locator(".stats .stat__value")).toHaveText(["7+", "17", "55", "60"]);
   });
 
   test("CV link serves a PDF", async ({ page, request }) => {
@@ -312,7 +309,7 @@ test.describe("preferences", () => {
   test("reduced motion shows everything immediately", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    await expect(page.locator(".stat__value [aria-hidden]").first()).toHaveText("7+");
+    await expect(page.locator(".stat__value").first()).toHaveText("7+");
     const hidden = await page.evaluate(() =>
       [...document.querySelectorAll("[data-reveal], .word, .hero__fade")].filter(
         (el) => getComputedStyle(el).opacity === "0",
@@ -327,6 +324,13 @@ test("the public demo repo is linked from Work", async ({ page }) => {
   const repo = page.locator("#work").getByRole("link", { name: /playwright-qa-demo/ });
   await expect(repo).toHaveAttribute("href", "https://github.com/cesaroctavio/playwright-qa-demo");
   await expect(repo).toHaveAttribute("target", "_blank");
+});
+
+test("the Pet Grooming System live demo is linked from Work", async ({ page }) => {
+  await page.goto("/");
+  const demo = page.locator("#work").getByRole("link", { name: /Pet Grooming System/ });
+  await expect(demo).toHaveAttribute("href", "https://pet-grooming-system-sigma.vercel.app");
+  await expect(demo).toHaveAttribute("target", "_blank");
 });
 
 test.describe("Checkpoint demo", () => {

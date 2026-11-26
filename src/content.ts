@@ -104,11 +104,23 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export const demoRepo = {
-  href: "https://github.com/cesaroctavio/playwright-qa-demo",
-  name: "playwright-qa-demo",
-  body: "A public Playwright and TypeScript suite you can read and run: page objects, login shared through a setup project, negative paths, order-total checks, Axe scans and CI that publishes the report.",
-};
+// Pet Grooming System's repo is private, so its card links the live demo, not GitHub.
+export const projects = [
+  {
+    eyebrow: "Public code",
+    href: "https://github.com/cesaroctavio/playwright-qa-demo",
+    name: "playwright-qa-demo",
+    body: "A public Playwright and TypeScript suite you can read and run: page objects, login shared through a setup project, negative paths, order-total checks, Axe scans and CI that publishes the report.",
+    cta: "View on GitHub",
+  },
+  {
+    eyebrow: "Built and tested",
+    href: "https://pet-grooming-system-sigma.vercel.app",
+    name: "Pet Grooming System",
+    body: "Online booking and a private admin for a one-person grooming salon, which I built end to end with Next.js, Postgres and Clerk. Playwright specs cover booking, slot limits, the groomer's daily flow and access control, and every finding from my own QA review was fixed.",
+    cta: "Open live demo",
+  },
+];
 
 export const siteTests = {
   href: "https://github.com/cesaroctavio/Cesar-Garcia---Portfolio/tree/main/tests",
