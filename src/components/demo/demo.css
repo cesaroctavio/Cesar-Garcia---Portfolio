@@ -215,7 +215,7 @@
 
 /* Phones: drop the sidebar and use a narrower design size so text stays legible once scaled */
 @media (max-width: 40rem) {
-  .cp { --cp-w: 600px; --cp-h: 680px; --cp-ratio: 600 / 680; }
+  .cp { --cp-w: 600px; --cp-h: 560px; --cp-ratio: 600 / 560; }
   .cp-window { grid-template-columns: minmax(0, 1fr); }
   .cp-side { display: none; }
   .cp-main { padding: 20px; }

@@ -6,7 +6,7 @@ import {
   contactEmail,
   contacts,
   cv,
-  demoRepo,
+  projects,
   siteTests,
   stack,
 } from "@/content";
@@ -27,7 +27,8 @@ function useScrollReveal() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+      // Fire just before a block enters, so a fast skim never lands on an empty section.
+      { rootMargin: "0px 0px 15% 0px", threshold: 0 },
     );
     targets.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -76,26 +77,29 @@ function CaseStudies() {
             </li>
           ))}
         </ol>
-        <a
-          className="repo"
-          href={demoRepo.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-reveal
-          style={stagger(4)}
-        >
-          <span className="repo__text">
-            <span className="eyebrow">Public code</span>
-            <span className="repo__name">{demoRepo.name}</span>
-            <span className="repo__body">{demoRepo.body}</span>
-          </span>
-          <span className="repo__cta">
-            View on GitHub
-            <ArrowUpRight className="btn__arrow" aria-hidden="true" />
-          </span>
-          <span className="visually-hidden"> (opens in a new tab)</span>
-        </a>
-        <p className="repo-note" data-reveal style={stagger(5)}>
+        {projects.map((project, i) => (
+          <a
+            key={project.href}
+            className="repo"
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+            style={stagger(4 + i)}
+          >
+            <span className="repo__text">
+              <span className="eyebrow">{project.eyebrow}</span>
+              <span className="repo__name">{project.name}</span>
+              <span className="repo__body">{project.body}</span>
+            </span>
+            <span className="repo__cta">
+              {project.cta}
+              <ArrowUpRight className="btn__arrow" aria-hidden="true" />
+            </span>
+            <span className="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        ))}
+        <p className="repo-note" data-reveal style={stagger(4 + projects.length)}>
           This site is tested too:{" "}
           <a className="text-link" href={siteTests.href} target="_blank" rel="noopener noreferrer">
             {siteTests.label}

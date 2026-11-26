@@ -48,53 +48,6 @@ function ThemeToggle() {
   );
 }
 
-// Counts up to the real value once the number scrolls into view. Without motion it just shows the value.
-function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const ref = React.useRef<HTMLSpanElement | null>(null);
-  const [shown, setShown] = React.useState(value);
-
-  React.useEffect(() => {
-    const el = ref.current;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!el || reduce || !("IntersectionObserver" in window)) return;
-    setShown(0);
-    let frame = 0;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        const start = performance.now();
-        const duration = 1400;
-        const tick = (now: number) => {
-          const t = Math.min(1, (now - start) / duration);
-          setShown(Math.round(value * (1 - Math.pow(1 - t, 3))));
-          if (t < 1) frame = requestAnimationFrame(tick);
-        };
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.4 },
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [value]);
-
-  return (
-    <span ref={ref} className="num">
-      <span aria-hidden="true">
-        {shown}
-        {suffix}
-      </span>
-      <span className="visually-hidden">
-        {value}
-        {suffix}
-      </span>
-    </span>
-  );
-}
-
 function Stats() {
   return (
     <dl
@@ -106,7 +59,10 @@ function Stats() {
         <div key={stat.label} className="stat">
           <dt className="stat__label">{stat.label}</dt>
           <dd className="stat__value">
-            <CountUp value={stat.value} suffix={stat.suffix} />
+            <span className="num">
+              {stat.value}
+              {stat.suffix}
+            </span>
           </dd>
           <dd className="stat__note">{stat.note}</dd>
         </div>
@@ -152,7 +108,7 @@ export function HeroSection() {
         <div className="hero__head">
           <p className="eyebrow eyebrow--pill hero__fade">
             <span className="eyebrow__dot" aria-hidden="true" />
-            Open to remote US teams, on Pacific Time
+            Remote for US teams · Pacific Time
           </p>
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">
@@ -168,8 +124,8 @@ export function HeroSection() {
               style={{ "--delay": "450ms" } as React.CSSProperties}
             >
               I'm Cesar Garcia. I began as a developer, testing my own work,
-              and the testing part won. Today I build Playwright suites that
-              catch problems before release.
+              and the testing part won. Today I build the Playwright suites
+              behind Thermo Fisher's storefront releases.
             </p>
             <div
               className="hero__actions hero__fade"

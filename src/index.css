@@ -245,7 +245,7 @@ main:focus { outline: none; }
 
 /* Scroll reveal (only when JS is running, so content never stays hidden) */
 /* No filter here: animating blur on large blocks stalls Safari's smooth anchor scrolling. The h1 keeps the one blur-in. */
-.js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); transition-delay: calc(var(--d, 0) * 90ms); }
+.js [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out); transition-delay: calc(var(--d, 0) * 60ms); }
 .js [data-reveal][data-revealed] { opacity: 1; transform: none; }
 
 /* Footer: letter close */
