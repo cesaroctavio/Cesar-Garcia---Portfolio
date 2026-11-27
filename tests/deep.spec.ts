@@ -319,17 +319,24 @@ test.describe("preferences", () => {
   });
 });
 
-test("the public demo repo is linked from Work", async ({ page }) => {
+test("the public demo repo is linked from Projects", async ({ page }) => {
   await page.goto("/");
-  const repo = page.locator("#work").getByRole("link", { name: /playwright-qa-demo/ });
+  const repo = page.locator("#projects").getByRole("link", { name: /playwright-qa-demo/ });
   await expect(repo).toHaveAttribute("href", "https://github.com/cesaroctavio/playwright-qa-demo");
   await expect(repo).toHaveAttribute("target", "_blank");
 });
 
-test("the Pet Grooming System live demo is linked from Work", async ({ page }) => {
+test("the Pet Grooming System live demo is linked from Projects", async ({ page }) => {
   await page.goto("/");
-  const demo = page.locator("#work").getByRole("link", { name: /Pet Grooming System/ });
+  const demo = page.locator("#projects").getByRole("link", { name: /Pet Grooming System/ });
   await expect(demo).toHaveAttribute("href", "https://pet-grooming-system-sigma.vercel.app");
+  await expect(demo).toHaveAttribute("target", "_blank");
+});
+
+test("the Barber System live demo is linked from Projects", async ({ page }) => {
+  await page.goto("/");
+  const demo = page.locator("#projects").getByRole("link", { name: /Barber System/ });
+  await expect(demo).toHaveAttribute("href", "https://barber-system-ashy.vercel.app");
   await expect(demo).toHaveAttribute("target", "_blank");
 });
 

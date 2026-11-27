@@ -77,6 +77,22 @@ function CaseStudies() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+function Projects() {
+  return (
+    <section id="projects" className="section" aria-labelledby="projects-title">
+      <div className="container">
+        <div className="section__head" data-reveal>
+          <p className="eyebrow">Projects</p>
+          <h2 id="projects-title">Things I've built</h2>
+          <p className="lead">
+            Code you can open and apps you can try, each with its own test suite.
+          </p>
+        </div>
         {projects.map((project, i) => (
           <a
             key={project.href}
@@ -85,7 +101,7 @@ function CaseStudies() {
             target="_blank"
             rel="noopener noreferrer"
             data-reveal
-            style={stagger(4 + i)}
+            style={stagger(1 + i)}
           >
             <span className="repo__text">
               <span className="eyebrow">{project.eyebrow}</span>
@@ -99,7 +115,7 @@ function CaseStudies() {
             <span className="visually-hidden"> (opens in a new tab)</span>
           </a>
         ))}
-        <p className="repo-note" data-reveal style={stagger(4 + projects.length)}>
+        <p className="repo-note" data-reveal style={stagger(1 + projects.length)}>
           This site is tested too:{" "}
           <a className="text-link" href={siteTests.href} target="_blank" rel="noopener noreferrer">
             {siteTests.label}
@@ -292,6 +308,7 @@ export default function App() {
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
         <CaseStudies />
+        <Projects />
         <Skills />
         <Contact />
       </main>

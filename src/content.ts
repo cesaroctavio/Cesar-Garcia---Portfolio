@@ -104,7 +104,7 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-// Pet Grooming System's repo is private, so its card links the live demo, not GitHub.
+// Pet Grooming System and Barber System have private repos, so their cards link live demos, not GitHub.
 export const projects = [
   {
     eyebrow: "Public code",
@@ -118,6 +118,13 @@ export const projects = [
     href: "https://pet-grooming-system-sigma.vercel.app",
     name: "Pet Grooming System",
     body: "Online booking and a private admin for a one-person grooming salon, which I built end to end with Next.js, Postgres and Clerk. Playwright specs cover booking, slot limits, the groomer's daily flow and access control, and every finding from my own QA review was fixed.",
+    cta: "Open live demo",
+  },
+  {
+    eyebrow: "Built and tested",
+    href: "https://barber-system-ashy.vercel.app",
+    name: "Barber System",
+    body: "Online booking and a private admin for a multi-barber shop with per-chair schedules, client profiles and payments, built end to end with Next.js, Postgres and Clerk. Vitest and Playwright specs cover overlap prevention, booking, checkout, security headers and access control.",
     cta: "Open live demo",
   },
 ];
